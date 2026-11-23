@@ -1,0 +1,33 @@
+{
+  "name": "rischio-strada-moto",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Web app sulle circostanze di pericolo per il motociclista su strada: scenari per contesto, cause infrastrutturali e di esercizio, dinamica del veicolo e del contatto pneumatico-strada.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "build:single": "vite build --mode single",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "catalog": "tsx scripts/gen-catalog.ts",
+    "test": "tsx scripts/check-physics.ts",
+    "check": "tsx scripts/check-scenes.ts"
+  },
+  "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.169.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "18.3.1",
+    "@types/three": "0.169.0",
+    "@vitejs/plugin-react": "4.3.3",
+    "tsx": "4.19.2",
+    "typescript": "5.6.3",
+    "vite": "5.4.11",
+    "vite-plugin-singlefile": "2.0.3"
+  }
+}
