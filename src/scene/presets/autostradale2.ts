@@ -1,6 +1,6 @@
 /**
  * Scene autostradali (seconda serie): ormaie in corsia di marcia, rampe di svincolo, spray e scia dei mezzi
- * pesanti, angolo cieco, giunti e ghiaccio, immissioni, cantieri, cuspidi, ristagni, corsia d'emergenza.
+ * pesanti, angolo cieco, giunti, ghiaccio sui viadotti, immissioni, cantieri, cuspidi, ristagni, corsia d'emergenza.
  */
 import type { ScenePreset } from './types';
 import type { ActorSpec, ObjectSpec, RoadSpec } from '../types';
@@ -248,13 +248,73 @@ const a04: ScenePreset = {
   },
 };
 
-/* A-06 — viadotto in curva: giunti e ghiaccio */
+/* A-06 — giunti di dilatazione di un viadotto in curva */
 const a06: ScenePreset = {
-  defaults: { speed: 110, ice: true, wet: false },
-  controls: ['speed', 'ice', 'wet'],
+  defaults: { speed: 90, wet: true, abs: false },
+  controls: ['speed', 'wet', 'abs'],
+  speedRange: [60, 130],
+  guida:
+    'Viadotto in curva (raggio 450 m) con due giunti di dilatazione in acciaio: uno a pettine all’ingresso, uno modulare largo 1 m all’uscita. Bagnato, l’acciaio offre circa 0,15 di aderenza contro 0,6-0,7 dell’asfalto. All’ingresso la piega a 90 km/h richiede 0,14: si passa al limite; più veloce la moto si scompone per un attimo e recupera, perché il giunto dura due centesimi di secondo. In fondo al viadotto il traffico rallenta e si frena in curva proprio sul giunto: senza ABS l’anteriore si blocca sull’acciaio bagnato e la moto cade, con l’ABS la frenata si alleggerisce per quel metro e si prosegue. Sull’asciutto il giunto regge.',
+  build: (p) => {
+    const L = 1300;
+    const main = motorway([str(300), arc(450, 50), str(400)]);
+    const g = geom(main);
+    const vd0 = 330;
+    const vd1 = 530;
+    const lanes = 3 * W;
+    const egoS0 = 250;
+    const v = p.speed / 3.6;
+    const sBrake = vd1 - 30;
+    const tBrake = (sBrake - egoS0) / v;
+    const lead = 45;
+    const pts = [g.point(240, 0), g.point(420, 0), g.point(600, 0)];
+    const xs = pts.map((q) => q.x);
+    const ys = pts.map((q) => q.y);
+    return {
+      id: 'A-06',
+      duration: Math.min(15, tBrake + 5),
+      roads: [main],
+      hazards: [
+        { id: 'giunto1', kind: 'giunto', road: 'main', s0: vd0, s1: vd0 + 0.4, d0: -SL, d1: lanes + 3, surface: 'giunto', label: 'giunto a pettine' },
+        { id: 'giunto2', kind: 'giunto', road: 'main', s0: vd1, s1: vd1 + 1.0, d0: -SL, d1: lanes + 3, surface: 'giunto', label: 'giunto modulare' },
+      ],
+      objects: [...margins(g, L), { kind: 'cartello', at: g.point(vd0 - 90, lanes + 4), text: 'Viadotto' }],
+      actors: [
+        {
+          id: 'auto',
+          kind: 'auto',
+          label: 'auto che rallenta',
+          color: '#5d6d7e',
+          road: 'main',
+          d: LANE(2),
+          lights: true,
+          motion: motion(egoS0 + lead, p.speed).until(Math.max(0, tBrake - 0.8)).to(60, 4).build(40),
+        },
+        { id: 'c2', kind: 'auto', label: 'auto', color: colors[2], road: 'main', d: LANE(1), motion: motion(egoS0 + 60, Math.min(p.speed + 10, 125)).build(40) },
+      ],
+      ego: {
+        road: 'main',
+        s0: egoS0,
+        d: LANE(2),
+        speed: p.speed,
+        limit: 130,
+        watch: [],
+        plan: [{ s0: sBrake, toKmh: 60, a: 4.0, label: 'Il traffico rallenta in fondo al viadotto: frenata in curva, fin sopra il giunto' }],
+      },
+      notes: [{ t: Math.max(0.3, tBrake - 0.8), text: 'L’auto davanti frena in fondo al viadotto, dove c’è il secondo giunto.' }],
+      env: { wet: p.wet, rain: p.wet },
+      frame: [Math.min(...xs) - 70, Math.min(...ys) - 30, Math.max(...xs) + 70, Math.max(...ys) + 30],
+    };
+  },
+};
+
+/* A-15 — ghiaccio sul viadotto in curva */
+const a15: ScenePreset = {
+  defaults: { speed: 110, ice: true },
+  controls: ['speed', 'ice'],
   labels: { ice: 'Ghiaccio sull’impalcato in ombra' },
   guida:
-    'Mattina d’inverno: il viadotto in curva (raggio 600 m) gela prima della strada in rilevato perché l’aria passa anche sotto l’impalcato. A 110 km/h servono 0,16 di aderenza trasversale, il ghiaccio ne offre 0,08: la moto scivola. Sotto i 75 km/h la richiesta scende sotto la soglia. Sul bagnato anche i giunti metallici fanno scomporre la moto.',
+    'Mattina d’inverno, asfalto asciutto: il viadotto in curva (raggio 600 m) gela prima della strada in rilevato perché l’aria passa anche sotto l’impalcato, che non riceve il calore del terreno. Fuori dal viadotto l’aderenza è piena; sull’impalcato la brina offre 0,08. A 110 km/h la piega richiede 0,16: la moto scivola appena entra sulla zona ghiacciata. Sotto i 75 km/h la richiesta scende sotto la soglia, ma resta un margine minimo: qualsiasi frenata o correzione lì sopra fa cadere.',
   build: (p) => {
     const L = 1300;
     const main = motorway([str(300), arc(600, 35), str(400)]);
@@ -263,19 +323,21 @@ const a06: ScenePreset = {
     const vd1 = 640;
     const lanes = 3 * W;
     return {
-      id: 'A-06',
+      id: 'A-15',
       duration: 14,
       roads: [main],
-      hazards: [
-        { id: 'giunto1', kind: 'giunto', road: 'main', s0: vd0, s1: vd0 + 0.6, d0: -SL, d1: lanes + 3, surface: 'giunto', label: 'giunto di dilatazione' },
-        { id: 'giunto2', kind: 'giunto', road: 'main', s0: vd1, s1: vd1 + 0.6, d0: -SL, d1: lanes + 3, surface: 'giunto', label: 'giunto di dilatazione' },
-        ...(p.ice ? [{ id: 'ghiaccio', kind: 'ghiaccio' as const, road: 'main', s0: vd0 + 60, s1: vd0 + 230, d0: -SL, d1: lanes + 3, surface: 'ghiaccio' as const, label: 'ghiaccio sul viadotto' }] : []),
+      hazards: p.ice
+        ? [{ id: 'ghiaccio', kind: 'ghiaccio' as const, road: 'main', s0: vd0 + 10, s1: vd1 - 10, d0: -SL, d1: lanes + 3, surface: 'ghiaccio' as const, label: 'ghiaccio sul viadotto' }]
+        : [],
+      objects: [
+        ...margins(g, L),
+        { kind: 'cartello', at: g.point(vd0 - 120, lanes + 4), text: 'Pericolo di ghiaccio' },
+        { kind: 'cartello', at: g.point(vd0 - 60, lanes + 4), text: 'Viadotto' },
       ],
-      objects: [...margins(g, L), { kind: 'cartello', at: g.point(vd0 - 100, lanes + 4), text: 'Pericolo di ghiaccio' }],
       actors: [{ id: 'auto', kind: 'auto', label: 'auto', color: '#5d6d7e', road: 'main', d: LANE(2), lights: true, motion: motion(260, 100).build(40) }],
       ego: { road: 'main', s0: 180, d: LANE(1), speed: p.speed, limit: 130, watch: [] },
-      notes: [{ t: 0.3, text: 'Temperatura vicina a zero: sul viadotto l’umidità è ghiacciata.' }],
-      env: { wet: p.wet, rain: p.wet, cold: p.ice },
+      notes: [{ t: 0.3, text: p.ice ? 'Temperatura vicina a zero: sulla strada in rilevato l’asfalto è asciutto, sull’impalcato del viadotto l’umidità è ghiacciata.' : 'Temperatura sopra lo zero: il viadotto è asciutto come il resto della strada.' }],
+      env: { cold: p.ice },
       frame: [-80, 250, 60, 760],
     };
   },
@@ -516,4 +578,5 @@ export const AUTOSTRADALE2_SCENES: Record<string, ScenePreset> = {
   'A-11': a11,
   'A-13': a13,
   'A-14': a14,
+  'A-15': a15,
 };

@@ -17,8 +17,8 @@ Le basi tecniche sono due tesi di laurea in Ingegneria Civile (Università Roma 
 
 | Sezione | Contenuto |
 |---|---|
-| **Scenari** | 50 scenari (18 urbani, 18 extraurbani, 14 autostradali), matrice contesto × causa, filtri. Ogni scheda: il consiglio «In sella», come riconoscere la situazione, come comportarsi, cosa succede alla moto, il ruolo della strada e del traffico, rischio P × G, riferimenti alle tesi; in fondo, per tecnici e gestori, le contromisure. |
-| **Simulazioni** | Tutti i 50 scenari hanno una scena dinamica: vista dall'alto (che segue la moto), vista 3D in soggettiva, inseguimento e drone. Parametri regolabili secondo lo scenario: velocità, tempo di reazione, intensità di frenata, bagnato, notte, ABS, piega massima, distanza di sicurezza, posizione in corsia, angolo di attraversamento, accelerazione, ghiaccio. |
+| **Scenari** | 51 scenari (18 urbani, 18 extraurbani, 15 autostradali), matrice contesto × causa, filtri. Ogni scheda: il consiglio «In sella», come riconoscere la situazione, come comportarsi, cosa succede alla moto, il ruolo della strada e del traffico, rischio P × G, riferimenti alle tesi; in fondo, per tecnici e gestori, le contromisure. |
+| **Simulazioni** | Tutti i 51 scenari hanno una scena dinamica: vista dall'alto (che segue la moto), vista 3D in soggettiva, inseguimento e drone. Parametri regolabili secondo lo scenario: velocità, tempo di reazione, intensità di frenata, bagnato, notte, ABS, piega massima, distanza di sicurezza, posizione in corsia, angolo di attraversamento, accelerazione, ghiaccio. |
 | **Con e senza guard-rail** | Negli scenari con uscita di strada (E-02, E-03, E-05, E-06, E-07, E-10, A-08, A-11) si sceglie cosa c'è sul margine: nessuna barriera (rilevato, alberi), guard-rail a paletti, guard-rail con protezione per motociclisti (o, per le cuspidi, testata nuda, terminale, attenuatore). Una tabella confronta le tre conseguenze della stessa caduta. |
 | **Fisica della moto** | 12 calcolatori, ciascuno con un consiglio pratico: aderenza, frenata e trasferimento di carico, spazio d'arresto, percezione, piega, ellisse di aderenza, visibilità in curva e sui raccordi, faro in curva, aquaplaning e ormaie, impatto e barriere, diagramma delle velocità. |
 | **Insidie dell'asfalto** | I degradi A-Q dei cataloghi riletti per la moto. |
@@ -61,7 +61,7 @@ npm run catalog        # rigenera docs/catalogo-scenari.md
 
 ```
 src/
-  data/            tassonomia, 50 scenari (urbano, extraurbano, autostradale), ammaloramenti
+  data/            tassonomia, 51 scenari (urbano, extraurbano, autostradale), ammaloramenti
   physics/         modelli fisici dalle tesi (aderenza, frenata, curva, visibilità, impatto, ormaie, velocità)
   scene/           modello di scena condiviso, geometria stradale, simulatore, scene dei singoli scenari (presets/)
   views/           vista dall'alto (SVG), vista 3D (three.js), pannello di simulazione, orologio condiviso

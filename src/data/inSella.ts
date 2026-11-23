@@ -43,7 +43,7 @@ export const IN_SELLA: Record<string, string> = {
   'A-03': 'Sotto la pioggia non restare nella nube d’acqua dietro un camion: sorpassa con decisione o resta lontano.',
   'A-04': 'Non viaggiare affiancato a un camion: sorpassalo o resta indietro, dove ti vede negli specchi.',
   'A-05': 'Con la pioggia la corsia di marcia ha le ormaie piene d’acqua: stai sotto gli 80 km/h e cambia corsia deciso, a moto dritta.',
-  'A-06': 'D’inverno i viadotti gelano per primi: con temperature vicine allo zero rallenta prima di entrarci.',
+  'A-06': 'Sul giunto d’acciaio di un viadotto, soprattutto bagnato, passa con la moto più dritta che puoi e senza toccare i freni: frena prima o subito dopo.',
   'A-07': 'Tieni almeno 3 secondi dal veicolo davanti e una posizione che ti permetta di vedere oltre.',
   'A-08': 'Finisci di frenare nella corsia di decelerazione ed entra piano negli anelli delle rampe: lì si accumula il gasolio.',
   'A-09': 'Vicino agli svincoli aspettati qualcuno che si immette senza vederti: se puoi, spostati in corsia centrale.',
@@ -52,4 +52,5 @@ export const IN_SELLA: Record<string, string> = {
   'A-12': 'In autostrada la velocità eccessiva toglie a te il tempo per reagire e agli altri la possibilità di vederti arrivare.',
   'A-13': 'Con la pioggia forte l’acqua ristagna nei cambi di curva: sotto i 90 km/h e nessuna manovra brusca.',
   'A-14': 'La corsia d’emergenza non è una corsia: lì ci sono persone a piedi e mezzi fermi.',
+  'A-15': 'D’inverno i viadotti gelano per primi, anche quando la strada è asciutta: con temperature vicine allo zero rallenta prima di entrarci.',
 };

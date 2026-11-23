@@ -160,9 +160,13 @@ export function simulate(spec: SceneSpec, P: SimParams): SimResult {
   let gustOn = -1;
   let lateralMax = 0;
   let slipT = 0;
+  let pendingSlip: { key: string; label: string; t: number } | undefined;
   const crossSide = new Map<string, number>();
 
-  const addEvent = (kind: SimEvent['kind'], label: string, t: number) => events.push({ t, kind, label, x, y });
+  const addEvent = (kind: SimEvent['kind'], label: string, t: number) => {
+    events.push({ t, kind, label, x, y });
+    if (events.length > 1 && events[events.length - 2].t > t) events.sort((a, b) => a.t - b.t);
+  };
   const onceEvent = (key: string, kind: SimEvent['kind'], label: string, t: number) => {
     if (once.has(key)) return;
     once.add(key);
@@ -544,9 +548,21 @@ export function simulate(spec: SceneSpec, P: SimParams): SimResult {
       // uno scivolamento laterale brevissimo (giunto, chiusino attraversati in un attimo) si recupera
       if (fy > muLoc + 1e-3) slipT += dt;
       else slipT = Math.max(0, slipT - dt * 2);
-      if (fy > muLoc + 1e-3 && slipT <= 0.06) {
-        onceEvent(`slip-${hazardId ?? 'base'}`, 'nota', `Scivolamento laterale momentaneo${hazardId ? ' su ' + labelOf(spec, hazardId) : ''}: la moto si scompone ma recupera`, t);
+      // la nota dello scivolamento recuperato si scrive solo quando l'aderenza torna sufficiente
+      if (fy <= muLoc + 1e-3 && pendingSlip) {
+        onceEvent(pendingSlip.key, 'nota', pendingSlip.label, pendingSlip.t);
+        pendingSlip = undefined;
+      }
+      if (fy > muLoc + 1e-3 && slipT <= 0.06 && fx > 0 && !P.abs && (braking || planFx > 0)) {
+        // mentre lo pneumatico scivola di lato, la frenata senza ABS blocca l'anteriore
+        pendingSlip = undefined;
+        mode = 'slide';
+        slideCause = `bloccaggio dell’anteriore${hazardId ? ' su ' + labelOf(spec, hazardId) : ''} mentre la moto scivola di lato`;
+        addEvent('caduta', `Caduta: ${slideCause}`, t);
+      } else if (fy > muLoc + 1e-3 && slipT <= 0.06) {
+        pendingSlip ??= { key: `slip-${hazardId ?? 'base'}`, label: `Scivolamento laterale momentaneo${hazardId ? ' su ' + labelOf(spec, hazardId) : ''}: la moto si scompone ma recupera`, t };
       } else if (fy > muLoc + 1e-3) {
+        pendingSlip = undefined;
         mode = 'slide';
         slideCause = aqua ? 'aquaplaning con la moto in manovra: lo pneumatico non trasmette forza laterale' : hazardId ? `aderenza insufficiente su ${labelOf(spec, hazardId)}` : 'aderenza trasversale insufficiente';
         addEvent('caduta', `Caduta: ${slideCause}`, t);

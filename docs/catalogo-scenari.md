@@ -64,7 +64,7 @@ La stima del rischio segue la Tesi Manutenzione (§II.4.1): **R = P · G**, con 
 | A-03 | Sorpasso di un mezzo pesante sotto la pioggia | D’esercizio | — | Mezzi pesanti | Pioggia / bagnato, Vento laterale | 2 | 4 | 8 medio |
 | A-04 | Cambio di corsia del mezzo pesante nell’angolo cieco | D’esercizio | — | Mezzi pesanti, Traffico e interferenze | — | 2 | 5 | 10 elevato |
 | A-05 | Ormaie nella corsia di marcia con pioggia | Combinato | Stato della pavimentazione | Mezzi pesanti | Pioggia / bagnato | 3 | 4 | 12 elevato |
-| A-06 | Giunti di dilatazione dei viadotti in curva | Infrastrutturale | Stato della pavimentazione, Geometria d’asse | — | Pioggia / bagnato, Temperatura | 2 | 4 | 8 medio |
+| A-06 | Giunti di dilatazione dei viadotti in curva | Infrastrutturale | Stato della pavimentazione, Geometria d’asse | — | Pioggia / bagnato | 2 | 4 | 8 medio |
 | A-07 | Detriti in carreggiata scoperti all’ultimo | D’esercizio | Visibilità | Mezzi pesanti, Traffico e interferenze | — | 2 | 5 | 10 elevato |
 | A-08 | Rampa di svincolo a raggio decrescente con gasolio | Combinato | Geometria d’asse, Stato della pavimentazione | Mezzi pesanti, Rallentamenti e code | — | 3 | 4 | 12 elevato |
 | A-09 | Immissione dalla corsia di accelerazione | Combinato | Geometria d’asse, Visibilità | Traffico e interferenze, Mezzi pesanti | — | 3 | 4 | 12 elevato |
@@ -73,6 +73,7 @@ La stima del rischio segue la Tesi Manutenzione (§II.4.1): **R = P · G**, con 
 | A-12 | Velocità molto superiore al limite e cambio di corsia ⚠ | D’esercizio | Visibilità | Traffico e interferenze, Mezzi pesanti | — | 3 | 5 | 15 elevato |
 | A-13 | Ristagno d’acqua nella zona di flesso della sopraelevazione | Combinato | Geometria d’asse, Stato della pavimentazione | Traffico e interferenze | Pioggia / bagnato | 2 | 4 | 8 medio |
 | A-14 | Corsia d’emergenza in coda ⚠ | D’esercizio | Arredo e margini, Stato della pavimentazione | Rallentamenti e code | — | 2 | 5 | 10 elevato |
+| A-15 | Ghiaccio sul viadotto in curva | Infrastrutturale | Stato della pavimentazione, Geometria d’asse | — | Temperatura | 2 | 4 | 8 medio |
 
 ### Distribuzione
 
@@ -80,7 +81,7 @@ La stima del rischio segue la Tesi Manutenzione (§II.4.1): **R = P · G**, con 
 |---|---|---|---|---|---|
 | Urbano | 5 | 4 | 9 | 4 | 18 |
 | Extraurbano | 6 | 0 | 12 | 3 | 18 |
-| Autostradale | 2 | 6 | 6 | 3 | 14 |
+| Autostradale | 3 | 6 | 6 | 3 | 15 |
 
 ## Contesto urbano
 
@@ -1435,6 +1436,7 @@ Velocità massime, flussi intensi con elevata quota di mezzi pesanti, code e ral
 
 - [A-06](#a-06--giunti-di-dilatazione-dei-viadotti-in-curva) Giunti di dilatazione dei viadotti in curva
 - [A-11](#a-11--ostacoli-fissi-cuspidi-terminali-e-barriere) Ostacoli fissi: cuspidi, terminali e barriere
+- [A-15](#a-15--ghiaccio-sul-viadotto-in-curva) Ghiaccio sul viadotto in curva
 
 ### Scenari d’esercizio
 
@@ -1632,30 +1634,35 @@ La corsia di marcia lenta, percorsa dai mezzi pesanti, presenta ormaie profonde 
 
 **Natura:** Infrastrutturale · **Rischio:** P 2 (bassa) × G 4 (alta) = 8, medio
 
-Un giunto metallico a pettine attraversa la carreggiata in curva; bagnato o ghiacciato è una fascia ad aderenza minima.
+All’inizio e alla fine di un viadotto un giunto metallico (a pettine o modulare) attraversa tutta la carreggiata, spesso in curva: bagnato è una striscia d’acciaio ad aderenza minima, consumato ha gradini e fessure.
 
-> **In sella.** D’inverno i viadotti gelano per primi: con temperature vicine allo zero rallenta prima di entrarci.
+> **In sella.** Sul giunto d’acciaio di un viadotto, soprattutto bagnato, passa con la moto più dritta che puoi e senza toccare i freni: frena prima o subito dopo.
 
-**Dinamica.** In piega l’aderenza trasversale impegnata resta costante mentre quella disponibile crolla per qualche decimetro: lo pneumatico slitta lateralmente e, se il recupero avviene di colpo, si può innescare un high-side. Giunti ammalorati presentano gradini e varchi che sollecitano lo sterzo.
+**Dinamica.** Sull’acciaio bagnato l’aderenza scende a circa 0,15 contro 0,6-0,7 dell’asfalto. In piega la forza laterale richiesta resta la stessa mentre quella disponibile crolla per qualche decimetro: lo pneumatico slitta di lato e la moto si scompone; il giunto si attraversa in pochi centesimi di secondo e in genere si recupera, ma il ritorno di aderenza può innescare un high-side. Il pericolo vero è sovrapporre una frenata o un’accelerazione: senza ABS l’anteriore si blocca sull’acciaio e la moto cade. I giunti modulari dei viadotti lunghi sono larghi anche un metro e più; quelli ammalorati hanno gradini tra giunto e pavimentazione e varchi che deviano lo sterzo.
 
 **Cause infrastrutturali** (stato della pavimentazione, geometria d’asse)
-- Giunti metallici esposti
-- Gradini tra giunto e pavimentazione
-- Viadotti in curva soggetti a ghiaccio
+- Giunti metallici esposti, a pettine o modulari, posti ortogonalmente all’asse anche in curva
+- Gradini e avvallamenti tra giunto e pavimentazione, tamponi di raccordo sgretolati
+- Viadotti in curva o all’ingresso di uno svincolo, dove si frena in piega
 
-**Aggravanti ambientali:** pioggia / bagnato, temperatura
+**Aggravanti ambientali:** pioggia / bagnato
 
 **Segnali premonitori**
-- Cartello di viadotto, banda metallica trasversale lucida
+- Cartello di viadotto, cambio di rumore del rotolamento
+- Banda metallica trasversale lucida, ancora più visibile quando è bagnata
+- Rattoppi e avvallamenti a cavallo del giunto
 
 **Condotta del motociclista**
-- Attraversare il giunto con la moto il più verticale possibile, senza frenare né accelerare
+- Attraversare il giunto con la moto il più dritta possibile e con il gas costante
+- Non frenare né accelerare sopra il giunto: anticipare la frenata o rimandarla di un istante
+- Sul bagnato ridurre la velocità prima del viadotto, in modo che la piega sul giunto sia minima
 
 **Contromisure per gestore e progettista**
-- Giunti a tampone o con superficie antiscivolo
-- Manutenzione dei raccordi
+- Giunti con superficie antiscivolo o giunti sottopavimentazione (a tampone) dove possibile
+- Manutenzione dei raccordi tra giunto e pavimentazione
+- Evitare giunti in tratti in curva dove si frena (fine viadotto prima di uno svincolo)
 
-**Esito tipico:** Scivolata in curva.
+**Esito tipico:** Scomposta in piega o caduta per bloccaggio dell’anteriore sul giunto.
 
 ### A-07 · Detriti in carreggiata scoperti all’ultimo
 
@@ -1923,3 +1930,37 @@ La moto supera la coda percorrendo la corsia d’emergenza; un veicolo fermo, un
 - Informazione sui tempi di attesa
 
 **Esito tipico:** Urto contro veicolo fermo o persona, interferenza con i soccorsi.
+
+### A-15 · Ghiaccio sul viadotto in curva
+
+**Natura:** Infrastrutturale · **Rischio:** P 2 (bassa) × G 4 (alta) = 8, medio
+
+Con temperature intorno allo zero la strada è asciutta, ma l’impalcato di un viadotto in curva è coperto da un velo di brina o ghiaccio che non si vede.
+
+> **In sella.** D’inverno i viadotti gelano per primi, anche quando la strada è asciutta: con temperature vicine allo zero rallenta prima di entrarci.
+
+**Dinamica.** Il viadotto è esposto all’aria su entrambe le facce e non riceve il calore del terreno: si raffredda prima e gela anche quando la strada in rilevato è sopra lo zero. Il ghiaccio offre un’aderenza intorno a 0,05-0,1; in curva, a velocità autostradale, la sola piega ne richiede di più e la moto scivola appena entra sulla zona ghiacciata, senza alcuna frenata. A velocità più bassa si resta in piedi, ma senza margine: qualunque correzione o frenata sull’impalcato fa cadere.
+
+**Cause infrastrutturali** (stato della pavimentazione, geometria d’asse)
+- Impalcato esposto all’aria su entrambe le facce, senza il calore del terreno
+- Viadotti in ombra, nei fondovalle o sopra corsi d’acqua
+- Curve sull’impalcato, dove la piega impegna già parte dell’aderenza
+
+**Aggravanti ambientali:** temperatura
+
+**Segnali premonitori**
+- Cartello di pericolo di ghiaccio, temperatura esterna vicina a zero
+- Asfalto più scuro o opaco sull’impalcato, brina sui guard-rail e sulle barriere
+- Mattino presto, giornate serene dopo notti fredde
+
+**Condotta del motociclista**
+- Con temperature vicine allo zero ridurre la velocità prima del viadotto, non sopra
+- Attraversare l’impalcato con la moto il più dritta possibile, senza frenare né cambiare traiettoria
+- Considerare che la strada asciutta prima del viadotto non dice nulla sull’impalcato
+
+**Contromisure per gestore e progettista**
+- Trattamento antighiaccio preventivo mirato sui viadotti
+- Sensori di temperatura dell’impalcato e pannelli a messaggio variabile
+- Segnaletica di pericolo di ghiaccio sui viadotti esposti
+
+**Esito tipico:** Scivolata in curva sulla zona ghiacciata, urto contro la barriera.
