@@ -5,7 +5,7 @@
  */
 import { memo, useMemo, useState } from 'react';
 import type { SimResult, EgoFrame } from '../scene/simulate';
-import { frameAt } from '../scene/simulate';
+import { frameAt, sprayFootprint } from '../scene/simulate';
 import type { World } from '../scene/world';
 import { roadBands, roadLines, dashSpans, type BandKind } from '../scene/road';
 import type { SimParams, Vec2 } from '../scene/types';
@@ -63,7 +63,7 @@ const StaticLayer = memo(function StaticLayer({ world }: { world: World }) {
               return spans.map(([s0, s1], si) => {
                 const left = g.polyline(b.d0, s0, s1, 1);
                 const right = g.polyline(b.d1, s0, s1, 1).reverse();
-                return <polygon key={`${g.spec.id}-${kind}-${bi}-${si}`} points={pts([...left, ...right])} fill={BAND_COLOR[kind]} />;
+                return <polygon key={`${g.spec.id}-${kind}-${bi}-${si}`} points={pts([...left, ...right])} fill={kind === 'asfalto' && g.spec.paving === 'lapideo' ? 'url(#pat-lapideo)' : BAND_COLOR[kind]} />;
               });
             }),
         ),
@@ -134,6 +134,42 @@ const StaticLayer = memo(function StaticLayer({ world }: { world: World }) {
             return <rect key={i} x={o.at.x - 0.1} y={o.at.y - 0.1} width={0.2} height={0.2} fill="#f3f3f3" stroke="#222" strokeWidth={0.04} />;
           case 'isola':
             return <circle key={i} cx={o.center.x} cy={o.center.y} r={o.r} fill={MAP.verde} stroke="#d9d4ca" strokeWidth={0.5} />;
+          case 'rilevato':
+            return (
+              <g key={i}>
+                <polyline points={pts(o.line)} fill="none" stroke="#6d5f44" strokeWidth={3} opacity={0.45} />
+                <polyline points={pts(o.line)} fill="none" stroke="#3c3324" strokeWidth={0.25} strokeDasharray="0.8 0.5" />
+              </g>
+            );
+          case 'galleria': {
+            const g = world.roads.get(o.road)!;
+            const poly = [...g.polyline(o.d0, o.s0, o.s1, 2), ...g.polyline(o.d1, o.s0, o.s1, 2).reverse()];
+            return (
+              <g key={i}>
+                <polygon points={pts(poly)} fill="#1b1e21" opacity={0.55} />
+                <polyline points={pts(g.polyline(o.d0 - 0.6, o.s0, o.s1, 2))} fill="none" stroke="#7a7d80" strokeWidth={1.2} />
+                <polyline points={pts(g.polyline(o.d1 + 0.6, o.s0, o.s1, 2))} fill="none" stroke="#7a7d80" strokeWidth={1.2} />
+              </g>
+            );
+          }
+          case 'cono':
+            return <circle key={i} cx={o.at.x} cy={o.at.y} r={0.25} fill="#ff6a00" stroke="#fff" strokeWidth={0.08} />;
+          case 'terminale':
+            return (
+              <rect
+                key={i}
+                x={o.at.x - (o.tipo === 'attenuatore' ? 1.6 : 0.4)}
+                y={o.at.y - 0.4}
+                width={o.tipo === 'attenuatore' ? 3.2 : 0.8}
+                height={0.8}
+                transform={`rotate(${(o.th * 180) / Math.PI} ${o.at.x} ${o.at.y})`}
+                fill={o.tipo === 'attenuatore' ? '#f2b632' : o.tipo === 'spigolo' ? '#d3d6d8' : '#a5acb3'}
+                stroke="#222"
+                strokeWidth={0.08}
+              />
+            );
+          case 'spartitraffico':
+            return <polygon key={i} points={pts(o.poly)} fill="#cfcac0" stroke="#f4f4f2" strokeWidth={0.2} />;
           case 'cartello':
             return <polygon key={i} points={`${o.at.x - 0.5},${o.at.y - 0.3} ${o.at.x + 0.5},${o.at.y - 0.3} ${o.at.x},${o.at.y + 0.5}`} fill="#fff" stroke="#c8372d" strokeWidth={0.15} />;
           default:
@@ -154,8 +190,26 @@ function HazardShape({ kind, poly }: { kind: string; poly: Vec2[] }) {
     case 'ghiaia':
       return <polygon points={p} fill="url(#pat-ghiaia)" />;
     case 'acqua':
+      return <polygon points={p} fill="#5f86a8" opacity={0.75} />;
     case 'ormaie':
-      return <polygon points={p} fill="#6f8ea8" opacity={0.7} />;
+      return <polygon points={p} fill="url(#pat-ormaia)" opacity={0.85} />;
+    case 'dosso':
+      return <polygon points={p} fill="url(#pat-dosso)" />;
+    case 'cordolo':
+      return <polygon points={p} fill="#d9d4ca" stroke="#555" strokeWidth={0.06} />;
+    case 'rotaie':
+    case 'gradino':
+      return <polygon points={p} fill={kind === 'rotaie' ? '#c9ced3' : '#2a2c2e'} stroke={kind === 'rotaie' ? '#7b8187' : '#111'} strokeWidth={0.04} />;
+    case 'ghiaccio':
+      return <polygon points={p} fill="#cfe7f5" opacity={0.55} />;
+    case 'fango':
+      return <polygon points={p} fill="#6b5236" opacity={0.75} />;
+    case 'fresato':
+      return <polygon points={p} fill="url(#pat-fresato)" />;
+    case 'lucidato':
+      return <polygon points={p} fill="#8b9096" opacity={0.35} />;
+    case 'giunto':
+      return <polygon points={p} fill="#9aa1a8" stroke="#555" strokeWidth={0.05} />;
     case 'strisce':
       return <polygon points={p} fill="none" />;
     case 'sigillature':
@@ -269,6 +323,23 @@ export function TopView({ sim, clock, params }: Props) {
             <rect width="1.2" height="1.2" fill="#2b2e33" />
             <rect width="1.2" height="0.25" fill="#5a4d7a" opacity="0.6" />
             <rect y="0.5" width="1.2" height="0.18" fill="#3d6a6a" opacity="0.55" />
+          </pattern>
+          <pattern id="pat-lapideo" width="0.24" height="0.24" patternUnits="userSpaceOnUse">
+            <rect width="0.24" height="0.24" fill="#55585a" />
+            <rect x="0.01" y="0.01" width="0.1" height="0.1" fill="#6c6e6f" />
+            <rect x="0.13" y="0.13" width="0.1" height="0.1" fill="#626567" />
+          </pattern>
+          <pattern id="pat-ormaia" width="1" height="1" patternUnits="userSpaceOnUse">
+            <rect width="1" height="1" fill="#3e4a55" />
+            <rect y="0.2" width="1" height="0.6" fill="#5f86a8" />
+          </pattern>
+          <pattern id="pat-dosso" width="0.8" height="0.8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="0.8" height="0.8" fill="#d8d2c4" />
+            <rect width="0.4" height="0.8" fill="#2d2f31" />
+          </pattern>
+          <pattern id="pat-fresato" width="0.5" height="0.5" patternUnits="userSpaceOnUse">
+            <rect width="0.5" height="0.5" fill="#3a3c3f" />
+            <rect width="0.08" height="0.5" fill="#55585c" />
           </pattern>
           <pattern id="pat-fessure" width="1.5" height="1.5" patternUnits="userSpaceOnUse">
             <path d="M0,0.3 L0.5,0.6 L0.9,0.2 L1.5,0.7 M0.4,1.5 L0.7,1 L1.2,1.2" stroke="#16181a" strokeWidth="0.07" fill="none" />
@@ -388,6 +459,8 @@ function DynamicLayer({ sim, t, f, params, past, future }: { sim: SimResult; t: 
         const ind = a.indicator && t >= a.indicator.from && (a.indicator.to === undefined || t <= a.indicator.to) && blink;
         return (
           <g key={a.id}>
+            {a.spray && params.wet && st.v > 8 && <polygon points={pts(sprayFootprint(world, a, t).poly)} fill="#e8eef2" opacity={0.45} />}
+            {st.door > 0 && <polygon points={pts(st.polys[st.polys.length - 1])} fill={a.color ?? '#6b7c8f'} stroke="#111" strokeWidth={0.08} />}
             {st.bodies.map((b, bi) => (
               <ActorShape key={bi} kind={a.kind} color={a.color} part={b.part} poly={st.polys[bi]} />
             ))}

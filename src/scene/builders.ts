@@ -186,3 +186,88 @@ export function buildings(g: RoadGeom, d: number, s0: number, s1: number, depth 
   }
   return out;
 }
+
+/**
+ * Dispositivo di ritenuta sul margine secondo la scelta dell'utente; "behind" è ciò che c'è oltre la barriera
+ * (rilevato, alberi), presente in ogni caso: senza barriera è lì che finisce una scivolata.
+ */
+export function roadsideBarrier(g: RoadGeom, d: number, s0: number, s1: number, choice: 'nessuna' | 'paletti' | 'dsm', behind: ObjectSpec[] = []): ObjectSpec[] {
+  if (choice === 'nessuna') return behind;
+  return [guardrail(g, d, s0, s1, choice === 'dsm'), ...behind];
+}
+
+/** ciglio di rilevato lungo la strada */
+export function embankment(g: RoadGeom, d: number, s0: number, s1: number, height: number): ObjectSpec {
+  return { kind: 'rilevato', line: g.polyline(d, s0, s1, 1), height };
+}
+
+/** profilo altimetrico a pendenza costante tra s0 e s1 (i in frazione, negativo in discesa) con raccordi */
+export function gradeProfile(s0: number, s1: number, i: number, total: number, z0 = 0) {
+  const pts: { s: number; z: number }[] = [];
+  for (let s = 0; s <= total + 50; s += 4) {
+    const z = s <= s0 ? z0 : s <= s1 ? z0 + i * (s - s0) : z0 + i * (s1 - s0);
+    pts.push({ s, z });
+  }
+  return pts;
+}
+
+/** coppia di ormaie nelle tracce delle ruote dei mezzi pesanti di una corsia [dSinistra, dDestra] */
+export function rutPair(road: string, idPrefix: string, laneLeft: number, s0: number, s1: number, depth: number, b = 0.4, track = 2.05) {
+  const c1 = laneLeft + 0.75;
+  const c2 = c1 + track;
+  return [
+    { id: `${idPrefix}-sx`, kind: 'ormaie' as const, road, s0, s1, d0: c1 - b, d1: c1 + b, water: depth, label: `ormaia di ${depth} mm` },
+    { id: `${idPrefix}-dx`, kind: 'ormaie' as const, road, s0, s1, d0: c2 - b, d1: c2 + b, water: depth, label: `ormaia di ${depth} mm` },
+  ];
+}
+
+/**
+ * Traiettoria laterale realistica per spostarsi da d0 a d1: arco di curvatura costante (accelerazione laterale
+ * aLat), eventuale tratto rettilineo inclinato dell'angolo massimo, arco di ritorno. Restituisce un profilo fitto.
+ * L'angolo raggiungibile dipende dalla velocità: a parità di spazio laterale, più si va forte più è piccolo.
+ */
+export function lanePath(s0: number, d0: number, d1: number, vKmh: number, aLat = 3, maxDeg = 30, holdMin = 0): [number, number][] {
+  const v = Math.max(1, vKmh / 3.6);
+  const R = (v * v) / aLat;
+  const sign = Math.sign(d1 - d0) || 1;
+  const D = Math.abs(d1 - d0);
+  let psi = Math.acos(Math.max(-1, 1 - D / (2 * R)));
+  let hold = 0;
+  const cap = (maxDeg * Math.PI) / 180;
+  if (psi > cap || holdMin > 0) {
+    psi = Math.min(psi, cap);
+    hold = Math.max(holdMin, (D - 2 * R * (1 - Math.cos(psi))) / Math.sin(psi));
+    // con il tratto minimo imposto lo spostamento può superare D: si riduce l'angolo
+    while (2 * R * (1 - Math.cos(psi)) + hold * Math.sin(psi) > D * 1.001 && psi > 0.01) {
+      psi *= 0.97;
+      hold = Math.max(holdMin, (D - 2 * R * (1 - Math.cos(psi))) / Math.sin(psi));
+    }
+  }
+  const arc = R * psi;
+  const total = 2 * arc + hold;
+  const pts: [number, number][] = [[s0 - 5, d0]];
+  let s = s0;
+  let d = d0;
+  let h = 0;
+  const step = 0.25;
+  let next = s0;
+  for (let u = 0; u <= total; u += step) {
+    const k = u < arc ? 1 / R : u < arc + hold ? 0 : -1 / R;
+    h += k * step;
+    s += Math.cos(h) * step;
+    d += sign * Math.sin(h) * step;
+    if (s >= next) {
+      pts.push([s, d]);
+      next += 0.5;
+    }
+  }
+  // si mantiene la posizione effettivamente raggiunta, senza salti
+  pts.push([s + 0.5, d]);
+  pts.push([s + 400, d]);
+  return pts;
+}
+
+/** profilo laterale costante prima e dopo una traiettoria calcolata */
+export function withLead(d: number, path: [number, number][]): [number, number][] {
+  return [[-1000, d], ...path];
+}

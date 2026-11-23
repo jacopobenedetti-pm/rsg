@@ -1,4 +1,4 @@
-import type { SceneSpec, SimParams } from '../types';
+import type { BarrierChoice, SceneSpec, SimParams } from '../types';
 
 export interface ScenePreset {
   /** valori iniziali dei parametri della simulazione */
@@ -9,4 +9,10 @@ export interface ScenePreset {
   build: (p: SimParams) => SceneSpec;
   /** cosa osservare nella simulazione */
   guida: string;
+  /** etichette dei controlli specifiche della scena */
+  labels?: Partial<Record<keyof SimParams, string>>;
+  /** nomi delle tre opzioni di barriera, se diversi da quelli standard */
+  barrierLabels?: Partial<Record<BarrierChoice, string>>;
+  /** intervallo della velocità, se diverso da quello standard */
+  speedRange?: [number, number];
 }

@@ -859,3 +859,40 @@ table.data {
     transition: none !important;
   }
 }
+.seg-wrap {
+  flex-wrap: wrap;
+}
+.seg-wrap button {
+  border-bottom: 1px solid var(--line);
+}
+.insella {
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--bg);
+  padding: 0.85rem 1rem;
+  display: grid;
+  gap: 0.25rem;
+  border-left: 6px solid var(--accent);
+}
+.insella .eyebrow {
+  color: var(--accent);
+}
+.insella p {
+  font-size: 1.12rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+.card .insella-mini {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  border-left: 3px solid var(--accent);
+  padding-left: 0.5rem;
+}
+details.tech > summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 0.25rem 0;
+}

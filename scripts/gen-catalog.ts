@@ -24,7 +24,9 @@ const p = (s = '') => out.push(s);
 
 p('# Catalogo ragionato degli scenari di pericolo per il motociclista');
 p();
-p('> File generato da `npm run catalog` a partire da `src/data/scenari/*.ts`. Non modificarlo a mano.');
+p('> File generato da `npm run catalog` a partire da `src/data/scenari/*.ts` e `src/data/inSella.ts`. Non modificarlo a mano.');
+p();
+p('L\u2019app è pensata innanzitutto per i motociclisti: ogni scenario ha un consiglio «In sella» e una simulazione dinamica (vista dall\u2019alto e in soggettiva) in cui si possono cambiare velocità, distanze, pioggia, notte, ABS e, dove serve, il tipo di barriera sul margine.');
 p();
 p('## Criteri di classificazione');
 p();
@@ -83,6 +85,10 @@ function scenarioBlock(s: Scenario) {
   p();
   p(s.sintesi);
   p();
+  if (s.inSella) {
+    p(`> **In sella.** ${s.inSella}`);
+    p();
+  }
   if (s.fuoriNorma) {
     p(`> ⚠ **${s.fuoriNorma.condotta}.** ${s.fuoriNorma.nota}`);
     p();

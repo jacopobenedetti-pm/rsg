@@ -88,6 +88,20 @@ export const smoothstep = (t: number) => t * t * (3 - 2 * t);
 export function profileAt(profile: number | [number, number][], s: number): number {
   if (typeof profile === 'number') return profile;
   if (s <= profile[0][0]) return profile[0][1];
+  // profili fitti (traiettorie calcolate): interpolazione lineare
+  if (profile.length >= 8) {
+    let lo = 0;
+    let hi = profile.length - 1;
+    if (s >= profile[hi][0]) return profile[hi][1];
+    while (hi - lo > 1) {
+      const mid = (lo + hi) >> 1;
+      if (profile[mid][0] <= s) lo = mid;
+      else hi = mid;
+    }
+    const [s0, d0] = profile[lo];
+    const [s1, d1] = profile[hi];
+    return d0 + ((d1 - d0) * (s - s0)) / (s1 - s0 || 1);
+  }
   for (let i = 1; i < profile.length; i++) {
     const [s1, d1] = profile[i];
     if (s <= s1) {

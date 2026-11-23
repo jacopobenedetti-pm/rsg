@@ -69,10 +69,10 @@ export function App() {
               Scenari
             </a>
             <a href={href.fondamenti()} aria-current={current === 'fondamenti' ? 'page' : undefined}>
-              Fondamenti
+              Fisica della moto
             </a>
             <a href={href.ammaloramenti} aria-current={current === 'ammaloramenti' ? 'page' : undefined}>
-              Ammaloramenti
+              Insidie dell’asfalto
             </a>
             <a href={href.metodo} aria-current={current === 'metodo' ? 'page' : undefined}>
               Metodo

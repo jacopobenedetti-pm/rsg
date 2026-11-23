@@ -1,6 +1,8 @@
 import type { ScenePreset } from './types';
 import type { ObjectSpec, RoadSpec } from '../types';
-import { arc, delineators, geom, guardrail, hedge, motion, route, spiral, still, str, treeRow } from '../builders';
+import { arc, delineators, embankment, geom, guardrail, hedge, motion, roadsideBarrier, route, spiral, still, str, treeRow } from '../builders';
+
+const BARRIER_LABELS = { nessuna: 'Nessuna barriera', paletti: 'Guard-rail a paletti', dsm: 'Guard-rail con protezione per motociclisti' };
 
 const W = 3.5;
 const SH = 0.5;
@@ -67,8 +69,9 @@ const e01: ScenePreset = {
 
 /* E-02 — curva a raggio decrescente */
 const e02: ScenePreset = {
-  defaults: { speed: 90, maxLean: 40 },
-  controls: ['speed', 'maxLean', 'wet'],
+  defaults: { speed: 90, maxLean: 40, barrier: 'paletti' },
+  controls: ['speed', 'maxLean', 'wet', 'barrier'],
+  barrierLabels: BARRIER_LABELS,
   guida:
     'La curva si chiude da 260 a 80 m di raggio. A 90 km/h la piega richiesta arriva a circa 39°: con fondo bagnato l’aderenza non basta, oltre i 95 km/h il pilota medio non piega abbastanza e la traiettoria si allarga verso la corsia opposta.',
   build: (p) => {
@@ -77,7 +80,7 @@ const e02: ScenePreset = {
     const tight0 = 250 + (260 * 15 * Math.PI) / 180 + 60;
     const tight1 = tight0 + (80 * 60 * Math.PI) / 180;
     const objects: ObjectSpec[] = [
-      guardrail(g, -(EDGE + 0.7), 240, tight1 + 190),
+      ...roadsideBarrier(g, -(EDGE + 0.7), 240, tight1 + 190, p.barrier, treeRow(g, -(EDGE + 3.5), 240, tight1 + 190, 6, 2.8, 0.4)),
       ...delineators(g, EDGE + 0.4, -(EDGE + 0.4), 0, 700, 25),
       ...treeRow(g, EDGE + 8, 0, 650, 12, 3.2, 2),
       ...treeRow(g, -(EDGE + 10), 0, 230, 12, 3.2, 2),
@@ -184,8 +187,9 @@ const e04: ScenePreset = {
 
 /* E-05 — ghiaia alla corda di una curva */
 const e05: ScenePreset = {
-  defaults: { speed: 60 },
-  controls: ['speed', 'offset', 'maxLean', 'wet'],
+  defaults: { speed: 60, barrier: 'paletti' },
+  controls: ['speed', 'offset', 'maxLean', 'wet', 'barrier'],
+  barrierLabels: BARRIER_LABELS,
   guida:
     'Alla corda della curva sinistrorsa (R = 60 m) c’è ghiaia trascinata dall’accesso sterrato. Sulla ghiaia l’aderenza scende a 0,4: a 60 km/h ne servono 0,47 e la moto scivola verso il guard-rail. Provare 50 km/h o una traiettoria più esterna (offset positivo).',
   build: (p) => {
@@ -210,7 +214,7 @@ const e05: ScenePreset = {
         { id: 'ghiaia2', kind: 'ghiaia', road: 'main', s0: 138, s1: 150, d0: -2.5, d1: 0.4, surface: 'ghiaia', label: 'ghiaia' },
       ],
       objects: [
-        guardrail(g, EDGE + 0.6, 100, 240),
+        ...roadsideBarrier(g, EDGE + 0.6, 100, 240, p.barrier, [embankment(g, EDGE + 1.6, 90, 260, 3.5)]),
         ...delineators(g, EDGE + 0.4, -(EDGE + 0.4), 0, 360, 20),
         ...treeRow(g, -(EDGE + 6), 170, 360, 10, 3, 2),
         ...treeRow(g, EDGE + 7, 0, 360, 12, 3.4, 2),
@@ -302,8 +306,8 @@ const e11: ScenePreset = {
         s0: e0,
         d: [
           [0, 1.75],
-          [e0 + 15, 1.75],
-          [e0 + 45, -1.75],
+          [e0 + 5, 1.75],
+          [e0 + 95, -1.75],
         ],
         speed: p.speed,
         limit: 90,

@@ -41,8 +41,12 @@ function Section({ id, children, formula, source }: { id: PrincipleId; children:
   return (
     <section id={`p-${id}`} className="panel stack" style={{ scrollMarginTop: 80 }}>
       <div className="stack" style={{ gap: '0.3rem' }}>
-        <span className="eyebrow">Fondamenti</span>
+        <span className="eyebrow">Fisica della moto</span>
         <h2>{PRINCIPLES[id].titolo}</h2>
+      </div>
+      <div className="insella">
+        <span className="eyebrow">In sella</span>
+        <p>{PRINCIPLES[id].inSella}</p>
       </div>
       {formula && <div className="formula">{formula}</div>}
       {children}
@@ -692,11 +696,12 @@ export function Fondamenti({ anchor }: { anchor?: string }) {
   return (
     <div className="page">
       <header className="stack">
-        <span className="eyebrow">Fondamenti</span>
-        <h1>Dinamica della moto e contatto pneumatico-strada</h1>
+        <span className="eyebrow">Fisica della moto</span>
+        <h1>Perché la moto si comporta così</h1>
         <p className="prose">
-          I principi fisici da cui derivano tutti gli scenari, con calcolatori interattivi. Le formule sono quelle delle due tesi di riferimento; i
-          valori numerici di letteratura sono indicativi e servono a confrontare situazioni, non a progettare.
+          Aderenza, frenata, piega, visibilità: i principi da cui nascono tutte le situazioni di pericolo, ciascuno con un consiglio pratico e un
+          calcolatore da provare. Le formule vengono dalle due tesi di riferimento; i valori di letteratura sono indicativi e servono a confrontare
+          situazioni.
         </p>
         <nav className="toc" aria-label="Indice dei fondamenti">
           {PRINCIPLE_ORDER.map((p) => (

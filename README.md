@@ -1,7 +1,8 @@
 # Atlante dei pericoli per il motociclista
 
-Web app che descrive in modo organizzato le circostanze di pericolo in cui si può trovare un motociclista sulle strade
-pubbliche, a partire dai principi di dinamica del veicolo e del contatto pneumatico-pavimentazione.
+Web app pensata innanzitutto per i motociclisti: descrive in modo organizzato le circostanze di pericolo in cui ci si può
+trovare sulle strade pubbliche, a partire dai principi di dinamica del veicolo e del contatto pneumatico-pavimentazione, e
+le fa vedere con simulazioni dinamiche dall'alto e in soggettiva.
 
 Le basi tecniche sono due tesi di laurea in Ingegneria Civile (Università Roma Tre):
 
@@ -16,10 +17,11 @@ Le basi tecniche sono due tesi di laurea in Ingegneria Civile (Università Roma 
 
 | Sezione | Contenuto |
 |---|---|
-| **Scenari** | 50 scenari (18 urbani, 18 extraurbani, 14 autostradali), matrice contesto × causa, filtri. Ogni scheda: dinamica, cause infrastrutturali e d'esercizio, combinazione, segnali premonitori, condotta del motociclista, contromisure, rischio P × G, riferimenti alle tesi. |
-| **Simulazioni** | 18 scenari con scena dinamica: vista dall'alto (planimetria animata), vista 3D in soggettiva, inseguimento e drone, parametri regolabili (velocità, tempo di reazione, intensità di frenata, bagnato, notte, ABS, piega massima, distanza di sicurezza, posizione in corsia). |
-| **Fondamenti** | 12 calcolatori: aderenza, frenata e trasferimento di carico, spazio d'arresto, percezione, piega, ellisse di aderenza, visibilità in curva e sui raccordi, faro in curva, aquaplaning e ormaie, impatto e barriere, diagramma delle velocità. |
-| **Ammaloramenti** | I degradi A-Q dei cataloghi riletti per la moto. |
+| **Scenari** | 50 scenari (18 urbani, 18 extraurbani, 14 autostradali), matrice contesto × causa, filtri. Ogni scheda: il consiglio «In sella», come riconoscere la situazione, come comportarsi, cosa succede alla moto, il ruolo della strada e del traffico, rischio P × G, riferimenti alle tesi; in fondo, per tecnici e gestori, le contromisure. |
+| **Simulazioni** | Tutti i 50 scenari hanno una scena dinamica: vista dall'alto (che segue la moto), vista 3D in soggettiva, inseguimento e drone. Parametri regolabili secondo lo scenario: velocità, tempo di reazione, intensità di frenata, bagnato, notte, ABS, piega massima, distanza di sicurezza, posizione in corsia, angolo di attraversamento, accelerazione, ghiaccio. |
+| **Con e senza guard-rail** | Negli scenari con uscita di strada (E-02, E-03, E-05, E-06, E-07, E-10, A-08, A-11) si sceglie cosa c'è sul margine: nessuna barriera (rilevato, alberi), guard-rail a paletti, guard-rail con protezione per motociclisti (o, per le cuspidi, testata nuda, terminale, attenuatore). Una tabella confronta le tre conseguenze della stessa caduta. |
+| **Fisica della moto** | 12 calcolatori, ciascuno con un consiglio pratico: aderenza, frenata e trasferimento di carico, spazio d'arresto, percezione, piega, ellisse di aderenza, visibilità in curva e sui raccordi, faro in curva, aquaplaning e ormaie, impatto e barriere, diagramma delle velocità. |
+| **Insidie dell'asfalto** | I degradi A-Q dei cataloghi riletti per la moto. |
 | **Metodo** | Tassonomia, matrice di rischio, descrizione del modello di simulazione. |
 
 Il catalogo ragionato completo è anche in [`docs/catalogo-scenari.md`](docs/catalogo-scenari.md), generato dagli stessi dati
@@ -79,8 +81,13 @@ Il simulatore (`src/scene/simulate.ts`) muove la moto a passi di 1/100 s: il per
 linea di vista dall'occhio del pilota è libera da ostacoli, veicoli e profilo altimetrico (di notte, fuori dai centri abitati,
 solo nel fascio del faro); dopo il tempo di reazione inizia la frenata, limitata dall'ellisse di aderenza (con ABS la
 decelerazione si adatta, senza ABS l'anteriore si blocca). Se l'aderenza trasversale richiesta supera quella locale la moto
-scivola, se supera la piega accettata dal pilota la traiettoria si allarga. Dopo una caduta moto e pilota scivolano fino
-all'arresto o all'urto contro barriere, pali e veicoli.
+scivola, se supera la piega accettata dal pilota la traiettoria si allarga. Sono modellati anche il velo d'acqua e
+l'aquaplaning (altezza critica in funzione della velocità, ormaie a sezione parabolica), la pendenza in frenata e in
+scivolata, le frenate programmate, l'angolo di attraversamento di rotaie e gradini, dossi e cordoli, raffiche e scia dei
+mezzi pesanti, la nube d'acqua che sollevano sul bagnato, l'adattamento visivo in galleria, il semirimorchio che taglia le
+curve (cinematica della ralla) e le portiere. Dopo una caduta moto e pilota scivolano fino all'arresto o all'urto: con il
+guard-rail a paletti l'impatto è contro i sostegni, con la protezione continua il corpo viene guidato lungo la barriera,
+senza barriera cade nel rilevato o contro gli alberi.
 
 ### Aggiungere uno scenario
 

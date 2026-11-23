@@ -156,3 +156,12 @@ export function aquaplaningSpeed(waterMm: number, tread: 'battistrada' | 'liscio
   if (waterMm <= 0) return Infinity;
   return tread === 'battistrada' ? Math.log(212 / waterMm) / 0.0359 : Math.log(51.7 / waterMm) / 0.0252;
 }
+
+/**
+ * Riduzione relativa dell'aderenza dovuta al velo idrico rispetto al fondo semplicemente bagnato
+ * (rapporto tra le curve di Fig. IV.2 per lo spessore dato e per un velo sottile).
+ */
+export function wetFrictionFactor(vKmh: number, waterMm: number, tread: 'battistrada' | 'liscio' = 'battistrada') {
+  const thin = waterFilmFriction(vKmh, 0.5, tread);
+  return Math.min(1, waterFilmFriction(vKmh, waterMm, tread) / thin);
+}

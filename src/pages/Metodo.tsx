@@ -116,6 +116,13 @@ export function Metodo() {
             o all’urto con barriere, pali e veicoli.
           </p>
           <p>
+            Il modello tiene conto anche del velo d’acqua (aquaplaning quando lo spessore supera l’altezza critica per la velocità), della
+            pendenza in frenata e in scivolata, dell’angolo con cui si attraversano rotaie e gradini, di dossi e cordoli, delle raffiche e della scia
+            dei mezzi pesanti, della nube d’acqua che sollevano sul bagnato, dell’adattamento visivo in galleria e del semirimorchio che taglia le
+            curve. Dopo una caduta l’esito dipende da ciò che c’è sul margine: guard-rail a paletti, protezione continua per motociclisti, New
+            Jersey, rilevato, alberi, testate di cuspide o attenuatori.
+          </p>
+          <p>
             Di notte, fuori dai centri abitati, sono visibili solo i veicoli con le luci accese e gli oggetti nel fascio dell’anabbagliante, che in
             piega lascia in ombra l’interno della curva. I modelli sono volutamente semplici e verificati sui valori numerici delle tesi
             (<code>npm test</code>): servono a confrontare situazioni e a mostrare i meccanismi, non a ricostruire incidenti.

@@ -6,7 +6,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import type { SimResult } from '../scene/simulate';
-import { frameAt } from '../scene/simulate';
+import { frameAt, sprayFootprint } from '../scene/simulate';
 import { sampleMotion } from '../scene/world';
 import type { SimParams } from '../scene/types';
 import { type Clock, useClockTime } from './clock';
@@ -28,6 +28,8 @@ class Engine {
   actors = new Map<string, VehicleMesh[]>();
   ego = makeEgoBike();
   rain: THREE.LineSegments | null = null;
+  sprays = new Map<string, THREE.Mesh>();
+  sunDisc: THREE.Mesh | null = null;
   sim: SimResult | null = null;
   params: SimParams | null = null;
   mode: CamMode = 'soggettiva';
@@ -62,6 +64,16 @@ class Engine {
         v.dispose();
       }
     this.actors.clear();
+    for (const m of this.sprays.values()) {
+      this.scene.remove(m);
+      m.geometry.dispose();
+    }
+    this.sprays.clear();
+    if (this.sunDisc) {
+      this.scene.remove(this.sunDisc);
+      this.sunDisc.geometry.dispose();
+      this.sunDisc = null;
+    }
     for (const l of this.lampLights) this.scene.remove(l);
     this.lampLights = [];
     if (this.rain) {
@@ -79,6 +91,28 @@ class Engine {
       const list = st.bodies.map((b) => makeVehicle(a.kind, a.color, b.part));
       list.forEach((v) => this.scene.add(v.group));
       this.actors.set(a.id, list);
+      if (a.spray && params.wet) {
+        const m = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshBasicMaterial({ color: 0xdfe6ea, transparent: true, opacity: 0.38, depthWrite: false }));
+        this.scene.add(m);
+        this.sprays.set(a.id, m);
+      }
+    }
+    // sole basso: dietro la moto (chi arriva di fronte è abbagliato) o davanti (abbaglia il motociclista)
+    const sunMode = world.spec.env?.sun;
+    const eg = world.roads.get(world.spec.ego.road)!.pose(world.spec.ego.s0, 0);
+    if (sunMode && !params.night) {
+      const dir = sunMode === 'basso-dietro' ? -1 : 1;
+      this.sun.position.set(eg.x + dir * Math.cos(eg.th) * 300, 28, -(eg.y + dir * Math.sin(eg.th) * 300));
+      this.sun.target.position.set(eg.x, 0, -eg.y);
+      this.scene.add(this.sun.target);
+      if (sunMode === 'basso-fronte') {
+        this.sunDisc = new THREE.Mesh(new THREE.SphereGeometry(30, 16, 12), new THREE.MeshBasicMaterial({ color: 0xfff6d8, fog: false }));
+        this.sunDisc.position.set(eg.x + Math.cos(eg.th) * 1500, 90, -(eg.y + Math.sin(eg.th) * 1500));
+        this.scene.add(this.sunDisc);
+      }
+    } else {
+      this.sun.position.set(-120, 220, 80);
+      this.sun.target.position.set(0, 0, 0);
     }
 
     // ambiente
@@ -148,7 +182,20 @@ class Engine {
         const ind = a.indicator && t >= a.indicator.from && (a.indicator.to === undefined || t <= a.indicator.to) && blink;
         if (v.indL) v.indL.emissive.setHex(ind && a.indicator!.side === 'left' ? 0xffa000 : 0x000000);
         if (v.indR) v.indR.emissive.setHex(ind && a.indicator!.side === 'right' ? 0xffa000 : 0x000000);
+        if (v.door) v.door.rotation.y = -st.door;
       });
+      const spray = this.sprays.get(a.id);
+      if (spray) {
+        const sp = sprayFootprint(world, a, t);
+        const c = sp.poly.reduce((acc, p) => ({ x: acc.x + p.x / 4, y: acc.y + p.y / 4 }), { x: 0, y: 0 });
+        const L = Math.hypot(sp.poly[0].x - sp.poly[3].x, sp.poly[0].y - sp.poly[3].y);
+        const Wd = Math.hypot(sp.poly[0].x - sp.poly[1].x, sp.poly[0].y - sp.poly[1].y);
+        const last = st.bodies[st.bodies.length - 1];
+        spray.visible = sp.v > 8;
+        spray.position.set(c.x, gz(c) + 1.6, -c.y);
+        spray.rotation.set(0, last.th, 0);
+        spray.scale.set(L, 3.2, Wd);
+      }
     }
 
     const f = frameAt(sim, t);

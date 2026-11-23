@@ -206,6 +206,25 @@ export function buildStatic(world: World, env: Env): Static3D {
     verde: mat.verde,
   };
 
+  // sampietrini: texture a blocchi, lucida sul bagnato
+  const lapideoTex = track(
+    canvasTexture(256, (c, sz) => {
+      c.fillStyle = '#3e4143';
+      c.fillRect(0, 0, sz, sz);
+      const r = rand(11);
+      const n = 21;
+      const cell = sz / n;
+      for (let i = 0; i < n; i++)
+        for (let j = 0; j < n; j++) {
+          const v = 80 + Math.floor(r() * 40);
+          c.fillStyle = `rgb(${v},${v + 2},${v + 4})`;
+          c.fillRect(i * cell + 1.5, j * cell + 1.5 + ((i % 2) * cell) / 2, cell - 3, cell - 3);
+        }
+    }),
+  );
+  lapideoTex.repeat.set(0.35, 0.35);
+  const lapideoMat = track(new THREE.MeshStandardMaterial({ map: lapideoTex, roughness: wet ? 0.25 : 0.75, metalness: wet ? 0.2 : 0 }));
+
   // terreno
   const groundColor = urban ? 0x8f8c86 : 0x66763f;
   const ground = new THREE.Mesh(track(new THREE.PlaneGeometry(6000, 6000)), track(new THREE.MeshLambertMaterial({ color: groundColor })));
@@ -223,7 +242,8 @@ export function buildStatic(world: World, env: Env): Static3D {
       const raise = b.kind === 'marciapiede' ? 0.15 : b.kind === 'spartitraffico' ? 0.02 : 0;
       const spans: [number, number][] = b.side ? g.spansOutsideGaps(b.side) : [[0, g.length]];
       for (const [s0, s1] of spans) {
-        const m = new THREE.Mesh(track(ribbon(g, b.d0, b.d1, s0, s1, 1, raise + (b.kind === 'asfalto' ? 0 : -0.005))), bandMat[b.kind]);
+        const bm = b.kind === 'asfalto' && g.spec.paving === 'lapideo' ? lapideoMat : bandMat[b.kind];
+        const m = new THREE.Mesh(track(ribbon(g, b.d0, b.d1, s0, s1, 1, raise + (b.kind === 'asfalto' ? 0 : -0.005), 1)), bm);
         group.add(m);
         if (b.kind === 'marciapiede') {
           const edge = b.side === 'right' ? b.d0 : b.d1;
@@ -266,7 +286,33 @@ export function buildStatic(world: World, env: Env): Static3D {
         }
       }),
     ),
+  } as Record<string, THREE.Texture>;
+  const hazTex2 = {
+    fresato: track(
+      canvasTexture(128, (c, sz) => {
+        c.fillStyle = '#3b3d40';
+        c.fillRect(0, 0, sz, sz);
+        c.fillStyle = '#5a5d61';
+        for (let i = 0; i < sz; i += 8) c.fillRect(i, 0, 3, sz);
+      }),
+    ),
+    dosso: track(
+      canvasTexture(128, (c, sz) => {
+        c.fillStyle = '#f2c230';
+        c.fillRect(0, 0, sz, sz);
+        c.fillStyle = '#1d1d1d';
+        for (let i = -sz; i < sz; i += 32) {
+          c.beginPath();
+          c.moveTo(i, 0);
+          c.lineTo(i + 16, 0);
+          c.lineTo(i + 16 + sz, sz);
+          c.lineTo(i + sz, sz);
+          c.fill();
+        }
+      }),
+    ),
   };
+  Object.assign(hazTex, hazTex2);
   const hazMat = (kind: HazardKind): THREE.Material => {
     switch (kind) {
       case 'buca':
@@ -280,12 +326,27 @@ export function buildStatic(world: World, env: Env): Static3D {
       case 'sigillature':
         return new THREE.MeshStandardMaterial({ map: hazTex.fessure, roughness: 0.6 });
       case 'acqua':
+        return env.wet ? new THREE.MeshStandardMaterial({ color: 0x3a4a56, roughness: 0.03, metalness: 0.9 }) : new THREE.MeshLambertMaterial({ color: 0x33363a });
       case 'ormaie':
-        return new THREE.MeshStandardMaterial({ color: 0x40505c, roughness: 0.04, metalness: 0.85 });
+        return env.wet ? new THREE.MeshStandardMaterial({ color: 0x3a4a56, roughness: 0.03, metalness: 0.9, transparent: true, opacity: 0.9 }) : new THREE.MeshLambertMaterial({ color: 0x2f3236 });
       case 'chiusino':
       case 'giunto':
       case 'rotaie':
         return new THREE.MeshStandardMaterial({ color: 0x8a9096, roughness: 0.25, metalness: 0.9 });
+      case 'gradino':
+        return new THREE.MeshLambertMaterial({ color: 0x1c1d1f });
+      case 'fresato':
+        return new THREE.MeshLambertMaterial({ map: hazTex.fresato });
+      case 'dosso':
+        return new THREE.MeshLambertMaterial({ map: hazTex.dosso });
+      case 'cordolo':
+        return new THREE.MeshLambertMaterial({ color: 0xbdb8ae });
+      case 'ghiaccio':
+        return new THREE.MeshStandardMaterial({ color: 0xdbeef8, roughness: 0.05, metalness: 0.3, transparent: true, opacity: 0.55 });
+      case 'fango':
+        return new THREE.MeshLambertMaterial({ color: 0x5e4630 });
+      case 'lucidato':
+        return new THREE.MeshStandardMaterial({ color: 0x4a4e53, roughness: 0.12, metalness: 0.2, transparent: true, opacity: 0.6 });
       case 'strisce':
         return new THREE.MeshStandardMaterial({ color: 0xffffff, transparent: true, opacity: 0 });
       default:
@@ -305,6 +366,18 @@ export function buildStatic(world: World, env: Env): Static3D {
       continue;
     }
     const shape = new THREE.Shape(h.poly.map((p) => new THREE.Vector2(p.x, p.y)));
+    if (h.spec.kind === 'dosso' || h.spec.kind === 'cordolo') {
+      // elementi in rilievo
+      const hh = h.spec.height ?? (h.spec.kind === 'dosso' ? 0.07 : 0.15);
+      const eg = track(new THREE.ExtrudeGeometry(shape, { depth: hh, bevelEnabled: false }));
+      const uvE = eg.getAttribute('uv') as THREE.BufferAttribute;
+      for (let i = 0; i < uvE.count; i++) uvE.setXY(i, uvE.getX(i) / 1.5, uvE.getY(i) / 1.5);
+      const me = new THREE.Mesh(eg, track(hazMat(h.spec.kind)));
+      me.rotation.x = -Math.PI / 2;
+      me.position.y = z;
+      group.add(me);
+      continue;
+    }
     const geo = track(new THREE.ShapeGeometry(shape));
     // coordinate uv in metri
     const uv = geo.getAttribute('uv') as THREE.BufferAttribute;
@@ -410,6 +483,65 @@ export function buildStatic(world: World, env: Env): Static3D {
         group.add(tri);
         break;
       }
+      case 'rilevato': {
+        const probe = egoRoad.project(o.line[Math.floor(o.line.length / 2)]);
+        const out = Math.sign(probe.d) || 1;
+        const foot = offsetLine(o.line, out * o.height * 1.5);
+        group.add(new THREE.Mesh(track(slope(o.line, foot, -o.height, groundZ)), track(new THREE.MeshLambertMaterial({ color: 0x6a7840, side: THREE.DoubleSide }))));
+        const far = offsetLine(o.line, out * (o.height * 1.5 + 60));
+        group.add(new THREE.Mesh(track(slope(foot, far, 0, (p) => groundZ(p) - o.height)), track(new THREE.MeshLambertMaterial({ color: 0x5f6e3a, side: THREE.DoubleSide }))));
+        break;
+      }
+      case 'galleria': {
+        const g = world.roads.get(o.road)!;
+        const wallMat = track(new THREE.MeshLambertMaterial({ color: 0x5c5f62, side: THREE.DoubleSide }));
+        const left = g.polyline(o.d0 - 0.5, o.s0, o.s1, 2);
+        const right = g.polyline(o.d1 + 0.5, o.s0, o.s1, 2);
+        group.add(new THREE.Mesh(track(wall(left, 0, o.height, groundZ)), wallMat));
+        group.add(new THREE.Mesh(track(wall(right, 0, o.height, groundZ)), wallMat));
+        group.add(new THREE.Mesh(track(slope(left, right, 0, (p) => groundZ(p) + o.height)), track(new THREE.MeshLambertMaterial({ color: 0x2a2c2e, side: THREE.DoubleSide }))));
+        // penombra interna sulla pavimentazione e corpi illuminanti
+        group.add(new THREE.Mesh(track(ribbon(g, o.d0, o.d1, o.s0 + 4, o.s1, 2, 0.02)), track(new THREE.MeshBasicMaterial({ color: 0x000000, transparent: true, opacity: 0.55 }))));
+        const lampGeo = track(new THREE.BoxGeometry(1.2, 0.08, 0.25));
+        const lampMat = track(new THREE.MeshBasicMaterial({ color: 0xffe7b0 }));
+        for (let ss = o.s0 + 6; ss < o.s1; ss += 12) {
+          const p = g.pose(ss, (o.d0 + o.d1) / 2);
+          const lm = new THREE.Mesh(lampGeo, lampMat);
+          lm.position.set(p.x, p.z + o.height - 0.1, -p.y);
+          lm.rotation.y = p.th;
+          group.add(lm);
+        }
+        // portale
+        const pp = g.pose(o.s0, (o.d0 + o.d1) / 2);
+        const portal = new THREE.Mesh(track(new THREE.BoxGeometry(1.5, 3, o.d1 - o.d0 + 6)), wallMat);
+        portal.position.set(pp.x, pp.z + o.height + 1.5, -pp.y);
+        portal.rotation.y = pp.th;
+        group.add(portal);
+        break;
+      }
+      case 'cono': {
+        const m = new THREE.Mesh(track(new THREE.ConeGeometry(0.18, 0.75, 10)), track(new THREE.MeshLambertMaterial({ color: 0xff5a00, emissive: env.night ? 0x331000 : 0x000000 })));
+        m.position.copy(toV3(o.at.x, o.at.y, groundZ(o.at) + 0.37));
+        group.add(m);
+        break;
+      }
+      case 'terminale': {
+        const color = o.tipo === 'attenuatore' ? 0xf2b632 : o.tipo === 'spigolo' ? 0xcfd1cd : 0xb8bec4;
+        const len = o.tipo === 'attenuatore' ? 3.2 : 0.8;
+        const m = new THREE.Mesh(track(new THREE.BoxGeometry(len, o.tipo === 'spigolo' ? 0.9 : 0.8, 0.8)), track(new THREE.MeshLambertMaterial({ color })));
+        m.position.copy(toV3(o.at.x, o.at.y, groundZ(o.at) + 0.45));
+        m.rotation.y = o.th;
+        group.add(m);
+        break;
+      }
+      case 'spartitraffico': {
+        const shape = new THREE.Shape(o.poly.map((p) => new THREE.Vector2(p.x, p.y)));
+        const m = new THREE.Mesh(track(new THREE.ExtrudeGeometry(shape, { depth: 0.15, bevelEnabled: false })), track(new THREE.MeshLambertMaterial({ color: 0xc9c4ba })));
+        m.rotation.x = -Math.PI / 2;
+        m.position.y = groundZ(o.poly[0]);
+        group.add(m);
+        break;
+      }
       case 'zebra': {
         const g = world.roads.get(o.road)!;
         for (let d = o.d0 + 0.25; d < o.d1 - 0.2; d += 1.0) group.add(new THREE.Mesh(track(ribbon(g, d, d + 0.5, o.s - o.width / 2, o.s + o.width / 2, o.width, 0.014)), mat.line));
@@ -464,6 +596,8 @@ export interface VehicleMesh {
   tail?: THREE.MeshStandardMaterial;
   indL?: THREE.MeshStandardMaterial;
   indR?: THREE.MeshStandardMaterial;
+  /** perno della portiera anteriore sinistra (solo autovetture) */
+  door?: THREE.Object3D;
   dispose: () => void;
 }
 
@@ -486,6 +620,7 @@ export function makeVehicle(kind: ActorKind, color = '#6b7c8f', part: 'intero' |
   const indL = new THREE.MeshStandardMaterial({ color: 0x6a4a10, emissive: 0x000000 });
   const indR = new THREE.MeshStandardMaterial({ color: 0x6a4a10, emissive: 0x000000 });
   disp.push(body, glass, tyre, head, tail, indL, indR);
+  let doorPivot: THREE.Object3D | undefined;
   const wheels = (l: number, w: number, r: number, xs: number[]) => {
     const geo = new THREE.CylinderGeometry(r, r, 0.25, 14);
     disp.push(geo);
@@ -517,6 +652,15 @@ export function makeVehicle(kind: ActorKind, color = '#6b7c8f', part: 'intero' |
       mk(new THREE.BoxGeometry(2.0, 0.05, 1.55), body, -0.3, 1.53, 0);
       wheels(4.3, 1.62, 0.32, [1.35, -1.35]);
       lights(4.3, 1.8, 0.75);
+      const pivot = new THREE.Object3D();
+      pivot.position.set(0.6, 0, -0.9);
+      const dg = new THREE.BoxGeometry(1.05, 0.75, 0.06);
+      disp.push(dg);
+      const dm = new THREE.Mesh(dg, body);
+      dm.position.set(-0.525, 0.65, -0.03);
+      pivot.add(dm);
+      grp.add(pivot);
+      doorPivot = pivot;
       break;
     }
     case 'furgone': {
@@ -579,7 +723,7 @@ export function makeVehicle(kind: ActorKind, color = '#6b7c8f', part: 'intero' |
       break;
     }
   }
-  return { group: grp, head, tail, indL, indR, dispose: () => disp.forEach((d) => d.dispose()) };
+  return { group: grp, head, tail, indL, indR, door: doorPivot, dispose: () => disp.forEach((d) => d.dispose()) };
 }
 
 /** moto e pilota dell'ego (visibili nelle viste in terza persona) */

@@ -2,7 +2,7 @@
  * Geometria delle strade: campionamento dell'asse, terne locali, bande trasversali e segnaletica.
  */
 import type { RoadSpec, Segment, Vec2 } from './types';
-import { profileAt } from './geometry';
+import { interp } from '../physics/units';
 
 export interface RoadSample {
   s: number;
@@ -45,7 +45,11 @@ export class RoadGeom {
     }
     this.samples = buildSamples(spec.segments, start);
     this.length = this.samples[this.samples.length - 1].s;
-    if (spec.elevation) for (const p of this.samples) p.z = profileAt(spec.elevation.map((e) => [e.s, e.z]), p.s);
+    // profilo altimetrico: interpolazione lineare tra punti fitti (la pendenza resta continua a tratti)
+    if (spec.elevation) {
+      const tab = spec.elevation.map((e) => [e.s, e.z] as [number, number]);
+      for (const p of this.samples) p.z = interp(tab, p.s);
+    }
   }
 
   at(s: number): RoadSample {

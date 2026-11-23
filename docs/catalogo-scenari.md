@@ -1,6 +1,8 @@
 # Catalogo ragionato degli scenari di pericolo per il motociclista
 
-> File generato da `npm run catalog` a partire da `src/data/scenari/*.ts`. Non modificarlo a mano.
+> File generato da `npm run catalog` a partire da `src/data/scenari/*.ts` e `src/data/inSella.ts`. Non modificarlo a mano.
+
+L’app è pensata innanzitutto per i motociclisti: ogni scenario ha un consiglio «In sella» e una simulazione dinamica (vista dall’alto e in soggettiva) in cui si possono cambiare velocità, distanze, pioggia, notte, ABS e, dove serve, il tipo di barriera sul margine.
 
 ## Criteri di classificazione
 
@@ -117,6 +119,8 @@ Elevato numero di interferenze e di punti di conflitto, marcia stop & go a bassa
 
 Un’auto proveniente dal senso opposto svolta a sinistra in una laterale e taglia la traiettoria della moto che procede diritta.
 
+> **In sella.** Avvicinandoti a un incrocio con un’auto in attesa di svoltare, rallenta e copri i freni: per chi svolta sei più lontano e più lento di quanto sei davvero.
+
 **Dinamica.** La sagoma frontale stretta della moto cresce lentamente nel campo visivo di chi svolta (basso tasso di espansione angolare): la velocità viene sottostimata e l’intervallo ritenuto sufficiente. Per la moto lo spazio disponibile è quello fra il punto in cui la manovra diventa evidente e il punto di conflitto; se è minore di v·τ + v²/(2a) l’urto è inevitabile, e la decelerazione reale di un motociclista medio è ben inferiore all’aderenza disponibile.
 
 **Cause infrastrutturali** (visibilità, geometria d’asse)
@@ -156,6 +160,8 @@ Un’auto proveniente dal senso opposto svolta a sinistra in una laterale e tagl
 
 Un’auto si immette da una strada laterale o da un passo carrabile; un furgone in sosta, una siepe o dei cassonetti nascondono reciprocamente i due veicoli.
 
+> **In sella.** Se a destra ci sono furgoni in sosta o siepi, chi esce non ti vede e tu non vedi lui: stai più verso il centro e tieni una velocità da fermarti in 20 metri.
+
 **Dinamica.** Finché la linea di vista è interrotta nessuno dei due può reagire: il tempo di percezione parte solo quando l’auto emerge dall’ostacolo. La distanza utile è quindi fissata dalla geometria dell’ostacolo, non dal comportamento del motociclista, e cresce solo riducendo la velocità o spostandosi verso il centro della carreggiata.
 
 **Cause infrastrutturali** (visibilità, arredo e margini)
@@ -192,6 +198,8 @@ Un’auto si immette da una strada laterale o da un passo carrabile; un furgone 
 
 La moto procede a ridosso della fila di sosta; un occupante apre la portiera lato strada.
 
+> **In sella.** Lascia sempre lo spazio di una portiera aperta tra te e le auto parcheggiate; se non c’è, rallenta.
+
 **Dinamica.** La portiera occupa circa 1 m della corsia in meno di un secondo. A 40 km/h in un secondo si percorrono 11 m: senza margine laterale la sola frenata non basta e lo scarto verso il centro espone al traffico che sopraggiunge.
 
 **Cause infrastrutturali** (geometria d’asse)
@@ -222,6 +230,8 @@ La moto procede a ridosso della fila di sosta; un occupante apre la portiera lat
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 4 (alta) = 12, elevato
 
 Un autobus o un furgone si ferma prima delle strisce; la moto lo supera e il pedone, nascosto dalla sagoma del mezzo, entra nella sua traiettoria.
+
+> **In sella.** Un veicolo fermo davanti alle strisce nasconde qualcuno che attraversa: non superarlo.
 
 > ⚠ **Sorpasso di un veicolo fermo per consentire l’attraversamento pedonale.** Manovra vietata in prossimità degli attraversamenti: analizzata per la frequenza con cui si verifica nel traffico urbano.
 
@@ -258,6 +268,8 @@ Un autobus o un furgone si ferma prima delle strisce; la moto lo supera e il ped
 
 Il veicolo che precede frena all’improvviso in prossimità di un attraversamento; la moto deve fermarsi proprio sulle strisce bagnate.
 
+> **In sella.** Sulle strisce bagnate l’aderenza si dimezza: frena prima, alleggerisci sulla vernice, riprendi dopo.
+
 **Dinamica.** Le vernici e i termoplastici hanno tessitura quasi nulla: bagnati offrono un coefficiente di aderenza intorno a 0,3-0,4 contro 0,6-0,7 dell’asfalto circostante. La ruota anteriore, che in frenata porta gran parte del carico (trasferimento di carico), entra sulla vernice con una richiesta di aderenza superiore a quella offerta: senza ABS si blocca e la moto cade in pochi decimi di secondo.
 
 **Cause infrastrutturali** (stato della pavimentazione)
@@ -293,6 +305,8 @@ Il veicolo che precede frena all’improvviso in prossimità di un attraversamen
 
 Un chiusino o una caditoia si trova sulla traiettoria della moto in piega o nel punto di frenata.
 
+> **In sella.** Chiusini e griglie bagnati sono quasi come ghiaccio: raddrizza la moto mentre ci passi sopra o scegli una traiettoria che li eviti.
+
 **Dinamica.** Il metallo bagnato offre aderenza molto bassa (0,1-0,2): se la moto è in piega, l’aderenza trasversale impegnata (≈ tan γ) supera quella disponibile e la ruota scivola lateralmente. Chiusini ribassati o sopraelevati aggiungono un urto verticale che riduce per un istante il carico sulla ruota.
 
 **Cause infrastrutturali** (stato della pavimentazione, arredo e margini)
@@ -322,6 +336,8 @@ Un chiusino o una caditoia si trova sulla traiettoria della moto in piega o nel 
 **Natura:** Infrastrutturale · **Rischio:** P 3 (media) × G 3 (media) = 9, medio
 
 La moto cambia corsia o svolta attraversando le rotaie con un angolo piccolo; la ruota anteriore entra nella gola o scivola sull’acciaio.
+
+> **In sella.** Attraversa i binari il più possibile ad angolo retto, con la moto dritta e senza frenare; con la pioggia rallenta prima per poterlo fare.
 
 **Dinamica.** Con angoli di attraversamento ridotti la ruota viene guidata dalla gola della rotaia o slitta lateralmente sul fungo levigato: si genera una forza laterale improvvisa sulla sola ruota anteriore, che fa perdere il controllo dello sterzo. Bagnata, la rotaia ha aderenza vicina a quella del ghiaccio sporco.
 
@@ -356,6 +372,8 @@ La moto cambia corsia o svolta attraversando le rotaie con un angolo piccolo; la
 
 Sampietrini, porfido o basalto levigati dal traffico, con giunti aperti e avvallamenti dovuti al cedimento del sottofondo.
 
+> **In sella.** Sui sampietrini bagnati velocità più bassa, frenate in anticipo e piega minima: l’aderenza è un terzo di quella dell’asfalto asciutto.
+
 **Dinamica.** Su lapidei lucidati e bagnati l’aderenza scende a 0,2-0,3; l’irregolarità del piano induce oscillazioni del carico verticale, che si traducono in variazioni continue del peso aderente proprio in frenata e in piega.
 
 **Cause infrastrutturali** (stato della pavimentazione)
@@ -387,6 +405,8 @@ Sampietrini, porfido o basalto levigati dal traffico, con giunti aperti e avvall
 **Natura:** Combinato · **Rischio:** P 4 (alta) × G 3 (media) = 12, elevato
 
 L’auto che precede scavalca una buca facendola passare tra le ruote; la moto, che la segue nella stessa traiettoria centrale, la vede solo quando l’auto la scopre.
+
+> **In sella.** Non seguire l’auto davanti troppo da vicino: le buche che lei scavalca tra le ruote finiscono sotto la tua.
 
 **Dinamica.** L’auto ha carreggiata di 1,5 m e "salta" la buca senza toccarla; la moto ha una sola traccia, spesso proprio al centro della corsia. Una buca di 5-10 cm con bordo vivo produce sull’anteriore un urto che chiude la sospensione e, se la ruota è sterzata o la moto inclinata, la rende ingovernabile. Il tempo di scoperta dipende dalla distanza dal veicolo che precede.
 
@@ -425,6 +445,8 @@ L’auto che precede scavalca una buca facendola passare tra le ruote; la moto, 
 
 Nella corona della rotatoria la moto è in piega continua; una macchia di gasolio sversato da un mezzo pesante si trova sulla traiettoria.
 
+> **In sella.** In rotatoria tieni sempre un margine di aderenza: il gasolio non si vede, e sopra non esiste una velocità sicura in piega.
+
 **Dinamica.** In rotatoria l’aderenza trasversale impegnata è costante e pari a v²/(gR) (a 35 km/h su R = 20 m vale circa 0,48). Il gasolio porta l’aderenza disponibile intorno a 0,1-0,2: appena le ruote entrano nella macchia la forza laterale necessaria non è più disponibile e la moto scivola verso l’esterno.
 
 **Cause infrastrutturali** (stato della pavimentazione, geometria d’asse)
@@ -460,6 +482,8 @@ Nella corona della rotatoria la moto è in piega continua; una macchia di gasoli
 
 Cordoli di isole spartitraffico, dissuasori, paletti parapedonali e delimitatori di corsia posti lungo le traiettorie di svolta.
 
+> **In sella.** Di notte, nei restringimenti, non stare attaccato alla mezzeria: le isole spartitraffico compaiono all’ultimo.
+
 **Dinamica.** Il cordolo è un ostacolo per l’autovettura solo se alto; per la moto anche un rilievo modesto genera, all’impatto della ruota, un momento ribaltante (la reazione orizzontale agisce sotto il baricentro posto a h_m > h_a e la base d’appoggio S_m è molto minore di S_a). Dissuasori e paletti diventano ostacoli fissi contro cui il corpo del motociclista urta.
 
 **Cause infrastrutturali** (arredo e margini, geometria d’asse)
@@ -492,6 +516,8 @@ Cordoli di isole spartitraffico, dissuasori, paletti parapedonali e delimitatori
 **Natura:** D’esercizio · **Rischio:** P 4 (alta) × G 2 (bassa) = 8, medio
 
 La moto avanza tra due file di veicoli in coda; un’auto cambia corsia o esce dalla fila per un’inversione o per entrare in un parcheggio.
+
+> **In sella.** Se avanzi tra le file, non superare di più di 15-20 km/h la velocità della coda e guarda i varchi: è lì che qualcuno si sposta.
 
 > ⚠ **Marcia tra le file di veicoli incolonnati e sorpasso a destra.** Pratica diffusa ma non ammessa dal CdS; lo scenario ne quantifica il rischio in funzione del differenziale di velocità.
 
@@ -527,6 +553,8 @@ La moto avanza tra due file di veicoli in coda; un’auto cambia corsia o esce d
 
 La moto supera a destra una colonna lenta o percorre la corsia riservata; un veicolo svolta a destra in un passo carrabile o in una laterale.
 
+> **In sella.** Non superare a destra vicino ad accessi e laterali: chi svolta non ti aspetta lì.
+
 > ⚠ **Sorpasso a destra di veicoli in marcia o transito in corsia riservata.** La moto si trova in una posizione in cui chi svolta non la attende.
 
 **Dinamica.** Chi svolta controlla lo specchietto prima di iniziare la manovra e non si aspetta un veicolo veloce sul lato destro: il conflitto avviene a distanza brevissima e l’unica difesa è la velocità ridotta.
@@ -559,6 +587,8 @@ La moto supera a destra una colonna lenta o percorre la corsia riservata; un vei
 
 Un camion o un autobus svolta a destra; la moto ferma o in marcia alla sua destra è nell’angolo cieco e nella zona spazzata dal semirimorchio.
 
+> **In sella.** Mai alla destra di un camion o di un autobus fermo al semaforo: resta dietro, dove l’autista ti vede.
+
 **Dinamica.** In svolta il semirimorchio percorre un arco più interno della motrice (offtracking): la zona tra la ruota posteriore e il marciapiede si chiude. La moto non è visibile dagli specchi della motrice.
 
 **Cause infrastrutturali** (geometria d’asse)
@@ -589,6 +619,8 @@ Un camion o un autobus svolta a destra; la moto ferma o in marcia alla sua destr
 
 Rallentatori di altezza o rampa non conforme, non segnalati o posti in curva; di notte poco visibili.
 
+> **In sella.** In città aspettati dossi anche dove non dovrebbero esserci: in curva e di notte rallenta.
+
 **Dinamica.** Il dosso provoca una brusca compressione e successiva estensione delle sospensioni: se la moto è inclinata o in frenata, la variazione di carico verticale riduce l’aderenza disponibile nell’istante di estensione. A velocità elevata la ruota anteriore può staccarsi dal suolo.
 
 **Cause infrastrutturali** (arredo e margini, geometria d’asse, visibilità)
@@ -616,6 +648,8 @@ Rallentatori di altezza o rampa non conforme, non segnalati o posti in curva; di
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 4 (alta) = 12, elevato
 
 Sole basso su viali orientati est-ovest, alternanza di ombre di alberature e luce, illuminazione pubblica disomogenea.
+
+> **In sella.** Col sole basso alle spalle sei invisibile a chi ti viene incontro: rallenta agli incroci e fatti vedere.
 
 **Dinamica.** L’occhio impiega tempo ad adattarsi ai salti di luminanza: in quell’intervallo il tempo di percezione cresce. La moto, sagoma stretta con un solo faro, scompare nel controluce per chi la deve vedere.
 
@@ -649,6 +683,8 @@ Sole basso su viali orientati est-ovest, alternanza di ombre di alberature e luc
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 2 (bassa) = 6, medio
 
 Strati di foglie bagnate in autunno, fango in uscita dai cantieri, centro corsia lucido d’olio nelle zone di attesa dei semafori.
+
+> **In sella.** Fermandoti al semaforo frena nella traccia delle ruote, non al centro della corsia dove c’è l’olio.
 
 **Dinamica.** Il contaminante si interpone tra pneumatico e tessitura: l’aderenza dipende dal materiale (foglie bagnate ≈ 0,2, fango ≈ 0,25). Le gocce d’olio si accumulano dove i veicoli sostano a motore acceso: proprio dove la moto frena per fermarsi e riparte in piega.
 
@@ -685,6 +721,8 @@ Strati di foglie bagnate in autunno, fango in uscita dai cantieri, centro corsia
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 5 (molto alta) = 15, elevato
 
 Un’auto esce da una laterale quando la moto è a una distanza che sarebbe sufficiente a 50 km/h, ma la moto procede molto più veloce.
+
+> **In sella.** Sui viali larghi la velocità sale da sola, ma chi si immette ti valuta come se andassi a 50 km/h.
 
 > ⚠ **Velocità superiore al limite (es. 80-90 km/h dove vige il limite di 50 km/h).** Chi si immette valuta l’intervallo come se la moto procedesse al limite: lo scenario mostra quanto rapidamente l’intervallo diventa insufficiente.
 
@@ -746,6 +784,8 @@ Interferenze limitate, marcia continua a velocità elevata, geometria d’asse d
 
 Curva destrorsa con scarpata o vegetazione sul lato interno; oltre la curva c’è un veicolo fermo, un mezzo agricolo lento o un animale.
 
+> **In sella.** In una curva cieca vai alla velocità che ti permette di fermarti entro ciò che vedi, e non stringere la corda.
+
 **Dinamica.** La visuale libera in curva vale D = 2R·arccos(1 − m/R), dove m è la distanza tra l’occhio e l’ostacolo laterale. In curva destrorsa il motociclista percorre la parte interna della corsia, più vicino al ciglio, e in piega abbassa il punto di vista: m si riduce e con esso D (Tav. 07). Con R = 120 m: m = 2,75 m (auto al centro corsia) dà D ≈ 51 m, m = 2,0 m (moto all’interno) dà D ≈ 44 m, mentre a 70 km/h servono circa 52 m per fermarsi. In più, in piega parte dell’aderenza è già impegnata trasversalmente (ellisse di aderenza).
 
 **Cause infrastrutturali** (visibilità, geometria d’asse)
@@ -784,6 +824,8 @@ Curva destrorsa con scarpata o vegetazione sul lato interno; oltre la curva c’
 
 Dopo un rettifilo veloce la curva si chiude progressivamente (raggio decrescente o curva composta senza adeguata transizione); la moto entra a una velocità adatta al primo raggio, non all’ultimo.
 
+> **In sella.** Regola la velocità sul punto più stretto della curva, non sull’ingresso.
+
 > ⚠ **Velocità superiore al limite in ingresso curva.** La simulazione permette di confrontare la percorrenza al limite e oltre il limite.
 
 **Dinamica.** L’aderenza trasversale impegnata cresce come v²/(gR): a 90 km/h passa da 0,32 con R = 200 m a 0,80 con R = 80 m (piega da 18° a 39°). Se la richiesta supera l’aderenza disponibile la moto allarga la traiettoria; frenare in piega consuma ulteriore aderenza (ellisse) e raddrizza la moto, allargando ancora.
@@ -819,6 +861,8 @@ Dopo un rettifilo veloce la curva si chiude progressivamente (raggio decrescente
 
 Discesa con pendenza elevata che termina in curva; la moto deve rallentare per un veicolo lento a metà curva.
 
+> **In sella.** In discesa frena in rettilineo, prima della curva: in piega la frenata disponibile è poca e la pendenza te ne toglie altra.
+
 **Dinamica.** In discesa la componente del peso parallela alla strada si somma alla forza d’inerzia: l’aderenza impegnata cresce, e la tesi mostra che con pendenza del 5% in discesa l’aderenza impegnata supera quella disponibile per un ampio campo di raggi (Tav. 16). Frenare in piega somma la componente longitudinale a quella trasversale: la risultante esce dall’ellisse di aderenza.
 
 **Cause infrastrutturali** (geometria d’asse)
@@ -852,6 +896,8 @@ Discesa con pendenza elevata che termina in curva; la moto deve rallentare per u
 **Natura:** Combinato · **Rischio:** P 2 (bassa) × G 4 (alta) = 8, medio
 
 Su una strada secondaria con raccordi verticali stretti, un’auto è ferma subito dopo il dosso in attesa di svoltare a sinistra.
+
+> **In sella.** Prima di un dosso preparati a frenare: dall’altra parte può esserci un’auto ferma.
 
 **Dinamica.** Su un raccordo convesso la visuale vale D = √(2Rv)·(√h1 + √h2). Con Rv = 600 m, occhio a 1,3 m e tetto dell’auto a 1,4 m, D ≈ 80 m: a 90 km/h, con τ = 1 s e frenata a 0,6 g, servono già 78 m. Se l’ostacolo è basso (un oggetto, un animale, un motociclista caduto) D si riduce molto.
 
@@ -890,6 +936,8 @@ Su una strada secondaria con raccordi verticali stretti, un’auto è ferma subi
 
 Ghiaia e terriccio trascinati da un accesso non pavimentato o dalla banchina si accumulano all’interno della curva, dove passa la moto in piega.
 
+> **In sella.** Nelle curve con accessi sterrati non stringere la corda: è lì che si accumula la ghiaia.
+
 **Dinamica.** A 60 km/h su R = 60 m la piega è di circa 25° e l’aderenza trasversale impegnata vale 0,47. La ghiaia offre circa 0,4: la ruota scivola lateralmente, la moto cade sul fianco e motociclista e veicolo proseguono lungo la tangente fino all’ostacolo, con un angolo d’impatto θ = arccos(R/(R+b)).
 
 **Cause infrastrutturali** (stato della pavimentazione, arredo e margini)
@@ -924,6 +972,8 @@ Ghiaia e terriccio trascinati da un accesso non pavimentato o dalla banchina si 
 
 Dopo una perdita di aderenza in curva il motociclista scivola a terra verso la barriera di sicurezza esterna.
 
+> **In sella.** Dove c’è un guard-rail a paletti tieni ancora più margine: in caso di scivolata è contro i paletti che arrivi.
+
 **Dinamica.** Le barriere sono progettate per contenere autovetture e mezzi pesanti (classi da N1, 44 kJ, a H4, 572 kJ) mentre l’energia d’impatto del motociclista è dell’ordine di 5 kJ. Il corpo scivola sotto la lama e incontra i paletti: elementi sagomati e taglienti concentrano la forza su piccole superfici. Gli HIC misurati sono 800-1800 sulla lama e oltre 2000 sul paletto, contro 132 di una barriera con protezione continua.
 
 **Cause infrastrutturali** (arredo e margini)
@@ -952,6 +1002,8 @@ Dopo una perdita di aderenza in curva il motociclista scivola a terra verso la b
 
 Filari alberati, pali dell’illuminazione o delle linee elettriche, muretti e cartelloni entro pochi metri dal ciglio, senza zona libera né protezione.
 
+> **In sella.** Sui viali alberati non c’è spazio per sbagliare: entra in curva più lento e con margine di piega.
+
 **Dinamica.** Qualunque uscita di traiettoria, anche a bassa energia, termina contro un ostacolo puntuale e rigido. La gravità dipende dall’energia residua all’impatto: con μ ≈ 0,6 per il corpo che scivola su asfalto, da 80 km/h servono circa 42 m per dissipare tutta l’energia.
 
 **Cause infrastrutturali** (arredo e margini)
@@ -977,6 +1029,8 @@ Filari alberati, pali dell’illuminazione o delle linee elettriche, muretti e c
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 4 (alta) = 12, elevato
 
 Ormaie profonde nelle tracce delle ruote dei mezzi pesanti si riempiono d’acqua; la moto le percorre o le attraversa per sorpassare.
+
+> **In sella.** Con la pioggia stai sul dorso tra le ormaie e sotto i 70 km/h; per sorpassare cambia corsia con decisione, a moto dritta.
 
 **Dinamica.** Il velo idrico nell’ormaia vale h_g(x) = h − (h/b²)x². Dove supera l’altezza critica h_crit(V) l’impronta perde il contatto con la pavimentazione. La probabilità di interessare quella fascia è P_h,l = ∫ f(x) dx tra ±x_crit, con x_crit = b·√((h − h_crit)/h). Con h = 15 mm, b = 0,4 m e V = 80 km/h (h_crit ≈ 12 mm) la fascia critica è larga 36 cm. In più, uscire dall’ormaia con angolo radente produce coppie che deviano la ruota.
 
@@ -1017,6 +1071,8 @@ Ormaie profonde nelle tracce delle ruote dei mezzi pesanti si riempiono d’acqu
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 3 (media) = 9, medio
 
 Uno strato d’usura con inerti lucidati, magari con trasudo di bitume, bagnato dai primi minuti di pioggia dopo un periodo secco.
+
+> **In sella.** Nei primi minuti di pioggia raddoppia le distanze: l’asfalto lucidato è più scivoloso che durante un temporale.
 
 **Dinamica.** La microtessitura governa l’aderenza su asciutto, la macrotessitura il drenaggio su bagnato. Con inerti lucidati la riduzione dell’aderenza (40-60%) allunga lo spazio di frenatura in proporzione alla diffusione del degrado (Fig. III.6): a 70 km/h si passa da circa 60 m a quasi 150 m nel caso peggiore. La prima pioggia emulsiona polvere, gomma e oli, peggiorando ulteriormente.
 
@@ -1059,6 +1115,8 @@ Uno strato d’usura con inerti lucidati, magari con trasudo di bitume, bagnato 
 
 Fessure sigillate con mastice bituminoso ("serpentoni") e rappezzi a freddo sulla traiettoria in piega.
 
+> **In sella.** D’estate le strisce nere di bitume nelle curve scivolano: riduci la piega quando ci passi sopra.
+
 **Dinamica.** Il mastice è liscio e col caldo si ammorbidisce: in piega lo pneumatico scivola per qualche centimetro su ogni striscia, provocando piccole perdite di aderenza ripetute. Con il bagnato l’effetto si somma alla ridotta tessitura.
 
 **Cause infrastrutturali** (stato della pavimentazione)
@@ -1089,6 +1147,8 @@ Fessure sigillate con mastice bituminoso ("serpentoni") e rappezzi a freddo sull
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 5 (molto alta) = 15, elevato
 
 La moto sorpassa una colonna; il primo veicolo svolta a sinistra in un accesso laterale senza vedere la moto che sopraggiunge.
+
+> **In sella.** Sorpassa un veicolo alla volta e mai vicino ad accessi e incroci a sinistra.
 
 > ⚠ **Sorpasso di più veicoli in prossimità di un’intersezione o di un accesso.** Manovra vietata in prossimità delle intersezioni; frequente per la facilità di sorpasso della moto (rapporto peso/potenza).
 
@@ -1126,6 +1186,8 @@ La moto sorpassa una colonna; il primo veicolo svolta a sinistra in un accesso l
 
 In una curva stretta un autoarticolato occupa parte della corsia opposta; la moto percorre la curva sinistrorsa vicino all’asse.
 
+> **In sella.** In una curva sinistrorsa cieca stai al centro della corsia: in piega la tua testa sporge verso chi arriva.
+
 **Dinamica.** Per vedere meglio e per la traiettoria ideale la moto in curva sinistrorsa sta vicino alla mezzeria. In piega il capo del pilota sporge oltre la linea delle ruote di circa h·sin γ (1,5 m × sin 35° ≈ 0,86 m): l’ingombro dinamico invade la corsia opposta anche quando le ruote sono nella propria. L’autoarticolato, per l’ingombro in curva del semirimorchio, si allarga verso l’asse.
 
 **Cause infrastrutturali** (geometria d’asse, visibilità)
@@ -1159,6 +1221,8 @@ In una curva stretta un autoarticolato occupa parte della corsia opposta; la mot
 
 Un veicolo esce da un accesso laterale nascosto dalla vegetazione su un rettifilo dove la moto procede a 90 km/h.
 
+> **In sella.** Dove ci sono accessi nascosti dalle siepi rallenta: chi esce sottovaluta la tua velocità.
+
 **Dinamica.** Chi si immette giudica l’intervallo sui veicoli a quattro ruote e tende a sottostimare la velocità della moto. Inoltre la moto accelera di più (2 m/s² contro 0,8 m/s² assunti dalla norma, Tav. 09) e raggiunge velocità superiori a quelle di progetto: a parità di distanza l’intervallo temporale reale è minore.
 
 **Cause infrastrutturali** (visibilità)
@@ -1191,6 +1255,8 @@ Un veicolo esce da un accesso laterale nascosto dalla vegetazione su un rettifil
 **Natura:** Combinato · **Rischio:** P 2 (bassa) × G 4 (alta) = 8, medio
 
 Di notte, in curva, un ostacolo o un animale si trova sulla parte interna della corsia, dove il faro della moto in piega non arriva.
+
+> **In sella.** Di notte in curva vai alla velocità che ti permette di fermarti nella zona illuminata, non a quella che terresti di giorno.
 
 **Dinamica.** Il fascio del faro è orientato lungo la tangente e ruota con il rollio: l’interno della curva resta al buio (x_int = h·cos φ·tan(β − φ) si annulla quando la piega raggiunge la semiapertura del fascio). Lungo la traiettoria il centro del fascio esce dalla corsia dopo circa √(2Re): con R = 100 m ed e = 1,75 m sono 19 m, contro i 52 m necessari per fermarsi da 70 km/h.
 
@@ -1229,6 +1295,8 @@ Di notte, in curva, un ostacolo o un animale si trova sulla parte interna della 
 
 Su una strada a due corsie la moto incrocia un autoarticolato veloce, all’uscita di una trincea o su un viadotto esposto al vento.
 
+> **In sella.** Su viadotti e all’uscita delle trincee, quando incroci un camion con vento laterale, spostati a destra e tieni il manubrio morbido.
+
 **Dinamica.** La forza laterale aerodinamica vale F = ½ρ·C·A·v²: una raffica di 15 m/s su 1 m² di superficie laterale produce circa 140 N, il 5% del peso del complesso moto-pilota, sufficiente a spostarlo di circa 25 cm in un secondo se non corretto. L’onda di pressione del mezzo incrociato prima respinge e poi richiama la moto.
 
 **Cause infrastrutturali** (geometria d’asse, arredo e margini)
@@ -1262,6 +1330,8 @@ Su una strada a due corsie la moto incrocia un autoarticolato veloce, all’usci
 **Natura:** Combinato · **Rischio:** P 2 (bassa) × G 4 (alta) = 8, medio
 
 Entrando in galleria di giorno l’occhio non distingue la coda o il veicolo fermo all’interno; la pavimentazione in galleria è umida e sporca.
+
+> **In sella.** Prima di entrare in galleria rallenta e togli gli occhiali da sole: per qualche secondo vedrai molto poco.
 
 **Dinamica.** Il salto di luminanza tra esterno e interno richiede secondi di adattamento: in quell’intervallo la distanza di percezione è ridotta. La pavimentazione in galleria non è lavata dalla pioggia e accumula oli e polveri; all’ingresso spesso è bagnata dall’acqua portata dai veicoli.
 
@@ -1297,6 +1367,8 @@ Entrando in galleria di giorno l’occhio non distingue la coda o il veicolo fer
 
 Tratto in lavorazione con superficie fresata, gradino tra fresato e strato esistente, ghiaino, segnaletica gialla provvisoria e deviazioni sulla corsia opposta.
 
+> **In sella.** Nei cantieri attraversa i gradini del fresato con l’angolo più ampio possibile: quindi lentamente.
+
 **Dinamica.** Il fresato ha solchi longitudinali che guidano la ruota stretta della moto e la fanno "serpeggiare"; il gradino longitudinale di alcuni centimetri, attraversato con angolo radente, devia l’anteriore. Le vernici gialle provvisorie sono applicate sopra quelle bianche e sono molto scivolose bagnate.
 
 **Cause infrastrutturali** (stato della pavimentazione, geometria d’asse)
@@ -1329,6 +1401,8 @@ Tratto in lavorazione con superficie fresata, gradino tra fresato e strato esist
 **Natura:** Infrastrutturale · **Rischio:** P 3 (media) × G 4 (alta) = 12, elevato
 
 Su un percorso misto la moto accelera fortemente nel rettifilo tra due curve e arriva alla seconda a una velocità molto superiore a quella prevista dal diagramma delle velocità.
+
+> **In sella.** Tra due curve non usare tutta la potenza: conta la velocità con cui arrivi alla curva successiva.
 
 > ⚠ **Velocità superiore a quella di progetto e al limite nel rettifilo tra due curve.** Comportamento tipico della guida sportiva: lo scenario mostra come la strada sia dimensionata per velocità inferiori.
 
@@ -1386,6 +1460,8 @@ Velocità massime, flussi intensi con elevata quota di mezzi pesanti, code e ral
 
 In corsia di sorpasso, in curva sinistrorsa, lo spartitraffico New Jersey chiude la visuale: la coda ferma appare all’improvviso.
 
+> **In sella.** In curva sinistrorsa, se lo spartitraffico chiude la visuale, preferisci la corsia centrale e tieni distanza.
+
 **Dinamica.** In curva sinistrorsa l’ostacolo laterale per chi viaggia in corsia di sorpasso è la barriera centrale, alta 1 m circa e a 1-1,5 m dalla traiettoria. La visuale D = 2R·arccos(1 − m/R) con R = 800 m e m = 2 m vale circa 113 m; a 130 km/h, con τ = 1 s e frenata a 0,7 g, servono circa 131 m. Ogni km/h in più erode il margine; la moto, in frenata d’emergenza ad alta velocità, deve gestire il trasferimento di carico e la tendenza all’instabilità.
 
 **Cause infrastrutturali** (visibilità, geometria d’asse, arredo e margini)
@@ -1422,6 +1498,8 @@ In corsia di sorpasso, in curva sinistrorsa, lo spartitraffico New Jersey chiude
 
 Con il traffico rallentato a 20-30 km/h la moto procede a 50-70 km/h tra due file; un veicolo cambia corsia per occupare un varco.
 
+> **In sella.** In coda, se passi tra le file, fallo a non più di 15-20 km/h sopra il traffico e mai tra due camion.
+
 > ⚠ **Marcia tra la corsia di sorpasso e la centrale (o tra centrale e marcia) con veicoli incolonnati.** Non ammessa dal CdS italiano. Lo scenario analizza il rischio in funzione del differenziale di velocità con la coda.
 
 **Dinamica.** Il varco tra le file è di 1-1,5 m, gli specchietti di auto e furgoni lo riducono ancora. Il pericolo dipende dal differenziale di velocità: chi cambia corsia vede la moto troppo tardi, la moto deve fermarsi in uno spazio pari alla distanza dal veicolo in quel momento. Con un differenziale di 40 km/h si percorrono 11 m al secondo.
@@ -1455,6 +1533,8 @@ Con il traffico rallentato a 20-30 km/h la moto procede a 50-70 km/h tra due fil
 
 La moto sorpassa un autoarticolato sotto la pioggia: lo spray azzera la visibilità e la scia aerodinamica destabilizza la moto.
 
+> **In sella.** Sotto la pioggia non restare nella nube d’acqua dietro un camion: sorpassa con decisione o resta lontano.
+
 **Dinamica.** Le ruote del mezzo pesante sollevano una nube d’acqua che riduce la visibilità a pochi metri e copre la visiera. Affiancandosi, la moto attraversa la zona di depressione e di turbolenza della scia, poi l’onda di pressione davanti alla motrice: forze laterali alternate in un secondo.
 
 **Cause infrastrutturali** ()
@@ -1485,6 +1565,8 @@ La moto sorpassa un autoarticolato sotto la pioggia: lo spray azzera la visibili
 
 La moto viaggia affiancata al quarto posteriore di un autoarticolato; il mezzo si sposta per sorpassare un veicolo più lento.
 
+> **In sella.** Non viaggiare affiancato a un camion: sorpassalo o resta indietro, dove ti vede negli specchi.
+
 **Dinamica.** Lo specchio del mezzo pesante non copre la zona accanto al semirimorchio. Lo spostamento laterale di 3,5 m avviene in 4-6 s, ma i primi 50 cm, sufficienti a chiudere la moto contro lo spartitraffico, in poco più di un secondo.
 
 **Cause d’esercizio** (mezzi pesanti, traffico e interferenze)
@@ -1510,6 +1592,8 @@ La moto viaggia affiancata al quarto posteriore di un autoarticolato; il mezzo s
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 4 (alta) = 12, elevato
 
 La corsia di marcia lenta, percorsa dai mezzi pesanti, presenta ormaie profonde piene d’acqua; la moto le attraversa per spostarsi in corsia di sorpasso.
+
+> **In sella.** Con la pioggia la corsia di marcia ha le ormaie piene d’acqua: stai sotto gli 80 km/h e cambia corsia deciso, a moto dritta.
 
 **Dinamica.** È il caso studio della Tesi Manutenzione: alle velocità autostradali l’altezza critica del velo idrico scende a pochi millimetri (circa 4 mm a 110 km/h con pneumatico scolpito), quindi anche ormaie modeste diventano critiche. L’attraversamento obliquo del bordo dell’ormaia aggiunge una coppia che devia l’anteriore.
 
@@ -1550,6 +1634,8 @@ La corsia di marcia lenta, percorsa dai mezzi pesanti, presenta ormaie profonde 
 
 Un giunto metallico a pettine attraversa la carreggiata in curva; bagnato o ghiacciato è una fascia ad aderenza minima.
 
+> **In sella.** D’inverno i viadotti gelano per primi: con temperature vicine allo zero rallenta prima di entrarci.
+
 **Dinamica.** In piega l’aderenza trasversale impegnata resta costante mentre quella disponibile crolla per qualche decimetro: lo pneumatico slitta lateralmente e, se il recupero avviene di colpo, si può innescare un high-side. Giunti ammalorati presentano gradini e varchi che sollecitano lo sterzo.
 
 **Cause infrastrutturali** (stato della pavimentazione, geometria d’asse)
@@ -1576,6 +1662,8 @@ Un giunto metallico a pettine attraversa la carreggiata in curva; bagnato o ghia
 **Natura:** D’esercizio · **Rischio:** P 2 (bassa) × G 5 (molto alta) = 10, elevato
 
 Un battistrada di camion o un carico perso si trova in corsia; l’auto che precede lo evita con uno scarto e lo rivela alla moto che la segue troppo da vicino.
+
+> **In sella.** Tieni almeno 3 secondi dal veicolo davanti e una posizione che ti permetta di vedere oltre.
 
 **Dinamica.** Con una distanza di 1 s a 130 km/h la moto è a 36 m dal veicolo che precede: quando l’ostacolo diventa visibile restano poco più di 1,5 s. L’auto lo scavalca o lo evita; la moto non può passarci sopra (un oggetto di 15-20 cm sull’anteriore la destabilizza) e l’evitamento a quella velocità richiede una manovra di controsterzo decisa.
 
@@ -1605,6 +1693,8 @@ Un battistrada di camion o un carico perso si trova in corsia; l’auto che prec
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 4 (alta) = 12, elevato
 
 La rampa di uscita è un anello di raggio stretto e decrescente, in discesa; i mezzi pesanti vi perdono gasolio e la coda del casello risale.
+
+> **In sella.** Finisci di frenare nella corsia di decelerazione ed entra piano negli anelli delle rampe: lì si accumula il gasolio.
 
 **Dinamica.** Si passa da 130 km/h a 40-50 km/h in poche centinaia di metri: chi sottostima la decelerazione entra nell’anello troppo veloce e deve frenare in piega. Il gasolio, rilasciato dai serbatoi inclinati, è concentrato proprio sulla traiettoria esterna dell’anello.
 
@@ -1639,6 +1729,8 @@ La rampa di uscita è un anello di raggio stretto e decrescente, in discesa; i m
 
 Un veicolo in immissione taglia la corsia di marcia dove procede la moto, che negli specchi appare piccola e lontana.
 
+> **In sella.** Vicino agli svincoli aspettati qualcuno che si immette senza vederti: se puoi, spostati in corsia centrale.
+
 **Dinamica.** Negli specchietti la moto occupa un angolo visivo minimo e la sua velocità di avvicinamento è difficile da stimare. Con una corsia di accelerazione corta chi si immette non può adeguare la velocità e si sposta comunque.
 
 **Cause infrastrutturali** (geometria d’asse, visibilità)
@@ -1669,6 +1761,8 @@ Un veicolo in immissione taglia la corsia di marcia dove procede la moto, che ne
 **Natura:** Combinato · **Rischio:** P 3 (media) × G 4 (alta) = 12, elevato
 
 Deviazione sulla carreggiata opposta attraverso un by-pass con raggi ridotti, corsie da 3 m, New Jersey provvisori, pavimentazione fresata o rattoppata e doppia segnaletica.
+
+> **In sella.** Nei cantieri rispetta il limite: gli scambi di carreggiata hanno curve strette e la vernice gialla bagnata scivola.
 
 **Dinamica.** Le transizioni di traiettoria avvengono con raggi molto minori di quelli autostradali e su superfici eterogenee (fresato, rappezzi, vernice gialla su bianca). La moto deve cambiare piega più volte vicina a barriere rigide e a mezzi pesanti affiancati.
 
@@ -1702,6 +1796,8 @@ Deviazione sulla carreggiata opposta attraverso un by-pass con raggi ridotti, co
 
 Cuspidi di svincolo, terminali di barriera, portali e sostegni della segnaletica, New Jersey e guard-rail lungo tutto il margine.
 
+> **In sella.** Se hai perso l’uscita, prosegui: tagliare la zebratura all’ultimo porta dritti contro la cuspide.
+
 **Dinamica.** In autostrada qualsiasi uscita di traiettoria termina contro una barriera. Il New Jersey, privo di paletti, ha una superficie continua ma la sua forma può sollevare e proiettare la moto; il guard-rail a paletti espone il motociclista a scivolato agli impatti già descritti in E-06. Le cuspidi non protette sono ostacoli frontali.
 
 **Cause infrastrutturali** (arredo e margini)
@@ -1728,6 +1824,8 @@ Cuspidi di svincolo, terminali di barriera, portali e sostegni della segnaletica
 **Natura:** D’esercizio · **Rischio:** P 3 (media) × G 5 (molto alta) = 15, elevato
 
 In corsia di sorpasso la moto procede a velocità molto superiore al flusso; un’auto in corsia centrale si sposta a sinistra per sorpassare un mezzo pesante.
+
+> **In sella.** In autostrada la velocità eccessiva toglie a te il tempo per reagire e agli altri la possibilità di vederti arrivare.
 
 > ⚠ **Velocità molto superiore al limite (160-200 km/h).** Lo scenario confronta il comportamento a 130 km/h e oltre: chi cambia corsia giudica il varco come se la moto viaggiasse alla velocità del flusso.
 
@@ -1759,6 +1857,8 @@ In corsia di sorpasso la moto procede a velocità molto superiore al flusso; un�
 **Natura:** Combinato · **Rischio:** P 2 (bassa) × G 4 (alta) = 8, medio
 
 Nel passaggio tra due curve di verso opposto la pendenza trasversale si annulla: l’acqua non defluisce e si forma un velo esteso proprio dove si cambia piega.
+
+> **In sella.** Con la pioggia forte l’acqua ristagna nei cambi di curva: sotto i 90 km/h e nessuna manovra brusca.
 
 **Dinamica.** Nella rotazione della sagoma la pendenza trasversale passa per zero: con pendenza longitudinale bassa il percorso dell’acqua si allunga e il velo idrico cresce. A velocità autostradali bastano pochi millimetri per avvicinarsi all’aquaplaning, e la moto si trova in transizione di piega, condizione in cui è meno tollerante a variazioni improvvise d’aderenza.
 
@@ -1797,6 +1897,8 @@ Nel passaggio tra due curve di verso opposto la pendenza trasversale si annulla:
 **Natura:** D’esercizio · **Rischio:** P 2 (bassa) × G 5 (molto alta) = 10, elevato
 
 La moto supera la coda percorrendo la corsia d’emergenza; un veicolo fermo, una persona a piedi o un’auto che esce dalla coda occupano la corsia.
+
+> **In sella.** La corsia d’emergenza non è una corsia: lì ci sono persone a piedi e mezzi fermi.
 
 > ⚠ **Marcia in corsia d’emergenza durante una coda.** Vietata dal CdS; analizzata per i rischi specifici della corsia d’emergenza.
 

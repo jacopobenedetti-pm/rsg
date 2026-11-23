@@ -9,7 +9,7 @@ export function Ammaloramenti() {
     <div className="page">
       <header className="stack">
         <span className="eyebrow">Stato della pavimentazione</span>
-        <h1>Gli ammaloramenti letti dal punto di vista della moto</h1>
+        <h1>Insidie dell’asfalto: i difetti che contano in moto</h1>
         <div className="prose">
           <p>
             Il catalogo riprende i circa venti degradi comuni ai cataloghi CNR, SETRA, RDDHD e SHRP, sintetizzati nella tesi sulla programmazione

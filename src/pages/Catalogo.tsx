@@ -66,13 +66,16 @@ export function Catalogo() {
     <div className="page">
       <header className="stack">
         <span className="eyebrow">Atlante dei pericoli per il motociclista</span>
-        <h1>Dove, perché e come la strada mette in pericolo chi va in moto</h1>
+        <h1>Le situazioni in cui la strada ti mette in pericolo, e come uscirne</h1>
         <div className="prose">
           <p>
-            {SCENARIOS.length} scenari organizzati per contesto (urbano, extraurbano, autostradale) e per causa scatenante: l’infrastruttura in sé
-            (visibilità, stato della pavimentazione, geometria d’asse, arredo e margini), le condizioni di esercizio (traffico, rallentamenti, mezzi
-            pesanti) e la loro combinazione. Ogni scheda parte dalla dinamica del veicolo e dal contatto pneumatico-strada; {nSim} scenari hanno una
-            simulazione con vista dall’alto e in soggettiva.
+            {SCENARIOS.length} situazioni reali in città, sulle extraurbane e in autostrada. Per ognuna: cosa succede alla moto, come riconoscerla
+            in anticipo, come comportarti, e una simulazione{nSim < SCENARIOS.length ? ` (${nSim} su ${SCENARIOS.length})` : ''} da guardare dall’alto o con gli occhi del pilota,
+            cambiando velocità, distanza, pioggia, notte, ABS.
+          </p>
+          <p>
+            Le cause sono divise tra la strada (visibilità, asfalto, curve e pendenze, guard-rail e ostacoli ai margini) e il traffico (manovre altrui,
+            code, mezzi pesanti): spesso è la loro combinazione a creare il pericolo.
           </p>
         </div>
       </header>
@@ -175,6 +178,7 @@ export function Catalogo() {
               </button>
             ))}
           </div>
+          {nSim < SCENARIOS.length && (
           <label className="toggle" htmlFor="only-sim">
             <input
               id="only-sim"
@@ -187,6 +191,7 @@ export function Catalogo() {
             />
             Solo con simulazione
           </label>
+          )}
           <div className="seg" role="group" aria-label="Ordinamento">
             <button type="button" aria-pressed={sort === 'codice'} onClick={() => setSort('codice')}>
               Per codice
@@ -237,6 +242,7 @@ function ScenarioCard({ s }: { s: Scenario }) {
       </div>
       <h3>{s.titolo}</h3>
       <p className="sintesi">{s.sintesi}</p>
+      {s.inSella && <p className="insella-mini">{s.inSella}</p>}
       <div className="card-foot">
         <RiskBadge P={s.rischio.P} G={s.rischio.G} />
         {s.infrastruttura.map((f) => (

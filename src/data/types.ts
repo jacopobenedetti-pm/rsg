@@ -22,6 +22,8 @@ export interface Scenario {
   fuoriNorma?: { condotta: string; nota: string };
   /** la situazione in una o due frasi */
   sintesi: string;
+  /** il consiglio essenziale per il motociclista */
+  inSella?: string;
   /** cosa accade dal punto di vista della dinamica del veicolo e del contatto pneumatico-strada */
   dinamica: string;
   causeInfrastruttura: string[];
