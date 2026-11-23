@@ -42,7 +42,6 @@ export const URBANO: Scenario[] = [
     esito: 'Urto frontale-laterale contro la fiancata dell’auto, con proiezione del motociclista.',
     rischio: { P: 4, G: 5 },
     principi: ['arresto', 'percezione', 'frenata'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 01 — ambito urbano: elevato numero di intersezioni e punti di conflitto' }],
   },
   {
     id: 'U-02',
@@ -214,7 +213,6 @@ export const URBANO: Scenario[] = [
     rischio: { P: 4, G: 3 },
     principi: ['percezione', 'arresto'],
     ammaloramenti: ['P', 'M', 'Q'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 02 — la buca rende il mezzo ingovernabile' }],
   },
   {
     id: 'U-10',
@@ -254,7 +252,6 @@ export const URBANO: Scenario[] = [
     esito: 'Caduta per urto della ruota, impatto contro elementi rigidi.',
     rischio: { P: 2, G: 4 },
     principi: ['impatto', 'piega'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 02 — cordoli: h_m > h_a, S_m ≪ S_a' }],
   },
   {
     id: 'U-12',

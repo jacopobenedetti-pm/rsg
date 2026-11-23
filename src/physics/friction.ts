@@ -1,12 +1,11 @@
 /**
  * Aderenza pneumatico-pavimentazione.
  *
- * - Coefficienti di aderenza di normativa (DM 5/11/2001), riportati in Tesi Manutenzione §III.3 nota 27
- *   e in Tesi Progettazione Tav. 10/17.
+ * - Coefficienti di aderenza di normativa (DM 5/11/2001).
  * - Valori indicativi di picco per superfici e contaminanti tipici (ordine di grandezza di letteratura,
  *   da usare per confronti relativi, non come dato di progetto).
- * - Curve aderenza / velocità / spessore del velo idrico digitalizzate dalle Fig. IV.1-IV.2 della Tesi
- *   Manutenzione (fonte originale: Ferrari-Giannini, "Geometria e progetto di strade").
+ * - Curve aderenza / velocità / spessore del velo idrico (andamenti tipici di letteratura, pneumatico liscio
+ *   e con battistrada).
  */
 import { interp, clamp } from './units';
 
@@ -25,14 +24,14 @@ export const NORM_FL_AUTOSTRADE: ReadonlyArray<readonly [number, number]> = [
   [120, 0.36],
   [140, 0.34],
 ];
-/** f_t trasversale massima impegnabile di normativa (strade A, B, C, F extraurbane) — Tav. 10 e 17. */
+/** f_t trasversale massima impegnabile di normativa (strade A, B, C, F extraurbane) */
 export const NORM_FT: ReadonlyArray<readonly [number, number]> = [
   [40, 0.21],
   [60, 0.17],
   [80, 0.13],
   [100, 0.11],
 ];
-/** Adeguamento di f_t proposto nella Tesi Progettazione (Tav. 17, esempio strada C1). */
+/** Adeguamento di f_t per dare alla moto lo stesso margine dell'auto (esempio strada C1). */
 export const NORM_FT_ADEGUATO_MOTO: ReadonlyArray<readonly [number, number]> = [
   [40, 0.13],
   [60, 0.1],
@@ -94,13 +93,13 @@ export const SURFACES: Record<SurfaceId, Surface> = {
 export const surfaceMu = (id: SurfaceId, wet: boolean) => (wet ? SURFACES[id].wet : SURFACES[id].dry);
 
 /* ------------------------------------------------------------------------------------------------
- * Velo idrico: curve f_a(V) per diversi spessori d'acqua (Fig. IV.1 lisci, IV.2 con battistrada 8 mm).
+ * Velo idrico: curve f_a(V) per diversi spessori d'acqua (pneumatico liscio e con battistrada di 8 mm).
  * Ogni curva è una spezzata [V km/h, f_a]; lo spessore di riferimento è il valore centrale della fascia.
  * Sotto i 50 km/h le figure non riportano dati: si estrapola costante.
  * ------------------------------------------------------------------------------------------------ */
 type Curve = { h: number; pts: ReadonlyArray<readonly [number, number]> };
 
-const AQ_FLOOR = 0.03; // aderenza residua in aquaplaning conclamato (la tesi indica ~0.04)
+const AQ_FLOOR = 0.03; // aderenza residua in aquaplaning conclamato (ordine di grandezza ~0.04)
 
 export const WATER_CURVES_TREAD: Curve[] = [
   { h: 0, pts: [[50, 0.41], [52, 0.4], [80, 0.34], [102, 0.3], [131, 0.23], [160, 0.17]] },
@@ -142,8 +141,8 @@ export function waterFilmFriction(vKmh: number, waterMm: number, tread: 'battist
 }
 
 /**
- * Altezza critica del velo idrico [mm] in funzione della velocità (andamento qualitativo di Fig. IV.9),
- * tarata sui punti di innesco dell'aquaplaning delle Fig. IV.1-IV.2:
+ * Altezza critica del velo idrico [mm] in funzione della velocità (andamento qualitativo),
+ * tarata sui punti di innesco dell'aquaplaning delle curve aderenza-velocità:
  *  - battistrada: 12 mm → 80 km/h, 7 mm → 95 km/h
  *  - liscio: 12 mm → 58 km/h, 5.5 mm → 89 km/h
  */
@@ -159,7 +158,7 @@ export function aquaplaningSpeed(waterMm: number, tread: 'battistrada' | 'liscio
 
 /**
  * Riduzione relativa dell'aderenza dovuta al velo idrico rispetto al fondo semplicemente bagnato
- * (rapporto tra le curve di Fig. IV.2 per lo spessore dato e per un velo sottile).
+ * (rapporto tra le curve con battistrada per lo spessore dato e per un velo sottile).
  */
 export function wetFrictionFactor(vKmh: number, waterMm: number, tread: 'battistrada' | 'liscio' = 'battistrada') {
   const thin = waterFilmFriction(vKmh, 0.5, tread);

@@ -11,7 +11,7 @@ export const EXTRAURBANO: Scenario[] = [
     sintesi:
       'Curva destrorsa con scarpata o vegetazione sul lato interno; oltre la curva c’è un veicolo fermo, un mezzo agricolo lento o un animale.',
     dinamica:
-      'La visuale libera in curva vale D = 2R·arccos(1 − m/R), dove m è la distanza tra l’occhio e l’ostacolo laterale. In curva destrorsa il motociclista percorre la parte interna della corsia, più vicino al ciglio, e in piega abbassa il punto di vista: m si riduce e con esso D (Tav. 07). Con R = 120 m: m = 2,75 m (auto al centro corsia) dà D ≈ 51 m, m = 2,0 m (moto all’interno) dà D ≈ 44 m, mentre a 70 km/h servono circa 52 m per fermarsi. In più, in piega parte dell’aderenza è già impegnata trasversalmente (ellisse di aderenza).',
+      'La visuale libera in curva vale D = 2R·arccos(1 − m/R), dove m è la distanza tra l’occhio e l’ostacolo laterale. In curva destrorsa il motociclista percorre la parte interna della corsia, più vicino al ciglio, e in piega abbassa il punto di vista: m si riduce e con esso D. Con R = 120 m: m = 2,75 m (auto al centro corsia) dà D ≈ 51 m, m = 2,0 m (moto all’interno) dà D ≈ 44 m, mentre a 70 km/h servono circa 52 m per fermarsi. In più, in piega parte dell’aderenza è già impegnata trasversalmente (ellisse di aderenza).',
     causeInfrastruttura: [
       'Curva in trincea senza arretramento della scarpata',
       'Vegetazione non sfalciata sul ciglio interno',
@@ -27,17 +27,13 @@ export const EXTRAURBANO: Scenario[] = [
       'Ridurre la piega prima di frenare forte',
     ],
     contromisure: [
-      'Arretramento della scarpata e abbassamento del banchettone (Tav. 07)',
+      'Arretramento della scarpata e abbassamento del banchettone',
       'Sfalcio programmato del ciglio interno',
       'Verifica di visibilità con il punto di vista del motociclista in piega',
     ],
     esito: 'Tamponamento dell’ostacolo o uscita di strada nel tentativo di evitarlo.',
     rischio: { P: 3, G: 4 },
     principi: ['visibilita-curva', 'arresto', 'ellisse'],
-    fonti: [
-      { doc: 'TP', rif: 'Tav. 06 — visuale libera ≥ distanza di arresto' },
-      { doc: 'TP', rif: 'Tav. 07 — posizione del punto di vista e arretramento della scarpata' },
-    ],
   },
   {
     id: 'E-02',
@@ -56,9 +52,9 @@ export const EXTRAURBANO: Scenario[] = [
       'L’aderenza trasversale impegnata cresce come v²/(gR): a 90 km/h passa da 0,32 con R = 200 m a 0,80 con R = 80 m (piega da 18° a 39°). Se la richiesta supera l’aderenza disponibile la moto allarga la traiettoria; frenare in piega consuma ulteriore aderenza (ellisse) e raddrizza la moto, allargando ancora.',
     causeInfrastruttura: [
       'Successione di raggi incoerenti rispetto al rettifilo precedente',
-      'Curve di transizione assenti o troppo brevi per la manovra di rollio della moto (Tav. 05)',
+      'Curve di transizione assenti o troppo brevi per la manovra di rollio della moto',
       'Uscita di curva non visibile all’ingresso',
-      'Norme che assumono coefficienti di aderenza trasversale tarati sull’autovettura (Tav. 10)',
+      'Norme che assumono coefficienti di aderenza trasversale tarati sull’autovettura',
     ],
     causeEsercizio: [],
     segnali: ['Delineatori o pali che convergono verso l’interno', 'Segnaletica di curva pericolosa ripetuta', 'Guard-rail dell’esterno curva che "si chiude"'],
@@ -67,10 +63,6 @@ export const EXTRAURBANO: Scenario[] = [
     esito: 'Uscita di traiettoria verso l’esterno: invasione della corsia opposta o urto contro la barriera.',
     rischio: { P: 3, G: 4 },
     principi: ['piega', 'ellisse', 'velocita'],
-    fonti: [
-      { doc: 'TP', rif: 'Tav. 03 — inclinazione in funzione di velocità e raggio' },
-      { doc: 'TP', rif: 'Tav. 10 — aderenza trasversale impegnata moto/auto' },
-    ],
   },
   {
     id: 'E-03',
@@ -81,20 +73,16 @@ export const EXTRAURBANO: Scenario[] = [
     esercizio: ['traffico'],
     sintesi: 'Discesa con pendenza elevata che termina in curva; la moto deve rallentare per un veicolo lento a metà curva.',
     dinamica:
-      'In discesa la componente del peso parallela alla strada si somma alla forza d’inerzia: l’aderenza impegnata cresce, e la tesi mostra che con pendenza del 5% in discesa l’aderenza impegnata supera quella disponibile per un ampio campo di raggi (Tav. 16). Frenare in piega somma la componente longitudinale a quella trasversale: la risultante esce dall’ellisse di aderenza.',
+      'In discesa la componente del peso parallela alla strada si somma alla forza d’inerzia: l’aderenza impegnata cresce, e con pendenza del 5% in discesa l’aderenza impegnata supera quella disponibile per un ampio campo di raggi. Frenare in piega somma la componente longitudinale a quella trasversale: la risultante esce dall’ellisse di aderenza.',
     causeInfrastruttura: ['Raggi dimensionati con gli stessi coefficienti di aderenza per salita, piano e discesa', 'Pendenza longitudinale elevata in combinazione con curva stretta'],
     causeEsercizio: ['Veicolo lento in curva', 'Code in uscita dalla discesa'],
     interazione: 'La geometria consuma il margine di aderenza, il traffico chiede di usarlo tutto in frenata.',
     segnali: ['Cartello di discesa pericolosa', 'Raggio che si chiude al termine della discesa'],
     strategia: ['Rallentare in rettilineo prima della curva', 'In curva modulare il freno anteriore e posteriore, raddrizzando prima di frenare forte'],
-    contromisure: ['Coefficienti di aderenza variabili con la pendenza (Tav. 12)', 'Aumento dei raggi nei tratti in discesa (Tav. 17)'],
+    contromisure: ['Coefficienti di aderenza variabili con la pendenza', 'Aumento dei raggi nei tratti in discesa'],
     esito: 'Caduta per perdita di aderenza in frenata o uscita di strada.',
     rischio: { P: 3, G: 4 },
     principi: ['ellisse', 'frenata', 'piega'],
-    fonti: [
-      { doc: 'TP', rif: 'Tav. 12 — contributo delle pendenze trasversale e longitudinale' },
-      { doc: 'TP', rif: 'Tav. 16-17 — confronto aderenza impegnata e disponibile' },
-    ],
   },
   {
     id: 'E-04',
@@ -115,7 +103,6 @@ export const EXTRAURBANO: Scenario[] = [
     esito: 'Tamponamento del veicolo fermo.',
     rischio: { P: 2, G: 4 },
     principi: ['visibilita-verticale', 'arresto'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 07 — dimensionamento dei raccordi convessi e abbassamento del punto di vista' }],
   },
   {
     id: 'E-05',
@@ -155,10 +142,6 @@ export const EXTRAURBANO: Scenario[] = [
     esito: 'Lesioni gravi e mortali per impatto contro i paletti di sostegno.',
     rischio: { P: 2, G: 5 },
     principi: ['impatto'],
-    fonti: [
-      { doc: 'TP', rif: 'Tav. 02 — barriere: lamiere sagomate prive di elementi di protezione' },
-      { doc: 'TP', rif: 'Tav. 18 — soluzioni tecnologiche per le barriere, HIC' },
-    ],
   },
   {
     id: 'E-07',
@@ -190,17 +173,16 @@ export const EXTRAURBANO: Scenario[] = [
     sintesi: 'Ormaie profonde nelle tracce delle ruote dei mezzi pesanti si riempiono d’acqua; la moto le percorre o le attraversa per sorpassare.',
     dinamica:
       'Il velo idrico nell’ormaia vale h_g(x) = h − (h/b²)x². Dove supera l’altezza critica h_crit(V) l’impronta perde il contatto con la pavimentazione. La probabilità di interessare quella fascia è P_h,l = ∫ f(x) dx tra ±x_crit, con x_crit = b·√((h − h_crit)/h). Con h = 15 mm, b = 0,4 m e V = 80 km/h (h_crit ≈ 12 mm) la fascia critica è larga 36 cm. In più, uscire dall’ormaia con angolo radente produce coppie che deviano la ruota.',
-    causeInfrastruttura: ['Conglomerati con eccesso di legante o di vuoti, strati sottodimensionati, cedimenti del sottofondo (cause delle ormaie, §IV.4)', 'Pendenza trasversale insufficiente a smaltire l’acqua'],
+    causeInfrastruttura: ['Conglomerati con eccesso di legante o di vuoti, strati sottodimensionati, cedimenti del sottofondo (cause delle ormaie)', 'Pendenza trasversale insufficiente a smaltire l’acqua'],
     causeEsercizio: ['Transito ripetuto di carichi pesanti', 'Canalizzazione del traffico nelle stesse tracce'],
     interazione: 'I mezzi pesanti generano l’ormaia, la pioggia la riempie, la moto è il veicolo che ne risente di più per l’impronta singola e stretta.',
     segnali: ['Strisce d’acqua parallele lucide nelle tracce delle ruote', 'Spruzzi più alti dei veicoli che precedono'],
     strategia: ['Marciare fuori dalle tracce, sul "dorso" tra le ormaie', 'Cambiare corsia con un angolo deciso, moto verticale, senza frenare', 'Ridurre la velocità per alzare h_crit'],
-    contromisure: ['Programmazione degli interventi con priorità basata sul rischio P·G (Tesi Manutenzione)', 'Fresatura e ricostruzione degli strati con miscele idonee', 'Pavimentazioni drenanti'],
+    contromisure: ['Programmazione degli interventi con priorità basata sul rischio P·G', 'Fresatura e ricostruzione degli strati con miscele idonee', 'Pavimentazioni drenanti'],
     esito: 'Perdita di aderenza e di direzionalità, scivolata.',
     rischio: { P: 3, G: 4 },
     principi: ['aquaplaning', 'aderenza'],
     ammaloramenti: ['F', 'G'],
-    fonti: [{ doc: 'TM', rif: 'Cap. IV — il caso studio: le ormaie' }],
   },
   {
     id: 'E-09',
@@ -212,7 +194,7 @@ export const EXTRAURBANO: Scenario[] = [
     ambiente: ['pioggia', 'temperatura'],
     sintesi: 'Uno strato d’usura con inerti lucidati, magari con trasudo di bitume, bagnato dai primi minuti di pioggia dopo un periodo secco.',
     dinamica:
-      'La microtessitura governa l’aderenza su asciutto, la macrotessitura il drenaggio su bagnato. Con inerti lucidati la riduzione dell’aderenza (40-60%) allunga lo spazio di frenatura in proporzione alla diffusione del degrado (Fig. III.6): a 70 km/h si passa da circa 60 m a quasi 150 m nel caso peggiore. La prima pioggia emulsiona polvere, gomma e oli, peggiorando ulteriormente.',
+      'La microtessitura governa l’aderenza su asciutto, la macrotessitura il drenaggio su bagnato. Con inerti lucidati la riduzione dell’aderenza (40-60%) allunga lo spazio di frenatura in proporzione alla diffusione del degrado: a 70 km/h si passa da circa 60 m a quasi 150 m nel caso peggiore. La prima pioggia emulsiona polvere, gomma e oli, peggiorando ulteriormente.',
     causeInfrastruttura: ['Inerti di natura calcarea o tenera', 'Strato d’usura a fine vita', 'Trasudo nelle tracce delle ruote'],
     causeEsercizio: ['Traffico che lucida le tracce delle ruote', 'Frenate in curva e in prossimità delle intersezioni'],
     interazione: 'Il traffico produce la lucidatura e richiede le frenate nei punti più lucidati.',
@@ -223,7 +205,6 @@ export const EXTRAURBANO: Scenario[] = [
     rischio: { P: 3, G: 3 },
     principi: ['aderenza', 'arresto'],
     ammaloramenti: ['A', 'B'],
-    fonti: [{ doc: 'TM', rif: '§III.3 — Fig. III.5-III.6, spazi d’arresto in funzione della lucidatura' }],
   },
   {
     id: 'E-10',
@@ -269,7 +250,6 @@ export const EXTRAURBANO: Scenario[] = [
     esito: 'Urto contro la fiancata sinistra del veicolo in svolta.',
     rischio: { P: 3, G: 5 },
     principi: ['percezione', 'arresto'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 04 — distanza di visibilità per il sorpasso' }],
   },
   {
     id: 'E-12',
@@ -300,7 +280,7 @@ export const EXTRAURBANO: Scenario[] = [
     esercizio: ['traffico'],
     sintesi: 'Un veicolo esce da un accesso laterale nascosto dalla vegetazione su un rettifilo dove la moto procede a 90 km/h.',
     dinamica:
-      'Chi si immette giudica l’intervallo sui veicoli a quattro ruote e tende a sottostimare la velocità della moto. Inoltre la moto accelera di più (2 m/s² contro 0,8 m/s² assunti dalla norma, Tav. 09) e raggiunge velocità superiori a quelle di progetto: a parità di distanza l’intervallo temporale reale è minore.',
+      'Chi si immette giudica l’intervallo sui veicoli a quattro ruote e tende a sottostimare la velocità della moto. Inoltre la moto accelera di più (2 m/s² contro 0,8 m/s² assunti dalla norma) e raggiunge velocità superiori a quelle di progetto: a parità di distanza l’intervallo temporale reale è minore.',
     causeInfrastruttura: ['Accessi frequenti su strade di categoria C', 'Siepi e vegetazione che chiudono la visuale dall’accesso'],
     causeEsercizio: ['Mezzi agricoli e veicoli lenti in immissione'],
     interazione: 'L’accesso esiste per l’infrastruttura, il veicolo che si immette per l’esercizio: insieme creano un punto di conflitto non previsto dalla categoria di strada.',
@@ -310,7 +290,6 @@ export const EXTRAURBANO: Scenario[] = [
     esito: 'Urto contro la fiancata del veicolo in immissione.',
     rischio: { P: 3, G: 5 },
     principi: ['arresto', 'velocita', 'percezione'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 09 — il diagramma delle velocità' }],
   },
   {
     id: 'E-14',
@@ -323,16 +302,15 @@ export const EXTRAURBANO: Scenario[] = [
     sintesi: 'Di notte, in curva, un ostacolo o un animale si trova sulla parte interna della corsia, dove il faro della moto in piega non arriva.',
     dinamica:
       'Il fascio del faro è orientato lungo la tangente e ruota con il rollio: l’interno della curva resta al buio (x_int = h·cos φ·tan(β − φ) si annulla quando la piega raggiunge la semiapertura del fascio). Lungo la traiettoria il centro del fascio esce dalla corsia dopo circa √(2Re): con R = 100 m ed e = 1,75 m sono 19 m, contro i 52 m necessari per fermarsi da 70 km/h.',
-    causeInfrastruttura: ['Assenza di illuminazione e di delineatori', 'Contemporanea presenza di raccordo concavo e curva (Tav. 08)', 'Raggi ridotti'],
+    causeInfrastruttura: ['Assenza di illuminazione e di delineatori', 'Contemporanea presenza di raccordo concavo e curva', 'Raggi ridotti'],
     causeEsercizio: ['Veicoli fermi senza luci, animali selvatici'],
     interazione: 'La geometria determina quanto ruota il faro, la presenza dell’ostacolo è casuale ma la sua scoperta tardiva è sistematica.',
     segnali: ['Delineatori che indicano lo sviluppo della curva', 'Zone boscate con segnale di animali'],
     strategia: ['Velocità tale da fermarsi entro la porzione illuminata', 'Usare i catadiottri dei delineatori per leggere la curva'],
-    contromisure: ['Delineatori normali e di curva a passo ridotto', 'Raggi più ampi migliorano anche la visibilità notturna (Tav. 17)', 'Recinzioni faunistiche'],
+    contromisure: ['Delineatori normali e di curva a passo ridotto', 'Raggi più ampi migliorano anche la visibilità notturna', 'Recinzioni faunistiche'],
     esito: 'Urto contro l’ostacolo non illuminato o uscita di strada.',
     rischio: { P: 2, G: 4 },
     principi: ['notte', 'visibilita-curva', 'arresto'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 08 — le visuali libere: la marcia notturna' }],
   },
   {
     id: 'E-15',
@@ -409,7 +387,7 @@ export const EXTRAURBANO: Scenario[] = [
     },
     sintesi: 'Su un percorso misto la moto accelera fortemente nel rettifilo tra due curve e arriva alla seconda a una velocità molto superiore a quella prevista dal diagramma delle velocità.',
     dinamica:
-      'La norma costruisce il diagramma delle velocità con accelerazioni e decelerazioni di 0,8 m/s²; la moto accelera a 2,0 m/s². Nello stesso tratto raggiunge velocità fino al 127-156% di quelle previste (Tav. 09), per cui visibilità per l’arresto, curve di transizione e distanze di transizione risultano sottodimensionate.',
+      'La norma costruisce il diagramma delle velocità con accelerazioni e decelerazioni di 0,8 m/s²; la moto accelera a 2,0 m/s². Nello stesso tratto raggiunge velocità fino al 127-156% di quelle previste, per cui visibilità per l’arresto, curve di transizione e distanze di transizione risultano sottodimensionate.',
     causeInfrastruttura: ['Diagramma delle velocità costruito con accelerazioni dell’autovettura', 'Rettifili brevi tra curve di raggio diverso'],
     causeEsercizio: [],
     segnali: ['Seconda curva più stretta della prima', 'Visuale chiusa sull’uscita'],
@@ -418,6 +396,5 @@ export const EXTRAURBANO: Scenario[] = [
     esito: 'Uscita di strada nella seconda curva o tamponamento di un ostacolo non visibile.',
     rischio: { P: 3, G: 4 },
     principi: ['velocita', 'piega', 'arresto'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 09 — il diagramma delle velocità' }],
   },
 ];

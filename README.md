@@ -4,20 +4,16 @@ Web app pensata innanzitutto per i motociclisti: descrive in modo organizzato le
 trovare sulle strade pubbliche, a partire dai principi di dinamica del veicolo e del contatto pneumatico-pavimentazione, e
 le fa vedere con simulazioni dinamiche dall'alto e in soggettiva.
 
-Le basi tecniche sono due tesi di laurea in Ingegneria Civile (Università Roma Tre):
-
-- **Tesi Manutenzione (TM)** — *L'analisi del degrado delle sovrastrutture stradali per la programmazione degli interventi
-  finalizzati alla sicurezza dell'esercizio*: catalogo degli ammaloramenti, rischio R = P · G, caso studio delle ormaie e
-  dell'aquaplaning.
-- **Tesi Progettazione (TP)** — *Verifica dei criteri progettuali per gli utenti deboli della strada. Analisi degli standard
-  normativi* (Tavole 01-18): trasferimento di carico, inclinazione, visuali libere, marcia notturna, diagramma delle velocità,
-  aderenza impegnata e disponibile, barriere di sicurezza.
+I contenuti si basano sulla dinamica del motoveicolo (trasferimento di carico, inclinazione, ellisse di aderenza), sul
+contatto pneumatico-pavimentazione (aderenza, velo idrico, aquaplaning), sui criteri di progettazione stradale (visuali
+libere, marcia notturna, diagramma delle velocità, barriere di sicurezza) e sull'analisi del degrado delle pavimentazioni
+con la stima del rischio R = P · G.
 
 ## Cosa contiene
 
 | Sezione | Contenuto |
 |---|---|
-| **Scenari** | 51 scenari (18 urbani, 18 extraurbani, 15 autostradali), matrice contesto × causa, filtri. Ogni scheda: il consiglio «In sella», come riconoscere la situazione, come comportarsi, cosa succede alla moto, il ruolo della strada e del traffico, rischio P × G, riferimenti alle tesi; in fondo, per tecnici e gestori, le contromisure. |
+| **Scenari** | 51 scenari (18 urbani, 18 extraurbani, 15 autostradali), matrice contesto × causa, filtri. Ogni scheda: il consiglio «In sella», come riconoscere la situazione, come comportarsi, cosa succede alla moto, il ruolo della strada e del traffico, rischio P × G; in fondo, per tecnici e gestori, le contromisure. |
 | **Simulazioni** | Tutti i 51 scenari hanno una scena dinamica: vista dall'alto (che segue la moto), vista 3D in soggettiva, inseguimento e drone. Parametri regolabili secondo lo scenario: velocità, tempo di reazione, intensità di frenata, bagnato, notte, ABS, piega massima, distanza di sicurezza, posizione in corsia, angolo di attraversamento, accelerazione, ghiaccio. |
 | **Con e senza guard-rail** | Negli scenari con uscita di strada (E-02, E-03, E-05, E-06, E-07, E-10, A-08, A-11) si sceglie cosa c'è sul margine: nessuna barriera (rilevato, alberi), guard-rail a paletti, guard-rail con protezione per motociclisti (o, per le cuspidi, testata nuda, terminale, attenuatore). Una tabella confronta le tre conseguenze della stessa caduta. |
 | **Fisica della moto** | 12 calcolatori, ciascuno con un consiglio pratico: aderenza, frenata e trasferimento di carico, spazio d'arresto, percezione, piega, ellisse di aderenza, visibilità in curva e sui raccordi, faro in curva, aquaplaning e ormaie, impatto e barriere, diagramma delle velocità. |
@@ -52,7 +48,7 @@ Altri comandi:
 ```bash
 npm run build          # verifica dei tipi e build di produzione in dist/
 npm run build:single   # un unico file HTML autosufficiente in dist-single/
-npm test               # verifica dei modelli fisici sui valori numerici delle tesi
+npm test               # verifica dei modelli fisici su valori numerici di riferimento
 npm run check          # esegue tutte le scene con varianti di parametri e stampa gli esiti
 npm run catalog        # rigenera docs/catalogo-scenari.md
 ```
@@ -62,7 +58,7 @@ npm run catalog        # rigenera docs/catalogo-scenari.md
 ```
 src/
   data/            tassonomia, 51 scenari (urbano, extraurbano, autostradale), ammaloramenti
-  physics/         modelli fisici dalle tesi (aderenza, frenata, curva, visibilità, impatto, ormaie, velocità)
+  physics/         modelli fisici (aderenza, frenata, curva, visibilità, impatto, ormaie, velocità)
   scene/           modello di scena condiviso, geometria stradale, simulatore, scene dei singoli scenari (presets/)
   views/           vista dall'alto (SVG), vista 3D (three.js), pannello di simulazione, orologio condiviso
   pages/           catalogo, scheda scenario, fondamenti, ammaloramenti, metodo
@@ -98,6 +94,6 @@ senza barriera cade nel rilevato o contro gli alberi.
 ## Limiti
 
 I modelli sono volutamente semplici e servono a confrontare situazioni e mostrare i meccanismi, non a ricostruire incidenti
-o a progettare. I coefficienti di aderenza delle superfici sono indicativi; le curve aderenza-velocità-velo idrico sono
-digitalizzate dalle figure della tesi; alcune calibrazioni (soglia di percezione dell'avvicinamento, coefficiente w della
+o a progettare. I coefficienti di aderenza delle superfici sono indicativi; le curve aderenza-velocità-velo idrico
+riproducono andamenti tipici di letteratura; alcune calibrazioni (soglia di percezione dell'avvicinamento, coefficiente w della
 gravità delle ormaie) sono dichiarate nel codice.

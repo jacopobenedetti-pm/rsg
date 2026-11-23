@@ -1,7 +1,6 @@
 /**
  * Gravità dell'evento: scivolamento, impatto con barriere e ostacoli fissi.
- * Riferimenti: Tesi Progettazione Tav. 14 (lavoro delle forze dissipative), Tav. 18 (barriere, HIC),
- * Tesi Manutenzione §IV.2.2 (G = w · E_fin).
+ * Contenuti: lavoro delle forze dissipative, barriere e HIC, gravità G = w · E_fin.
  */
 import { G } from './units';
 
@@ -21,7 +20,7 @@ export function tangentExit(R: number, b: number) {
   return { length: Math.sqrt(2 * R * b + b * b), theta: Math.acos(R / (R + b)) };
 }
 
-/** Classi di contenimento delle barriere (Tav. 18) — L_c in kJ. */
+/** Classi di contenimento delle barriere — L_c in kJ. */
 export const BARRIER_CLASSES = [
   { classe: 'N1', tipo: 'minimo', Lc: 44 },
   { classe: 'N2', tipo: 'medio', Lc: 82 },
@@ -31,10 +30,10 @@ export const BARRIER_CLASSES = [
   { classe: 'H4', tipo: 'tratti ad altissimo rischio', Lc: 572 },
 ] as const;
 
-/** Ordine di grandezza dell'energia d'impatto del motociclista (Tav. 18): L_c,moto ≈ 5 kJ. */
+/** Ordine di grandezza dell'energia d'impatto del motociclista: L_c,moto ≈ 5 kJ. */
 export const LC_MOTO_KJ = 5;
 
-/** Head Injury Criterion: scala delle conseguenze (Tav. 18). */
+/** Head Injury Criterion: scala delle conseguenze. */
 export const HIC_SCALE = [
   { max: 200, esito: 'leggera contusione' },
   { max: 400, esito: 'forte contusione, stordimento' },
@@ -44,7 +43,7 @@ export const HIC_SCALE = [
   { max: Infinity, esito: 'danni cerebrali permanenti, coma' },
 ] as const;
 
-/** Valori HIC misurati all'impatto (Tav. 18). */
+/** Valori HIC misurati all'impatto in prove con manichino. */
 export const HIC_MISURATI = [
   { elemento: 'Lama metallica', hic: '800-1800' },
   { elemento: 'Paletto profilato', hic: '> 2000' },

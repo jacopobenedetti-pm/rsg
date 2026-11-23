@@ -1,7 +1,6 @@
 /**
  * Equilibrio in curva e aderenza combinata.
- * Riferimenti: Tesi Progettazione Tav. 03 (angolo di inclinazione), Tav. 10 (equilibrio e normativa),
- * Tav. 11-16 (aderenza impegnata/disponibile, ellisse di aderenza).
+ * Contenuti: angolo di inclinazione, equilibrio e normativa, aderenza impegnata e disponibile, ellisse di aderenza.
  */
 import { G, clamp } from './units';
 
@@ -38,7 +37,7 @@ export const maxCornerSpeed = (R: number, fLat: number, q = 0) => Math.sqrt(Math
 export const normRadius = (v: number, q: number, ft: number) => (v * v) / (G * (q + ft));
 
 /**
- * Ellisse di aderenza (Tav. 14-15): x²/f_t² + y²/f_l² = 1.
+ * Ellisse di aderenza: x²/f_t² + y²/f_l² = 1.
  * Restituisce l'aderenza longitudinale ancora disponibile quando si impegna f_lat in direzione trasversale.
  */
 export function remainingLongitudinal(fLat: number, fLatMax: number, fLongMax: number) {

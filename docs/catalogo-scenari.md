@@ -17,7 +17,7 @@ Ogni scenario è letto su tre assi indipendenti:
 
 Gli scenari marcati **⚠ fuori norma** analizzano condotte non ammesse dal Codice della Strada (velocità oltre il limite, marcia tra le file, corsia d’emergenza, sorpassi vietati) per quantificarne il rischio, non per indicarle come condotte di guida.
 
-La stima del rischio segue la Tesi Manutenzione (§II.4.1): **R = P · G**, con probabilità P e gravità G su scala 1-5.
+La stima del rischio segue l’impostazione dell’analisi di rischio: **R = P · G**, con probabilità P e gravità G su scala 1-5.
 
 ## Matrice di sintesi
 
@@ -152,8 +152,6 @@ Un’auto proveniente dal senso opposto svolta a sinistra in una laterale e tagl
 - Moderazione della velocità sui viali con molte laterali
 
 **Esito tipico:** Urto frontale-laterale contro la fiancata dell’auto, con proiezione del motociclista.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 01 — ambito urbano: elevato numero di intersezioni e punti di conflitto
 
 ### U-02 · Immissione da laterale con visibilità ostruita
 
@@ -437,8 +435,6 @@ L’auto che precede scavalca una buca facendola passare tra le ruote; la moto, 
 **Esito tipico:** Perdita di controllo per urto sull’anteriore, caduta.
   
 **Ammaloramenti correlati:** P, M, Q
-  
-**Riferimenti:** Tesi Progettazione, Tav. 02 — la buca rende il mezzo ingovernabile
 
 ### U-10 · Gasolio e sabbia in rotatoria
 
@@ -509,8 +505,6 @@ Cordoli di isole spartitraffico, dissuasori, paletti parapedonali e delimitatori
 - Illuminazione delle isole
 
 **Esito tipico:** Caduta per urto della ruota, impatto contro elementi rigidi.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 02 — cordoli: h_m > h_a, S_m ≪ S_a
 
 ### U-12 · Filtraggio tra le file e cambio di corsia improvviso ⚠ fuori norma
 
@@ -787,7 +781,7 @@ Curva destrorsa con scarpata o vegetazione sul lato interno; oltre la curva c’
 
 > **In sella.** In una curva cieca vai alla velocità che ti permette di fermarti entro ciò che vedi, e non stringere la corda.
 
-**Dinamica.** La visuale libera in curva vale D = 2R·arccos(1 − m/R), dove m è la distanza tra l’occhio e l’ostacolo laterale. In curva destrorsa il motociclista percorre la parte interna della corsia, più vicino al ciglio, e in piega abbassa il punto di vista: m si riduce e con esso D (Tav. 07). Con R = 120 m: m = 2,75 m (auto al centro corsia) dà D ≈ 51 m, m = 2,0 m (moto all’interno) dà D ≈ 44 m, mentre a 70 km/h servono circa 52 m per fermarsi. In più, in piega parte dell’aderenza è già impegnata trasversalmente (ellisse di aderenza).
+**Dinamica.** La visuale libera in curva vale D = 2R·arccos(1 − m/R), dove m è la distanza tra l’occhio e l’ostacolo laterale. In curva destrorsa il motociclista percorre la parte interna della corsia, più vicino al ciglio, e in piega abbassa il punto di vista: m si riduce e con esso D. Con R = 120 m: m = 2,75 m (auto al centro corsia) dà D ≈ 51 m, m = 2,0 m (moto all’interno) dà D ≈ 44 m, mentre a 70 km/h servono circa 52 m per fermarsi. In più, in piega parte dell’aderenza è già impegnata trasversalmente (ellisse di aderenza).
 
 **Cause infrastrutturali** (visibilità, geometria d’asse)
 - Curva in trincea senza arretramento della scarpata
@@ -811,13 +805,11 @@ Curva destrorsa con scarpata o vegetazione sul lato interno; oltre la curva c’
 - Ridurre la piega prima di frenare forte
 
 **Contromisure per gestore e progettista**
-- Arretramento della scarpata e abbassamento del banchettone (Tav. 07)
+- Arretramento della scarpata e abbassamento del banchettone
 - Sfalcio programmato del ciglio interno
 - Verifica di visibilità con il punto di vista del motociclista in piega
 
 **Esito tipico:** Tamponamento dell’ostacolo o uscita di strada nel tentativo di evitarlo.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 06 — visuale libera ≥ distanza di arresto; Tesi Progettazione, Tav. 07 — posizione del punto di vista e arretramento della scarpata
 
 ### E-02 · Curva a raggio decrescente dopo un lungo rettifilo ⚠ fuori norma
 
@@ -833,9 +825,9 @@ Dopo un rettifilo veloce la curva si chiude progressivamente (raggio decrescente
 
 **Cause infrastrutturali** (geometria d’asse, visibilità)
 - Successione di raggi incoerenti rispetto al rettifilo precedente
-- Curve di transizione assenti o troppo brevi per la manovra di rollio della moto (Tav. 05)
+- Curve di transizione assenti o troppo brevi per la manovra di rollio della moto
 - Uscita di curva non visibile all’ingresso
-- Norme che assumono coefficienti di aderenza trasversale tarati sull’autovettura (Tav. 10)
+- Norme che assumono coefficienti di aderenza trasversale tarati sull’autovettura
 
 **Segnali premonitori**
 - Delineatori o pali che convergono verso l’interno
@@ -853,8 +845,6 @@ Dopo un rettifilo veloce la curva si chiude progressivamente (raggio decrescente
 - Segnaletica a frecce progressive e delineatori modulari
 
 **Esito tipico:** Uscita di traiettoria verso l’esterno: invasione della corsia opposta o urto contro la barriera.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 03 — inclinazione in funzione di velocità e raggio; Tesi Progettazione, Tav. 10 — aderenza trasversale impegnata moto/auto
 
 ### E-03 · Curva in discesa con frenata in piega
 
@@ -864,7 +854,7 @@ Discesa con pendenza elevata che termina in curva; la moto deve rallentare per u
 
 > **In sella.** In discesa frena in rettilineo, prima della curva: in piega la frenata disponibile è poca e la pendenza te ne toglie altra.
 
-**Dinamica.** In discesa la componente del peso parallela alla strada si somma alla forza d’inerzia: l’aderenza impegnata cresce, e la tesi mostra che con pendenza del 5% in discesa l’aderenza impegnata supera quella disponibile per un ampio campo di raggi (Tav. 16). Frenare in piega somma la componente longitudinale a quella trasversale: la risultante esce dall’ellisse di aderenza.
+**Dinamica.** In discesa la componente del peso parallela alla strada si somma alla forza d’inerzia: l’aderenza impegnata cresce, e con pendenza del 5% in discesa l’aderenza impegnata supera quella disponibile per un ampio campo di raggi. Frenare in piega somma la componente longitudinale a quella trasversale: la risultante esce dall’ellisse di aderenza.
 
 **Cause infrastrutturali** (geometria d’asse)
 - Raggi dimensionati con gli stessi coefficienti di aderenza per salita, piano e discesa
@@ -885,12 +875,10 @@ Discesa con pendenza elevata che termina in curva; la moto deve rallentare per u
 - In curva modulare il freno anteriore e posteriore, raddrizzando prima di frenare forte
 
 **Contromisure per gestore e progettista**
-- Coefficienti di aderenza variabili con la pendenza (Tav. 12)
-- Aumento dei raggi nei tratti in discesa (Tav. 17)
+- Coefficienti di aderenza variabili con la pendenza
+- Aumento dei raggi nei tratti in discesa
 
 **Esito tipico:** Caduta per perdita di aderenza in frenata o uscita di strada.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 12 — contributo delle pendenze trasversale e longitudinale; Tesi Progettazione, Tav. 16-17 — confronto aderenza impegnata e disponibile
 
 ### E-04 · Veicolo fermo oltre un dosso
 
@@ -928,8 +916,6 @@ Su una strada secondaria con raccordi verticali stretti, un’auto è ferma subi
 - Divieto di sorpasso con segnaletica orizzontale
 
 **Esito tipico:** Tamponamento del veicolo fermo.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 07 — dimensionamento dei raccordi convessi e abbassamento del punto di vista
 
 ### E-05 · Ghiaia alla corda di una curva
 
@@ -994,8 +980,6 @@ Dopo una perdita di aderenza in curva il motociclista scivola a terra verso la b
 - Allontanamento della barriera e zona di recupero
 
 **Esito tipico:** Lesioni gravi e mortali per impatto contro i paletti di sostegno.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 02 — barriere: lamiere sagomate prive di elementi di protezione; Tesi Progettazione, Tav. 18 — soluzioni tecnologiche per le barriere, HIC
 
 ### E-07 · Alberi, pali e muretti al margine
 
@@ -1036,7 +1020,7 @@ Ormaie profonde nelle tracce delle ruote dei mezzi pesanti si riempiono d’acqu
 **Dinamica.** Il velo idrico nell’ormaia vale h_g(x) = h − (h/b²)x². Dove supera l’altezza critica h_crit(V) l’impronta perde il contatto con la pavimentazione. La probabilità di interessare quella fascia è P_h,l = ∫ f(x) dx tra ±x_crit, con x_crit = b·√((h − h_crit)/h). Con h = 15 mm, b = 0,4 m e V = 80 km/h (h_crit ≈ 12 mm) la fascia critica è larga 36 cm. In più, uscire dall’ormaia con angolo radente produce coppie che deviano la ruota.
 
 **Cause infrastrutturali** (stato della pavimentazione)
-- Conglomerati con eccesso di legante o di vuoti, strati sottodimensionati, cedimenti del sottofondo (cause delle ormaie, §IV.4)
+- Conglomerati con eccesso di legante o di vuoti, strati sottodimensionati, cedimenti del sottofondo (cause delle ormaie)
 - Pendenza trasversale insufficiente a smaltire l’acqua
 
 **Cause d’esercizio** (mezzi pesanti, traffico e interferenze)
@@ -1057,15 +1041,13 @@ Ormaie profonde nelle tracce delle ruote dei mezzi pesanti si riempiono d’acqu
 - Ridurre la velocità per alzare h_crit
 
 **Contromisure per gestore e progettista**
-- Programmazione degli interventi con priorità basata sul rischio P·G (Tesi Manutenzione)
+- Programmazione degli interventi con priorità basata sul rischio P·G
 - Fresatura e ricostruzione degli strati con miscele idonee
 - Pavimentazioni drenanti
 
 **Esito tipico:** Perdita di aderenza e di direzionalità, scivolata.
   
 **Ammaloramenti correlati:** F, G
-  
-**Riferimenti:** Tesi Manutenzione, Cap. IV — il caso studio: le ormaie
 
 ### E-09 · Inerti lucidati e prima pioggia
 
@@ -1075,7 +1057,7 @@ Uno strato d’usura con inerti lucidati, magari con trasudo di bitume, bagnato 
 
 > **In sella.** Nei primi minuti di pioggia raddoppia le distanze: l’asfalto lucidato è più scivoloso che durante un temporale.
 
-**Dinamica.** La microtessitura governa l’aderenza su asciutto, la macrotessitura il drenaggio su bagnato. Con inerti lucidati la riduzione dell’aderenza (40-60%) allunga lo spazio di frenatura in proporzione alla diffusione del degrado (Fig. III.6): a 70 km/h si passa da circa 60 m a quasi 150 m nel caso peggiore. La prima pioggia emulsiona polvere, gomma e oli, peggiorando ulteriormente.
+**Dinamica.** La microtessitura governa l’aderenza su asciutto, la macrotessitura il drenaggio su bagnato. Con inerti lucidati la riduzione dell’aderenza (40-60%) allunga lo spazio di frenatura in proporzione alla diffusione del degrado: a 70 km/h si passa da circa 60 m a quasi 150 m nel caso peggiore. La prima pioggia emulsiona polvere, gomma e oli, peggiorando ulteriormente.
 
 **Cause infrastrutturali** (stato della pavimentazione)
 - Inerti di natura calcarea o tenera
@@ -1107,8 +1089,6 @@ Uno strato d’usura con inerti lucidati, magari con trasudo di bitume, bagnato 
 **Esito tipico:** Allungamento degli spazi di frenatura, tamponamenti, scivolate in curva.
   
 **Ammaloramenti correlati:** A, B
-  
-**Riferimenti:** Tesi Manutenzione, §III.3 — Fig. III.5-III.6, spazi d’arresto in funzione della lucidatura
 
 ### E-10 · Sigillature bituminose e rappezzi in curva
 
@@ -1178,8 +1158,6 @@ La moto sorpassa una colonna; il primo veicolo svolta a sinistra in un accesso l
 - Riorganizzazione degli accessi su strade di servizio
 
 **Esito tipico:** Urto contro la fiancata sinistra del veicolo in svolta.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 04 — distanza di visibilità per il sorpasso
 
 ### E-12 · Mezzo pesante che taglia la curva sinistrorsa
 
@@ -1224,7 +1202,7 @@ Un veicolo esce da un accesso laterale nascosto dalla vegetazione su un rettifil
 
 > **In sella.** Dove ci sono accessi nascosti dalle siepi rallenta: chi esce sottovaluta la tua velocità.
 
-**Dinamica.** Chi si immette giudica l’intervallo sui veicoli a quattro ruote e tende a sottostimare la velocità della moto. Inoltre la moto accelera di più (2 m/s² contro 0,8 m/s² assunti dalla norma, Tav. 09) e raggiunge velocità superiori a quelle di progetto: a parità di distanza l’intervallo temporale reale è minore.
+**Dinamica.** Chi si immette giudica l’intervallo sui veicoli a quattro ruote e tende a sottostimare la velocità della moto. Inoltre la moto accelera di più (2 m/s² contro 0,8 m/s² assunti dalla norma) e raggiunge velocità superiori a quelle di progetto: a parità di distanza l’intervallo temporale reale è minore.
 
 **Cause infrastrutturali** (visibilità)
 - Accessi frequenti su strade di categoria C
@@ -1248,8 +1226,6 @@ Un veicolo esce da un accesso laterale nascosto dalla vegetazione su un rettifil
 - Taglio della vegetazione nei triangoli di visibilità
 
 **Esito tipico:** Urto contro la fiancata del veicolo in immissione.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 09 — il diagramma delle velocità
 
 ### E-14 · Curva di notte: il faro illumina l’esterno
 
@@ -1263,7 +1239,7 @@ Di notte, in curva, un ostacolo o un animale si trova sulla parte interna della 
 
 **Cause infrastrutturali** (visibilità, geometria d’asse)
 - Assenza di illuminazione e di delineatori
-- Contemporanea presenza di raccordo concavo e curva (Tav. 08)
+- Contemporanea presenza di raccordo concavo e curva
 - Raggi ridotti
 
 **Cause d’esercizio** (traffico e interferenze)
@@ -1283,12 +1259,10 @@ Di notte, in curva, un ostacolo o un animale si trova sulla parte interna della 
 
 **Contromisure per gestore e progettista**
 - Delineatori normali e di curva a passo ridotto
-- Raggi più ampi migliorano anche la visibilità notturna (Tav. 17)
+- Raggi più ampi migliorano anche la visibilità notturna
 - Recinzioni faunistiche
 
 **Esito tipico:** Urto contro l’ostacolo non illuminato o uscita di strada.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 08 — le visuali libere: la marcia notturna
 
 ### E-15 · Vento laterale e onda d’urto dei mezzi pesanti incrociati
 
@@ -1407,7 +1381,7 @@ Su un percorso misto la moto accelera fortemente nel rettifilo tra due curve e a
 
 > ⚠ **Velocità superiore a quella di progetto e al limite nel rettifilo tra due curve.** Comportamento tipico della guida sportiva: lo scenario mostra come la strada sia dimensionata per velocità inferiori.
 
-**Dinamica.** La norma costruisce il diagramma delle velocità con accelerazioni e decelerazioni di 0,8 m/s²; la moto accelera a 2,0 m/s². Nello stesso tratto raggiunge velocità fino al 127-156% di quelle previste (Tav. 09), per cui visibilità per l’arresto, curve di transizione e distanze di transizione risultano sottodimensionate.
+**Dinamica.** La norma costruisce il diagramma delle velocità con accelerazioni e decelerazioni di 0,8 m/s²; la moto accelera a 2,0 m/s². Nello stesso tratto raggiunge velocità fino al 127-156% di quelle previste, per cui visibilità per l’arresto, curve di transizione e distanze di transizione risultano sottodimensionate.
 
 **Cause infrastrutturali** (geometria d’asse, visibilità)
 - Diagramma delle velocità costruito con accelerazioni dell’autovettura
@@ -1425,8 +1399,6 @@ Su un percorso misto la moto accelera fortemente nel rettifilo tra due curve e a
 - Segnaletica di preavviso coerente
 
 **Esito tipico:** Uscita di strada nella seconda curva o tamponamento di un ostacolo non visibile.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 09 — il diagramma delle velocità
 
 ## Contesto autostradale
 
@@ -1597,7 +1569,7 @@ La corsia di marcia lenta, percorsa dai mezzi pesanti, presenta ormaie profonde 
 
 > **In sella.** Con la pioggia la corsia di marcia ha le ormaie piene d’acqua: stai sotto gli 80 km/h e cambia corsia deciso, a moto dritta.
 
-**Dinamica.** È il caso studio della Tesi Manutenzione: alle velocità autostradali l’altezza critica del velo idrico scende a pochi millimetri (circa 4 mm a 110 km/h con pneumatico scolpito), quindi anche ormaie modeste diventano critiche. L’attraversamento obliquo del bordo dell’ormaia aggiunge una coppia che devia l’anteriore.
+**Dinamica.** Alle velocità autostradali l’altezza critica del velo idrico scende a pochi millimetri (circa 4 mm a 110 km/h con pneumatico scolpito), quindi anche ormaie modeste diventano critiche. L’attraversamento obliquo del bordo dell’ormaia aggiunge una coppia che devia l’anteriore.
 
 **Cause infrastrutturali** (stato della pavimentazione)
 - Conglomerati con eccesso di vuoti o di legante
@@ -1627,8 +1599,6 @@ La corsia di marcia lenta, percorsa dai mezzi pesanti, presenta ormaie profonde 
 **Esito tipico:** Aquaplaning, perdita di direzionalità.
   
 **Ammaloramenti correlati:** F
-  
-**Riferimenti:** Tesi Manutenzione, Cap. IV §2.1 — analisi della probabilità
 
 ### A-06 · Giunti di dilatazione dei viadotti in curva
 
@@ -1823,8 +1793,6 @@ Cuspidi di svincolo, terminali di barriera, portali e sostegni della segnaletica
 - Dispositivi salva-motociclisti sulle barriere nelle curve degli svincoli
 
 **Esito tipico:** Impatto ad alta energia contro elementi rigidi.
-  
-**Riferimenti:** Tesi Progettazione, Tav. 18 — classi di contenimento e soluzioni per le barriere
 
 ### A-12 · Velocità molto superiore al limite e cambio di corsia ⚠ fuori norma
 
@@ -1896,8 +1864,6 @@ Nel passaggio tra due curve di verso opposto la pendenza trasversale si annulla:
 **Esito tipico:** Aquaplaning e perdita di controllo.
   
 **Ammaloramenti correlati:** I, F
-  
-**Riferimenti:** Tesi Progettazione, Tav. 05 — pendenze trasversali e raccordo dei cigli
 
 ### A-14 · Corsia d’emergenza in coda ⚠ fuori norma
 

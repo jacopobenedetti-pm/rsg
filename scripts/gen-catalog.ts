@@ -16,7 +16,6 @@ import {
 import type { Scenario } from '../src/data/types';
 
 const name = <T extends { id: string; nome: string }>(list: T[], id: string) => list.find((x) => x.id === id)?.nome ?? id;
-const SRC = { TM: 'Tesi Manutenzione', TP: 'Tesi Progettazione' } as const;
 const PLURALE: Record<string, string> = { infrastruttura: 'infrastrutturali', esercizio: 'd\u2019esercizio', combinato: 'combinati' };
 
 const out: string[] = [];
@@ -41,7 +40,7 @@ p('3. **Aggravanti ambientali** — ' + ENV_FACTORS.map((f) => f.nome.toLowerCas
 p();
 p('Gli scenari marcati **⚠ fuori norma** analizzano condotte non ammesse dal Codice della Strada (velocità oltre il limite, marcia tra le file, corsia d’emergenza, sorpassi vietati) per quantificarne il rischio, non per indicarle come condotte di guida.');
 p();
-p('La stima del rischio segue la Tesi Manutenzione (§II.4.1): **R = P · G**, con probabilità P e gravità G su scala 1-5.');
+p('La stima del rischio segue l’impostazione dell’analisi di rischio: **R = P · G**, con probabilità P e gravità G su scala 1-5.');
 p();
 
 // Matrice di sintesi
@@ -124,7 +123,6 @@ function scenarioBlock(s: Scenario) {
   p();
   p(`**Esito tipico:** ${s.esito}`);
   if (s.ammaloramenti?.length) p(`  \n**Ammaloramenti correlati:** ${s.ammaloramenti.join(', ')}`);
-  if (s.fonti?.length) p(`  \n**Riferimenti:** ${s.fonti.map((f) => `${SRC[f.doc]}, ${f.rif}`).join('; ')}`);
   p();
 }
 

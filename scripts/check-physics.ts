@@ -1,5 +1,5 @@
 /**
- * Verifica che i modelli riproducano i valori numerici riportati nelle due tesi.
+ * Verifica che i modelli riproducano valori numerici di riferimento.
  * Uso: npm test
  */
 import { rearShareAtLimit, stoppingDistance, stoppieLimit } from '../src/physics/braking';
@@ -17,19 +17,19 @@ function check(name: string, got: number, expected: number, tol: number) {
   console.log(`${ok ? 'OK  ' : 'FAIL'} ${name}: ${got.toFixed(3)} (atteso ${expected} ± ${tol})`);
 }
 
-// Tav. 02: quota del posteriore nella frenata ottimale
-check('Tav.02 quota posteriore μ=0.30', rearShareAtLimit(0.3), 0.35, 0.005);
-check('Tav.02 quota posteriore μ=0.85', rearShareAtLimit(0.85), 0.075, 0.01);
+// quota del posteriore nella frenata ottimale
+check('Quota posteriore μ=0.30', rearShareAtLimit(0.3), 0.35, 0.005);
+check('Quota posteriore μ=0.85', rearShareAtLimit(0.85), 0.075, 0.01);
 check('Ribaltamento in avanti [g] (h=0.7, p=1.4, b=0.7)', stoppieLimit(), 1.0, 1e-9);
-// Fig. IV.2: innesco aquaplaning con battistrada
-check('Fig.IV.2 V aquaplaning 12 mm', aquaplaningSpeed(12), 80, 1);
-check('Fig.IV.2 V aquaplaning 7 mm', aquaplaningSpeed(7), 95, 1);
+// innesco aquaplaning con battistrada
+check('V aquaplaning 12 mm', aquaplaningSpeed(12), 80, 1);
+check('V aquaplaning 7 mm', aquaplaningSpeed(7), 95, 1);
 check('h_crit a 110 km/h [mm]', criticalWaterDepth(110), 4.1, 0.1);
-// Fig. III.6: spazio di frenatura a 70 km/h con f di norma
+// spazio di frenatura a 70 km/h con f di norma
 const f70 = normFl(70);
 check('f_l di norma a 70 km/h', f70, 0.325, 0.001);
-check('Fig.III.6 d_a a 70 km/h, aderenza integra [m]', stoppingDistance({ v: kmh(70), tau: 0, f: f70 }).total, 59.3, 0.5);
-check('Fig.III.6 d_a a 70 km/h, aderenza −60% [m]', stoppingDistance({ v: kmh(70), tau: 0, f: f70 * 0.4 }).total, 148.3, 0.5);
+check('d_a a 70 km/h, aderenza integra [m]', stoppingDistance({ v: kmh(70), tau: 0, f: f70 }).total, 59.3, 0.5);
+check('d_a a 70 km/h, aderenza −60% [m]', stoppingDistance({ v: kmh(70), tau: 0, f: f70 * 0.4 }).total, 148.3, 0.5);
 // Visuali libere (scenari E-01, A-01, E-04, E-14)
 check('E-01 D auto (R=120, m=2.75)', curveSightDistance(120, 2.75), 51.5, 0.3);
 check('E-01 D moto (R=120, m=2.0)', curveSightDistance(120, 2.0), 43.9, 0.3);

@@ -1,7 +1,6 @@
 /**
  * Frenata: trasferimento di carico, spazi di arresto moto/auto.
- * Riferimenti: Tesi Progettazione Tav. 02 (equilibrio in frenata), Tav. 06 (verifica spazi d'arresto),
- * Tav. 09 (accelerazioni di riferimento), Tesi Manutenzione §III.3 (d_a = v²/2gf).
+ * Contenuti: equilibrio in frenata, verifica degli spazi d'arresto, spazio di frenatura d_a = v²/2gf.
  */
 import { G, RHO_AIR, clamp } from './units';
 
@@ -14,7 +13,7 @@ export interface MotoGeometry {
   h: number;
 }
 
-/** Geometria di riferimento della Tesi Progettazione (Tav. 02): h = 0.70 m, p = 1.40 m, b = 0.70 m. */
+/** Geometria di riferimento della moto: h = 0.70 m, p = 1.40 m, b = 0.70 m. */
 export const MOTO_RIF: MotoGeometry = { p: 1.4, b: 0.7, h: 0.7 };
 
 /**
@@ -45,7 +44,7 @@ export function maxDeceleration(mu: number, brakes: 'combinata' | 'anteriore' | 
 
 /**
  * Quota della forza frenante che spetta al posteriore nella ripartizione ottimale (a = μ).
- * Con la geometria di riferimento: μ = 0.30 → 35 %, μ = 0.85 → 7 % (Tav. 02).
+ * Con la geometria di riferimento: μ = 0.30 → 35 %, μ = 0.85 → 7 %.
  */
 export const rearShareAtLimit = (mu: number, geo: MotoGeometry = MOTO_RIF) => loadTransfer(mu, geo).rear;
 
@@ -75,7 +74,7 @@ export interface StoppingInput {
   /** pendenza longitudinale [%] (+ salita, − discesa) */
   grade?: number;
   veh?: VehicleParams;
-  /** se true integra resistenza aerodinamica, rotolamento e masse rotanti (Tav. 06) */
+  /** se true integra resistenza aerodinamica, rotolamento e masse rotanti */
   full?: boolean;
 }
 

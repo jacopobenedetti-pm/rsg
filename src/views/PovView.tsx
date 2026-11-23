@@ -1,7 +1,7 @@
 /**
  * Vista 3D: soggettiva del motociclista (con rollio in piega e beccheggio in frenata), inseguimento e drone.
  * Il faro anabbagliante è una luce con maschera di taglio che ruota con la moto: in piega lascia in ombra
- * l'interno della curva (Tesi Progettazione, Tav. 08).
+ * l'interno della curva.
  */
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';

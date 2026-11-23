@@ -1,7 +1,7 @@
 /**
  * Visuali libere.
- * Riferimenti: Tesi Progettazione Tav. 06-08 (visibilità per l'arresto, raccordi altimetrici,
- * marcia notturna e riduzione del cono luminoso in piega).
+ * Contenuti: visibilità per l'arresto, raccordi altimetrici, marcia notturna e riduzione del cono luminoso
+ * in piega.
  */
 import { clamp } from './units';
 
@@ -44,7 +44,7 @@ export function sagHeadlightDistance(Rv: number, hf: number, thetaRad: number) {
 export const headlightReachInCurve = (R: number, e: number) => Math.sqrt(2 * R * e + e * e);
 
 /**
- * Illuminazione laterale del fascio (sezione frontale, Tav. 08):
+ * Illuminazione laterale del fascio (sezione frontale):
  *   rettilineo  x_int = x_ext = h · tan β
  *   in piega    x_int = h cos φ · tan(β − φ),  x_ext = h cos φ · tan(β + φ)
  * con h altezza del faro e β semi-apertura del fascio rispetto alla verticale.

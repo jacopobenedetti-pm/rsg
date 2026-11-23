@@ -1,5 +1,5 @@
 /**
- * Diagramma delle velocità (Tesi Progettazione Tav. 09): la moto raggiunge velocità più elevate tra due
+ * Diagramma delle velocità: la moto raggiunge velocità più elevate tra due
  * curve perché accelera di più (a_M ≈ 2,0 m/s² contro a_A = 0,8 m/s² assunto dalla norma).
  *   L = V1 (V2 − V1)/a + ½ (V2 − V1)²/a
  */
@@ -13,7 +13,7 @@ export const transitionLength = (v1: number, v2: number, a: number) => (v2 * v2 
 export const speedAfter = (v1: number, L: number, a: number, vMax = Infinity) =>
   Math.min(vMax, Math.sqrt(v1 * v1 + 2 * a * L));
 
-/** Tabella della Tav. 09: ΔV % massimo per categoria di strada. */
+/** ΔV % massimo per categoria di strada. */
 export const DELTA_V_TABLE = [
   { categoria: 'A - Autostrada', intervallo: '90-140', L: '222-554', vaL1: 110, dVmax: 127.2 },
   { categoria: 'B - Extraurbana principale', intervallo: '70-120', L: '183-458', vaL1: 90, dVmax: 133.3 },

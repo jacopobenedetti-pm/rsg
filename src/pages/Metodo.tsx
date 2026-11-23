@@ -16,7 +16,7 @@ export function Metodo() {
             generare il pericolo, lo scenario è combinato.
           </p>
           <p>
-            Il rischio è stimato con l’impostazione dell’analisi di rischio adottata nella tesi sulla manutenzione: R = P · G, dove la probabilità
+            Il rischio è stimato con l’impostazione classica dell’analisi di rischio, R = P · G, dove la probabilità
             dipende da diffusione e localizzazione della causa, flussi e condizioni al contorno, e la gravità da velocità d’esercizio,
             caratteristiche della causa e margini della strada. Le stime sono qualitative (scala 1-5) e servono a ordinare le priorità.
           </p>
@@ -124,7 +124,7 @@ export function Metodo() {
           </p>
           <p>
             Di notte, fuori dai centri abitati, sono visibili solo i veicoli con le luci accese e gli oggetti nel fascio dell’anabbagliante, che in
-            piega lascia in ombra l’interno della curva. I modelli sono volutamente semplici e verificati sui valori numerici delle tesi
+            piega lascia in ombra l’interno della curva. I modelli sono volutamente semplici e verificati su valori numerici di riferimento
             (<code>npm test</code>): servono a confrontare situazioni e a mostrare i meccanismi, non a ricostruire incidenti.
           </p>
         </div>

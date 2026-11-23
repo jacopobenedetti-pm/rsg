@@ -93,7 +93,7 @@ export const AUTOSTRADALE: Scenario[] = [
     ambiente: ['pioggia'],
     sintesi: 'La corsia di marcia lenta, percorsa dai mezzi pesanti, presenta ormaie profonde piene d’acqua; la moto le attraversa per spostarsi in corsia di sorpasso.',
     dinamica:
-      'È il caso studio della Tesi Manutenzione: alle velocità autostradali l’altezza critica del velo idrico scende a pochi millimetri (circa 4 mm a 110 km/h con pneumatico scolpito), quindi anche ormaie modeste diventano critiche. L’attraversamento obliquo del bordo dell’ormaia aggiunge una coppia che devia l’anteriore.',
+      'Alle velocità autostradali l’altezza critica del velo idrico scende a pochi millimetri (circa 4 mm a 110 km/h con pneumatico scolpito), quindi anche ormaie modeste diventano critiche. L’attraversamento obliquo del bordo dell’ormaia aggiunge una coppia che devia l’anteriore.',
     causeInfrastruttura: ['Conglomerati con eccesso di vuoti o di legante', 'Strati sottodimensionati per il traffico pesante attuale', 'Pendenze trasversali insufficienti'],
     causeEsercizio: ['Canalizzazione dei mezzi pesanti nella corsia di marcia'],
     interazione: 'Il traffico pesante crea il degrado, la pioggia lo rende critico, la moto ne subisce l’effetto maggiore.',
@@ -104,7 +104,6 @@ export const AUTOSTRADALE: Scenario[] = [
     rischio: { P: 3, G: 4 },
     principi: ['aquaplaning'],
     ammaloramenti: ['F'],
-    fonti: [{ doc: 'TM', rif: 'Cap. IV §2.1 — analisi della probabilità' }],
   },
   {
     id: 'A-06',
@@ -231,7 +230,6 @@ export const AUTOSTRADALE: Scenario[] = [
     esito: 'Impatto ad alta energia contro elementi rigidi.',
     rischio: { P: 2, G: 5 },
     principi: ['impatto'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 18 — classi di contenimento e soluzioni per le barriere' }],
   },
   {
     id: 'A-12',
@@ -277,7 +275,6 @@ export const AUTOSTRADALE: Scenario[] = [
     rischio: { P: 2, G: 4 },
     principi: ['aquaplaning'],
     ammaloramenti: ['I', 'F'],
-    fonti: [{ doc: 'TP', rif: 'Tav. 05 — pendenze trasversali e raccordo dei cigli' }],
   },
   {
     id: 'A-14',

@@ -8,7 +8,6 @@ import { distressById } from '../data/distresses';
 import { PRINCIPLES } from './principles';
 import { levelLabel } from '../data/taxonomy';
 
-const SRC = { TM: 'Tesi sul degrado delle sovrastrutture', TP: 'Tesi sui criteri progettuali per il motoveicolo' } as const;
 
 export function ScenarioPage({ id }: { id: string }) {
   const s = scenarioById(id);
@@ -190,15 +189,6 @@ export function ScenarioPage({ id }: { id: string }) {
               <li key={c}>{c}</li>
             ))}
           </ul>
-          {s.fonti?.length ? (
-            <ul className="clean small muted">
-              {s.fonti.map((f) => (
-                <li key={f.rif}>
-                  {SRC[f.doc]}, {f.rif}
-                </li>
-              ))}
-            </ul>
-          ) : null}
         </div>
       </details>
     </div>

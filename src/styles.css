@@ -1,4 +1,4 @@
-/* Layout: colonna centrale leggibile, barra superiore fissa, schede tecniche come "tavole" di progetto.
+/* Layout: colonna centrale leggibile, barra superiore fissa, schede tecniche in pannelli.
    Identità: asfalto (neutri freddi), giallo di segnaletica temporanea come accento, rosso di pericolo. */
 :root {
   --bg: #eceef0;

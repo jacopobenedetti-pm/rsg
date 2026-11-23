@@ -99,10 +99,10 @@ const HEADLIGHT_RANGE = 55; // portata utile dell'anabbagliante [m]
 const HEADLIGHT_HALF = (14 * Math.PI) / 180; // semiapertura orizzontale del fascio
 const AQUA_MU = 0.05; // aderenza residua in aquaplaning
 
-/** note sulla gravità dell'urto per il corpo del motociclista (Tesi Progettazione, Tav. 18) */
+/** note sulla gravità dell'urto per il corpo del motociclista (prove d'urto con manichino, HIC) */
 export const IMPACT_NOTES = {
-  paletti: 'Il corpo scivola sotto la lama e incontra i paletti di sostegno: nelle prove riportate nella Tav. 18 l’HIC supera 2000 (danni permanenti).',
-  dsm: 'La protezione continua guida il corpo lungo la barriera: nelle prove riportate nella Tav. 18 l’HIC misurato è 132 (leggera contusione).',
+  paletti: 'Il corpo scivola sotto la lama e incontra i paletti di sostegno: nelle prove d’urto con manichino l’HIC supera 2000 (danni permanenti).',
+  dsm: 'La protezione continua guida il corpo lungo la barriera: nelle prove d’urto con manichino l’HIC misurato è 132 (leggera contusione).',
   newjersey: 'Superficie continua senza spigoli: il corpo assorbe la componente trasversale e viene deviato lungo la barriera.',
   albero: 'Ostacolo rigido e concentrato: tutta l’energia si scarica su una piccola superficie, come per un paletto o peggio.',
   rilevato: 'Senza barriera il corpo esce dalla piattaforma e cade lungo la scarpata del rilevato.',

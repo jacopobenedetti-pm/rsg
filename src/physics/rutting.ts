@@ -1,5 +1,5 @@
 /**
- * Modello di rischio delle ormaie (Tesi Manutenzione, Cap. IV §2).
+ * Modello di rischio delle ormaie.
  *   sezione parabolica   y = (h/b²) x²
  *   velo idrico          h_g(x) = h − (h/b²) x²
  *   ascissa critica      x_crit = b · √((h − h_crit)/h)
@@ -8,7 +8,7 @@
  *                        P     = P_h,l · P_dl
  *   gravità              G = w · (½ (P/g) v² − P · f_attrito · l_diss),  f_attrito = 0.85 f_a,  w = A/R
  *
- * Nota di implementazione: la tesi lascia w da tarare sperimentalmente (A > 1, maggiore nelle curve
+ * Nota di implementazione: il modello lascia w da tarare sperimentalmente (A > 1, maggiore nelle curve
  * destrorse). Qui w vale 1 in rettifilo e max(1, A·R_rif/R) in curva, con R_rif = 100 m come
  * normalizzazione: serve al confronto relativo tra situazioni, non come valore assoluto.
  */

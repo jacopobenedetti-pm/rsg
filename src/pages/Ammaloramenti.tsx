@@ -12,8 +12,7 @@ export function Ammaloramenti() {
         <h1>Insidie dell’asfalto: i difetti che contano in moto</h1>
         <div className="prose">
           <p>
-            Il catalogo riprende i circa venti degradi comuni ai cataloghi CNR, SETRA, RDDHD e SHRP, sintetizzati nella tesi sulla programmazione
-            della manutenzione. Per ciascuno si indica la caratteristica funzionale compromessa (aderenza, regolarità, portanza) e l’effetto
+            Il catalogo riprende i circa venti degradi comuni ai cataloghi CNR, SETRA, RDDHD e SHRP. Per ciascuno si indica la caratteristica funzionale compromessa (aderenza, regolarità, portanza) e l’effetto
             specifico sul motoveicolo, che a differenza dell’autovettura poggia su due impronte e si inclina in curva.
           </p>
           <p>
@@ -55,7 +54,6 @@ export function Ammaloramenti() {
           );
         })}
       </div>
-      <p className="small muted">Fonte: tesi sull’analisi del degrado delle sovrastrutture stradali per la programmazione degli interventi finalizzati alla sicurezza dell’esercizio, §III.2 e Cap. IV.</p>
     </div>
   );
 }

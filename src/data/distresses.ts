@@ -1,5 +1,5 @@
 /**
- * Catalogo degli ammaloramenti (Tesi Manutenzione §III.2, sintesi dei cataloghi CNR, SETRA, RDDHD, SHRP)
+ * Catalogo degli ammaloramenti (sintesi dei cataloghi CNR, SETRA, RDDHD, SHRP)
  * riletto dal punto di vista del motoveicolo: per ciascun degrado si indica l'effetto specifico sulla moto,
  * che a differenza dell'autovettura poggia su due sole impronte di pochi cm² e si inclina in curva.
  */
@@ -29,7 +29,7 @@ export const DISTRESSES: Distress[] = [
     id: 'B',
     nome: 'Lucidatura degli inerti',
     descrizione: 'Gli aggregati della superficie vengono rasati progressivamente fino alla scomparsa della microtessitura.',
-    effettoMoto: 'Riduce l’aderenza disponibile su asciutto (microtessitura) e soprattutto su bagnato. Allunga lo spazio d’arresto in proporzione alla diffusione (Fig. III.6) e abbassa la velocità limite in curva.',
+    effettoMoto: 'Riduce l’aderenza disponibile su asciutto (microtessitura) e soprattutto su bagnato. Allunga lo spazio d’arresto in proporzione alla diffusione e abbassa la velocità limite in curva.',
     funzione: ['aderenza'],
     gravitaMoto: 4,
   },
@@ -61,7 +61,7 @@ export const DISTRESSES: Distress[] = [
     id: 'F',
     nome: 'Ormaie',
     descrizione: 'Deformazioni trasversali in corrispondenza delle tracce delle ruote, bordate da piccoli rigonfiamenti.',
-    effettoMoto: 'Marcia "a binario": l’uscita dall’ormaia genera coppie che deviano la ruota (Tav. 02). Con pioggia l’acqua ristagna nel fondo e innesca l’aquaplaning (Cap. IV).',
+    effettoMoto: 'Marcia "a binario": l’uscita dall’ormaia genera coppie che deviano la ruota. Con pioggia l’acqua ristagna nel fondo e innesca l’aquaplaning.',
     funzione: ['regolarità', 'aderenza', 'portanza'],
     gravitaMoto: 4,
   },
@@ -141,7 +141,7 @@ export const DISTRESSES: Distress[] = [
     id: 'P',
     nome: 'Buche',
     descrizione: 'Depressioni localizzate prodotte per asportazione di materiale, estese agli strati profondi.',
-    effettoMoto: 'Il degrado più condizionante: in rettifilo e in curva, quando il punto di contatto è avanzato rispetto alla proiezione dell’asse forcella, il mezzo diventa ingovernabile (Tav. 02). Piene d’acqua non sono distinguibili da una pozzanghera.',
+    effettoMoto: 'Il degrado più condizionante: in rettifilo e in curva, quando il punto di contatto è avanzato rispetto alla proiezione dell’asse forcella, il mezzo diventa ingovernabile. Piene d’acqua non sono distinguibili da una pozzanghera.',
     funzione: ['regolarità', 'portanza'],
     gravitaMoto: 5,
   },

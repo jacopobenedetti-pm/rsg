@@ -36,7 +36,7 @@ function Out({ label, value, tone }: { label: string; value: string; tone?: 'ok'
   );
 }
 
-function Section({ id, children, formula, source }: { id: PrincipleId; children: ReactNode; formula?: string; source?: string }) {
+function Section({ id, children, formula }: { id: PrincipleId; children: ReactNode; formula?: string }) {
   const related = SCENARIOS.filter((s) => s.principi.includes(id));
   return (
     <section id={`p-${id}`} className="panel stack" style={{ scrollMarginTop: 80 }}>
@@ -50,7 +50,6 @@ function Section({ id, children, formula, source }: { id: PrincipleId; children:
       </div>
       {formula && <div className="formula">{formula}</div>}
       {children}
-      {source && <p className="small muted">Fonte: {source}</p>}
       {related.length > 0 && (
         <div className="row small">
           <span className="muted">Scenari:</span>
@@ -73,7 +72,7 @@ function Aderenza() {
   const [wet, setWet] = useState(true);
   const list = Object.values(SURFACES).sort((a, b) => (wet ? b.wet - a.wet : b.dry - a.dry));
   return (
-    <Section id="aderenza" source="Tesi Manutenzione §III.1 e §IV.1.1; valori indicativi di letteratura per confronti relativi.">
+    <Section id="aderenza">
       <div className="prose">
         <p>
           L’aderenza nasce da due meccanismi: l’adesione molecolare tra gomma e inerti, governata dalla microtessitura, e l’isteresi,
@@ -140,7 +139,7 @@ function Frenata() {
     ];
   }, []);
   return (
-    <Section id="frenata" formula="N_F = m g (b/p + a·h/p)    N_R = m g ((p − b)/p − a·h/p)    con h = 0,70 m, p = 1,40 m, b = 0,70 m" source="Tesi Progettazione, Tav. 02.">
+    <Section id="frenata" formula="N_F = m g (b/p + a·h/p)    N_R = m g ((p − b)/p − a·h/p)    con h = 0,70 m, p = 1,40 m, b = 0,70 m">
       <div className="prose">
         <p>
           Il baricentro alto rispetto al passo produce un forte trasferimento di carico sull’anteriore: la ripartizione ottimale della frenata
@@ -186,12 +185,12 @@ function Arresto() {
     ];
   }, [tau, f, i, aut]);
   return (
-    <Section id="arresto" formula="d = v·τ + v² / (2 g (f ± i))    (con resistenza aerodinamica e masse rotanti: integrazione numerica, Tav. 06)" source="Tesi Progettazione, Tav. 06; DM 5/11/2001; Tesi Manutenzione nota 27.">
+    <Section id="arresto" formula="d = v·τ + v² / (2 g (f ± i))    (con resistenza aerodinamica e masse rotanti: integrazione numerica)">
       <div className="prose">
         <p>
           Lo spazio d’arresto somma il tratto percorso durante il tempo di percezione e reazione e lo spazio di frenatura, che cresce con il
           quadrato della velocità. La norma lo calcola con coefficienti di aderenza longitudinale cautelativi e un tempo psicotecnico che decresce
-          con la velocità; per la moto la tesi mostra spazi maggiori a parità di condizioni, per la minore inerzia rispetto alla resistenza
+          con la velocità; per la moto gli spazi sono maggiori a parità di condizioni, per la minore inerzia rispetto alla resistenza
           aerodinamica e per la difficoltà di impegnare al limite il freno anteriore.
         </p>
       </div>
@@ -232,7 +231,7 @@ function Percezione() {
     ];
   }, []);
   return (
-    <Section id="percezione" formula="dθ/dt ≈ w · v / d²   →   distanza alla quale l'avvicinamento diventa percepibile: d = √(w · v / soglia)" source="DM 5/11/2001 per τ; soglia di percezione dell'espansione angolare ≈ 0,003 rad/s, valore indicativo di letteratura.">
+    <Section id="percezione" formula="dθ/dt ≈ w · v / d²   →   distanza alla quale l'avvicinamento diventa percepibile: d = √(w · v / soglia)">
       <div className="prose">
         <p>
           Chi deve giudicare se c’è tempo per svoltare o immettersi stima la velocità del veicolo che arriva dall’ingrandimento della sua
@@ -272,7 +271,7 @@ function Piega() {
     }));
   }, []);
   return (
-    <Section id="piega" formula="γ = α + φ = arctan(v²/gR)    tan φ = (v²/gR − tan α) / (1 + v²/gR · tan α)    φ_T = φ + arcsin(t·sin φ / (h − t))" source="Tesi Progettazione, Tav. 03 e 10.">
+    <Section id="piega" formula="γ = α + φ = arctan(v²/gR)    tan φ = (v²/gR − tan α) / (1 + v²/gR · tan α)    φ_T = φ + arcsin(t·sin φ / (h − t))">
       <div className="prose">
         <p>
           La moto in curva si inclina finché la risultante di peso e forza centrifuga passa per il punto di contatto: l’angolo di rollio
@@ -293,7 +292,7 @@ function Piega() {
             <Out label="Aderenza trasversale impegnata" value={b.ft.toFixed(3)} tone={b.ft > ftN ? 'bad' : 'ok'} />
             <Out label="f_t massima di norma a questa velocità" value={ftN.toFixed(3)} />
           </dl>
-          <p className="small muted">La tesi propone, per garantire alla moto lo stesso rischio dell’auto, coefficienti trasversali ridotti: {NORM_FT_ADEGUATO_MOTO.map(([vv, f]) => `${f} a ${vv} km/h`).join(', ')} (Tav. 17).</p>
+          <p className="small muted">Per garantire alla moto lo stesso margine dell’auto servirebbero coefficienti trasversali ridotti: {NORM_FT_ADEGUATO_MOTO.map(([vv, f]) => `${f} a ${vv} km/h`).join(', ')}.</p>
         </div>
         <LineChart title="Angolo di piega in funzione della velocità" series={series} xLabel="velocità" xUnit="km/h" yLabel="piega" yUnit="°" cursor={v} yDomain={[0, 60]} digits={0} />
       </div>
@@ -308,7 +307,7 @@ function Ellisse() {
   const fx = remainingLongitudinal(fy, mu, mu);
   const R = 90;
   return (
-    <Section id="ellisse" formula="x² / f_t² + y² / f_l² = 1    →    f_l,residua = f_l · √(1 − (f_t,impegnata / f_t)²)" source="Tesi Progettazione, Tav. 11, 14, 15.">
+    <Section id="ellisse" formula="x² / f_t² + y² / f_l² = 1    →    f_l,residua = f_l · √(1 − (f_t,impegnata / f_t)²)">
       <div className="prose">
         <p>
           L’aderenza disponibile è unica e va divisa tra direzione trasversale (curva) e longitudinale (frenata, accelerazione). In piega una
@@ -362,7 +361,7 @@ function VisCurva() {
     ];
   }, [mA, mM]);
   return (
-    <Section id="visibilita-curva" formula="D = 2R · arccos(1 − m/R)    m = R (1 − cos(D / 2R))" source="Tesi Progettazione, Tav. 06-07.">
+    <Section id="visibilita-curva" formula="D = 2R · arccos(1 − m/R)    m = R (1 − cos(D / 2R))">
       <div className="prose">
         <p>
           In curva la visuale è limitata dall’ostacolo sul lato interno (scarpata, siepe, muro, barriera centrale). La norma verifica la
@@ -405,7 +404,7 @@ function VisVerticale() {
     ];
   }, [he]);
   return (
-    <Section id="visibilita-verticale" formula="dosso: D = √(2 Rv) (√h1 + √h2)    raccordo concavo di notte: Rv = D² / (2 (h_f + D sin θ))" source="Tesi Progettazione, Tav. 07.">
+    <Section id="visibilita-verticale" formula="dosso: D = √(2 Rv) (√h1 + √h2)    raccordo concavo di notte: Rv = D² / (2 (h_f + D sin θ))">
       <div className="prose">
         <p>
           Sui raccordi convessi la visuale dipende dall’altezza dell’occhio e dell’ostacolo. In rettilineo il motociclista siede più in alto
@@ -444,7 +443,7 @@ function Notte() {
     return [{ id: 'r', label: 'Portata utile del faro in curva', color: 'var(--series-1)', points: xs.map((x) => [x, headlightReachInCurve(x, e)] as [number, number]) }];
   }, [e]);
   return (
-    <Section id="notte" formula="portata lungo la traiettoria ≈ √(2 R e + e²)    illuminazione laterale: x_int = h cos φ · tan(β − φ), x_ext = h cos φ · tan(β + φ)" source="Tesi Progettazione, Tav. 08.">
+    <Section id="notte" formula="portata lungo la traiettoria ≈ √(2 R e + e²)    illuminazione laterale: x_int = h cos φ · tan(β − φ), x_ext = h cos φ · tan(β + φ)">
       <div className="prose">
         <p>
           Il faro è solidale alla moto: punta lungo la tangente e in piega ruota con il veicolo. Il fascio esce presto dalla corsia verso
@@ -486,7 +485,7 @@ function Aquaplaning() {
     return depths.map((d, k) => ({ id: `h${d}`, label: `velo ${d} mm`, color: `var(--series-${k + 1})`, points: xs.map((x) => [x, waterFilmFriction(x, d, tread)] as [number, number]) }));
   }, [tread]);
   return (
-    <Section id="aquaplaning" formula="h_g(x) = h − (h/b²) x²    x_crit = b √((h − h_crit)/h)    P_h,l = ∫ f(x) dx tra ±x_crit    P = P_h,l · P_dl" source="Tesi Manutenzione, Cap. IV (Fig. IV.1-IV.2 da Ferrari-Giannini; modello di probabilità delle ormaie).">
+    <Section id="aquaplaning" formula="h_g(x) = h − (h/b²) x²    x_crit = b √((h − h_crit)/h)    P_h,l = ∫ f(x) dx tra ±x_crit    P = P_h,l · P_dl">
       <div className="prose">
         <p>
           Il velo d’acqua agisce da lubrificante e riduce l’area di contatto: al crescere della velocità l’acqua non viene più espulsa
@@ -536,7 +535,7 @@ function Impatto() {
   const E = 0.5 * 85 * vi * vi;
   const Et = 0.5 * 85 * (vi * Math.sin(ex.theta)) ** 2;
   return (
-    <Section id="impatto" formula="l = √(2Rb + b²)    θ = arccos(R / (R + b))    v_imp = √(v² − 2 μ g l)    L_c = ½ m (v sin θ)²" source="Tesi Progettazione, Tav. 14 e 18; Tesi Manutenzione §IV.2.2.">
+    <Section id="impatto" formula="l = √(2Rb + b²)    θ = arccos(R / (R + b))    v_imp = √(v² − 2 μ g l)    L_c = ½ m (v sin θ)²">
       <div className="prose">
         <p>
           Dopo la perdita di aderenza moto e pilota proseguono lungo la tangente fino all’ostacolo esterno. Più il raggio è piccolo, più il
@@ -629,7 +628,7 @@ function Velocita() {
     ];
   }, [v1, vp]);
   return (
-    <Section id="velocita" formula="L = V1 (V2 − V1)/a + ½ (V2 − V1)²/a    a_A = 0,8 m/s² (norma)    a_M ≈ 2,0 m/s² (moto)" source="Tesi Progettazione, Tav. 09.">
+    <Section id="velocita" formula="L = V1 (V2 − V1)/a + ½ (V2 − V1)²/a    a_A = 0,8 m/s² (norma)    a_M ≈ 2,0 m/s² (moto)">
       <div className="prose">
         <p>
           La norma costruisce il diagramma delle velocità con accelerazioni e decelerazioni di 0,8 m/s². La moto, grazie al rapporto peso/potenza,
@@ -700,8 +699,7 @@ export function Fondamenti({ anchor }: { anchor?: string }) {
         <h1>Perché la moto si comporta così</h1>
         <p className="prose">
           Aderenza, frenata, piega, visibilità: i principi da cui nascono tutte le situazioni di pericolo, ciascuno con un consiglio pratico e un
-          calcolatore da provare. Le formule vengono dalle due tesi di riferimento; i valori di letteratura sono indicativi e servono a confrontare
-          situazioni.
+          calcolatore da provare. I valori di aderenza sono indicativi e servono a confrontare situazioni.
         </p>
         <nav className="toc" aria-label="Indice dei fondamenti">
           {PRINCIPLE_ORDER.map((p) => (

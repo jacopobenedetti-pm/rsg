@@ -3,12 +3,6 @@ import type { DistressId } from './distresses';
 
 export type Level = 1 | 2 | 3 | 4 | 5;
 
-export interface SourceRef {
-  /** TM = tesi sul degrado delle sovrastrutture · TP = tesi sui criteri progettuali per il motoveicolo */
-  doc: 'TM' | 'TP';
-  rif: string;
-}
-
 export interface Scenario {
   /** codice stabile: contesto + progressivo (U-01, E-05, A-12) */
   id: string;
@@ -42,5 +36,4 @@ export interface Scenario {
   rischio: { P: Level; G: Level };
   principi: PrincipleId[];
   ammaloramenti?: DistressId[];
-  fonti?: SourceRef[];
 }

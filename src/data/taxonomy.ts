@@ -9,7 +9,7 @@
  *   3. AGGRAVANTI         condizioni ambientali (pioggia, notte, abbagliamento, vento, temperatura, nebbia)
  * più un marcatore per le condotte non ammesse dal Codice della Strada (scenari "fuori norma").
  *
- * La stima qualitativa del rischio segue l'impostazione R = P · G della Tesi Manutenzione (§II.4.1).
+ * La stima qualitativa del rischio segue l'impostazione R = P · G dell'analisi di rischio.
  */
 
 export type ContextId = 'urbano' | 'extraurbano' | 'autostradale';
